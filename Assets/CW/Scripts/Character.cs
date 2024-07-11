@@ -15,12 +15,16 @@ public class Character : MonoBehaviour
 
     public float Speed=5f;
     
+    
 
 
     private void Awake()
     {
         camera = Camera.main;
         anim = GetComponentInChildren<Animator>();
+        nav = GetComponent<NavMeshAgent>();
+        nav.updateRotation = false;
+        
     }
     private void Update()
     {
@@ -30,37 +34,50 @@ public class Character : MonoBehaviour
             if(Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition),out hit))
             {
                 setCharacterMove(hit.point);
+                nav.isStopped = false;
             }
         }
-        Move();
+        LookMoveDir();
     }
 
     public void setCharacterMove(Vector3 charMove)
     {
+        nav.SetDestination(charMove);
         CharacterMove= charMove;
         isMove = true;
         anim.SetBool("isMove",true);
     }
 
-    public void Move()
+    public void LookMoveDir()
     {
         if(isMove==true)
         {
-            var dir = CharacterMove - transform.position;
+            if(!nav.pathPending&&nav.remainingDistance<=nav.stoppingDistance)
+            {
+                if(!nav.hasPath||nav.velocity.sqrMagnitude==0f)
+                {
+                    isMove = false;
+                    anim.SetBool("isMove", false);
+                    {
+                        nav.isStopped = true;
+                        nav.velocity = Vector3.zero;
+                    }
+                        
+
+                    
+                }
+            }
+            var dir = new Vector3(nav.steeringTarget.x,transform.position.y,nav.steeringTarget.z) - transform.position;
             dir.y = 0;
             anim.transform.forward = dir;
-            transform.position += dir.normalized*Time.deltaTime*Speed;
+            
             
 
             
 
 
         }
-        if(Vector3.Distance(transform.position,CharacterMove)<=0.1f)
-        {
-            isMove = false;
-            anim.SetBool("isMove", false);
-        }
+        
     }
 
 
