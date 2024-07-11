@@ -11,22 +11,6 @@ public class Monster : MonoBehaviour,IHitable
     public float damage;
     #endregion
 
-    #region 몬스터 상태 
-    private enum State
-    {
-        Idle,
-        Move,
-        Attack,
-        Die
-    }
-    private State currentState;
-    #endregion
-
-    private void Start()
-    {
-        currentState = State.Idle;
-    }
-
     public virtual void Hit(float damage)
     {
         currentHP -= damage;    
