@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
     private Camera camera;
     private Animator anim;
     private Vector3 CharacterMove;
+    private NavMeshAgent nav;
 
     public bool isMove;
 
