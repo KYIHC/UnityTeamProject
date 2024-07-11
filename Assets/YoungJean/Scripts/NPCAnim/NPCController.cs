@@ -9,6 +9,7 @@ public class NPCController : MonoBehaviour
 {
     public Animator anim;
     public NavMeshAgent nav;
+    private Vector3 originPos;
 
 
     // NPC의 상태를 Enum을 통해서 정의
@@ -24,53 +25,53 @@ public class NPCController : MonoBehaviour
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         SetState(NPCState.Idle);
-
+        originPos = transform.position;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SetState(NPCState.Patrol);
-        }
-        else
-            {
-            SetState(NPCState.Idle);
-        }
-
+        // NPC의 상태 
+        Debug.Log(originPos);
     }
     public void SetState(NPCState state)
     {
         switch (state)
         {
             case NPCState.Idle:
-                anim.SetBool("isIdle", true);
                 anim.SetBool("isPatrol", false);
-                anim.SetBool("isChase", false);
+                SetState(NPCState.Patrol);
                 break;
             case NPCState.Patrol:
-                anim.SetBool("isIdle", false);
                 anim.SetBool("isPatrol", true);
-                anim.SetBool("isChase", false);
-
-                NPCPatrol();
-
+                StartCoroutine(Patrol());
                 break;
             case NPCState.Chase:
-                anim.SetBool("isIdle", false);
                 anim.SetBool("isPatrol", false);
-                anim.SetBool("isChase", true);
+
                 break;
         }
     }
-    public void NPCPatrol()
+    IEnumerator Patrol()
     {
-        Vector3 randomPos = Random.insideUnitSphere * 1f;
-        randomPos.y = 0;
-        Vector3 finalPos = transform.position + randomPos;
 
-        nav.SetDestination(finalPos);
+        while (true)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Vector2 randomPoint = Random.insideUnitCircle * 10;
+                Vector3 randomPosition = new Vector3(randomPoint.x, 0, randomPoint.y);
+                randomPosition += transform.position;
+                nav.SetDestination(randomPosition);
+                yield return new WaitUntil(() => nav.remainingDistance < 0.1f);
+            }
+            nav.SetDestination(originPos);
+            yield return new WaitUntil(() => nav.remainingDistance < 0.1f);
+
+
+        }
     }
+
+
 
 
 }
