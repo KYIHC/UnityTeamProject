@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,9 +26,13 @@ public class NPCController : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         SetState(NPCState.Idle);
         originPos = transform.position;
-        
     }
 
+    private void Update()
+    {
+        // NPCÀÇ »óÅÂ 
+        Debug.Log(originPos);
+    }
     public void SetState(NPCState state)
     {
         switch (state)
