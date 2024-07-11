@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class Mage : Monster
 {
+    #region private 변수
+    private GameManager gameManager;
+    private Vector3 playerPosition;
+    #endregion
+
     #region 몬스터 정보 변수
 
     #endregion
@@ -29,6 +34,8 @@ public class Mage : Monster
 
     private void Start()
     {
+        gameManager = GameManager.instance;
+        gameManager.character.transform.position = playerPosition;
         maxHP = 100;
         currentHP = maxHP;
         currentState = State.Idle;
@@ -105,12 +112,28 @@ public class Mage : Monster
 
     private bool CanSeePlayer()
     {
-       
-        return true;
+
+        float distance = Vector3.Distance(playerPosition, transform.position);
+        if (distance < 20f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private bool OnAttackArea()
     {
-        return true;
+        float distance = Vector3.Distance(playerPosition, transform.position);
+        if (distance < 10f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
