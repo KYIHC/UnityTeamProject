@@ -33,6 +33,11 @@ public class NPCController : MonoBehaviour
         {
             SetState(NPCState.Patrol);
         }
+        else
+            {
+            SetState(NPCState.Idle);
+        }
+
     }
     public void SetState(NPCState state)
     {
