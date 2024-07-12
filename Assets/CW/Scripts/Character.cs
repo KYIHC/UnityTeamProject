@@ -41,14 +41,13 @@ public class Character : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(GetComponent<Camera>().ScreenPointToRay(Input.mousePosition), out hit))
-            {
+            
 
                 if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
                 {
                     setCharacterMove(hit.point);
                 }
-            }
+            
         }
         LookMoveDir();
 
