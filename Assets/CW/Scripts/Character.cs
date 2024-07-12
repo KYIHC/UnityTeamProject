@@ -36,9 +36,7 @@ public class Character : MonoBehaviour
                 
                 
                 setCharacterMove(hit.point);
-                
-
-
+                nav.velocity = Vector3.zero;
             }
         }
         LookMoveDir();
@@ -50,23 +48,27 @@ public class Character : MonoBehaviour
         CharacterMove= charMove;
         isMove = true;
         anim.SetBool("isMove",true);
-
     }
 
     public void LookMoveDir()
     {
         if(isMove==true)
         {
-            if(nav.velocity.magnitude==0f)
+            if(!nav.pathPending&&nav.remainingDistance<=nav.stoppingDistance)
             {
-                isMove = false;
-                anim.SetBool("isMove", false);
-                return;                
+                if(!nav.hasPath||nav.velocity.sqrMagnitude==0f)
+                {
+                    isMove = false;
+                    anim.SetBool("isMove", false);
+                    
+                        
+
+                    
+                }
             }
             var dir = new Vector3(nav.steeringTarget.x,transform.position.y,nav.steeringTarget.z) - transform.position;
             dir.y = 0;
             anim.transform.forward = dir;
-            
             
             
 
