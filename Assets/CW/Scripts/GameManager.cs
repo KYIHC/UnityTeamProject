@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Debug.Log("게임 매니저가 두개입니다.");
             Destroy(gameObject);
         }
+        
     }
 }
