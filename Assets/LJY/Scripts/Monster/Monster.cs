@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour,IHitable
 {
+    #region public 변수 
+    public GameObject playerPosition;
+    #endregion
+
     #region 몬스터 정보 변수
     public string monsterName;
     public float maxHP;

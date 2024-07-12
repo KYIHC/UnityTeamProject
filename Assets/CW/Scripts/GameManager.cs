@@ -7,12 +7,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Character character;
 
-
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -20,4 +20,5 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+  
 }

@@ -6,6 +6,14 @@ using UnityEngine;
 
 public class Mage : Monster
 {
+    #region private 변수
+    private bool isDie = false;
+    #endregion
+
+    #region public 변수
+    public GameObject energyBall;
+    public Transform ShootPoint;
+    #endregion
     #region 몬스터 정보 변수
 
     #endregion
@@ -29,7 +37,7 @@ public class Mage : Monster
 
     private void Start()
     {
-        maxHP = 100;
+
         currentHP = maxHP;
         currentState = State.Idle;
         stateMachine = new StateMachine(new MIdleState(this));
@@ -38,7 +46,7 @@ public class Mage : Monster
 
     private void Update()
     {
-        if (currentHP != 0)
+        if (currentHP > 0)
         {
             switch (currentState)
             {
@@ -56,9 +64,12 @@ public class Mage : Monster
                     }
                     break;
                 case State.Move:
-                    if (CanSeePlayer() && OnAttackArea())
+                    if (CanSeePlayer())
                     {
-                        ChangeState(State.Attack);
+                        if (OnAttackArea())
+                        {
+                            ChangeState(State.Attack);
+                        }
                     }
                     else
                     {
@@ -66,8 +77,9 @@ public class Mage : Monster
                     }
                     break;
                 case State.Attack:
-                    if (CanSeePlayer() && !OnAttackArea())
+                    if (CanSeePlayer())
                     {
+                        if(OnAttackArea() == false)
                         ChangeState(State.Move);
                     }
                     else
@@ -79,8 +91,15 @@ public class Mage : Monster
         }
         else
         {
-            ChangeState(State.Die);
+            if (isDie == false)
+            {
+                isDie = true;
+                ChangeState(State.Die);
+                
+            }
         }
+
+        stateMachine.UpdateState();
     }
 
     private void ChangeState(State nextState)
@@ -95,7 +114,7 @@ public class Mage : Monster
                 stateMachine.ChangeState(new MMoveState(this));
                 break;
             case State.Attack:
-                stateMachine.ChangeState(new MAttackState(this));
+                stateMachine.ChangeState(new MRangeAttack(this));
                 break;
             case State.Die:
                 stateMachine.ChangeState(new MDieState(this));
@@ -105,12 +124,43 @@ public class Mage : Monster
 
     private bool CanSeePlayer()
     {
-       
-        return true;
+        playerPosition = GameObject.FindWithTag("Player");
+        float distance = Vector3.Distance(playerPosition.transform.position, transform.position);
+        if (distance < 20f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private bool OnAttackArea()
     {
-        return true;
+        playerPosition = GameObject.FindWithTag("Player");
+        float distance = Vector3.Distance(playerPosition.transform.position, transform.position);
+        if (distance < 7f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+    public void Shoot()
+    {
+        this.energyBall = Instantiate(energyBall);
+        energyBall.transform.position = ShootPoint.position;
+        energyBall.transform.rotation = ShootPoint.rotation;
+        energyBall.GetComponent<Rigidbody>().AddForce(ShootPoint.forward * 1000);
+
     }
 }
