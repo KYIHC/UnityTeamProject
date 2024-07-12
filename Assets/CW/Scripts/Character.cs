@@ -6,12 +6,19 @@ using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
+
+    public Camera camera;
+
     private Camera mainCamera;
+
     private Animator anim;
     private Vector3 CharacterMove;
     private NavMeshAgent nav;
 
     public bool isMove;
+    public bool isAttack;
+    
+
 
     public float Speed=5f;
     
@@ -20,7 +27,12 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
+
+
+        camera = Camera.main;
+
         mainCamera = Camera.main;
+
         anim = GetComponentInChildren<Animator>();
         nav = GetComponent<NavMeshAgent>();
         nav.updateRotation = false;
@@ -31,15 +43,26 @@ public class Character : MonoBehaviour
         if(Input.GetMouseButton(1))
         {
             RaycastHit hit;
+
+            if(Physics.Raycast(GetComponent<Camera>().ScreenPointToRay(Input.mousePosition),out hit))
+            if(Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition),out hit))
+
             if(Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),out hit))
             {
-                
-                
                 setCharacterMove(hit.point);
-                nav.velocity = Vector3.zero;
             }
         }
         LookMoveDir();
+
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="monster"+"boss")
+        {
+
+        }
     }
 
     public void setCharacterMove(Vector3 charMove)
@@ -48,27 +71,23 @@ public class Character : MonoBehaviour
         CharacterMove= charMove;
         isMove = true;
         anim.SetBool("isMove",true);
+
     }
 
     public void LookMoveDir()
     {
         if(isMove==true)
         {
-            if(!nav.pathPending&&nav.remainingDistance<=nav.stoppingDistance)
+            if(nav.velocity.magnitude==0f)
             {
-                if(!nav.hasPath||nav.velocity.sqrMagnitude==0f)
-                {
-                    isMove = false;
-                    anim.SetBool("isMove", false);
-                    
-                        
-
-                    
-                }
+                isMove = false;
+                anim.SetBool("isMove", false);
+                return;                
             }
             var dir = new Vector3(nav.steeringTarget.x,transform.position.y,nav.steeringTarget.z) - transform.position;
             dir.y = 0;
             anim.transform.forward = dir;
+            
             
             
 
