@@ -7,9 +7,7 @@ using UnityEngine.AI;
 public class Character : MonoBehaviour
 {
 
-    public Camera camera;
-
-    private Camera mainCamera;
+    public Camera mainCamera;
 
     private Animator anim;
     private Vector3 CharacterMove;
@@ -26,11 +24,7 @@ public class Character : MonoBehaviour
 
 
     private void Awake()
-    {
-
-
-        camera = Camera.main;
-
+    { 
         mainCamera = Camera.main;
 
         anim = GetComponentInChildren<Animator>();
@@ -44,10 +38,8 @@ public class Character : MonoBehaviour
         {
             RaycastHit hit;
 
-            if(Physics.Raycast(GetComponent<Camera>().ScreenPointToRay(Input.mousePosition),out hit))
-            if(Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition),out hit))
-
             if(Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),out hit))
+
             {
                 setCharacterMove(hit.point);
             }
