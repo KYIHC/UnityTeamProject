@@ -6,9 +6,7 @@ using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
-
-    private Camera mainCamera;
-
+    public Camera mainCamera;
     private Animator anim;
     private Vector3 CharacterMove;
     private NavMeshAgent nav;
@@ -16,9 +14,12 @@ public class Character : MonoBehaviour
     public bool isMove;
     public bool isAttack;
 
+    Weapon weapon;
+
 
 
     public float Speed = 5f;
+    public float AttackDelay = 0.5f;
 
 
 
@@ -28,7 +29,7 @@ public class Character : MonoBehaviour
 
 
 
-        mainCamera = Camera.main;
+        
 
         anim = GetComponentInChildren<Animator>();
         nav = GetComponent<NavMeshAgent>();
@@ -41,26 +42,28 @@ public class Character : MonoBehaviour
         {
             RaycastHit hit;
 
-            
+            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                setCharacterMove(hit.point);
+            }
 
-                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
-                {
-                    setCharacterMove(hit.point);
-                }
-            
         }
+        if (Input.GetMouseButton(0))
+        {
+            Attack();
+        }
+
+
+
+
         LookMoveDir();
 
 
+
+
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "monster" + "boss")
-        {
-
-        }
-    }
+    
 
     public void setCharacterMove(Vector3 charMove)
     {
@@ -85,14 +88,17 @@ public class Character : MonoBehaviour
             dir.y = 0;
             anim.transform.forward = dir;
 
-
-
-
-
-
-
         }
 
+    }
+
+    public void Attack()
+    {
+        if(weapon==null)        
+            return;
+
+        AttackDelay = Time.deltaTime;
+        
     }
 
 
