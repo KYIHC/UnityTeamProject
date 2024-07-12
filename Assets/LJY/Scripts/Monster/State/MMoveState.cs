@@ -20,8 +20,6 @@ public class MMoveState : MBaseState
     {
         monster.transform.LookAt(monster.playerPosition.transform.position);
         nav.SetDestination(monster.playerPosition.transform.position);
-        Debug.Log("Move");
-        
     }
 
     public override void OnStateExit()
