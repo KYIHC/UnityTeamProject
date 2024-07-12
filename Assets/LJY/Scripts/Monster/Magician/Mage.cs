@@ -7,8 +7,7 @@ using UnityEngine;
 public class Mage : Monster
 {
     #region private 변수
-    private GameManager gameManager;
-    private Vector3 playerPosition;
+    
     #endregion
 
     #region 몬스터 정보 변수
@@ -34,8 +33,6 @@ public class Mage : Monster
 
     private void Start()
     {
-        gameManager = GameManager.instance;
-        gameManager.character.transform.position = playerPosition;
         maxHP = 100;
         currentHP = maxHP;
         currentState = State.Idle;
@@ -63,9 +60,12 @@ public class Mage : Monster
                     }
                     break;
                 case State.Move:
-                    if (CanSeePlayer() && OnAttackArea())
+                    if (CanSeePlayer())
                     {
-                        ChangeState(State.Attack);
+                        if (OnAttackArea())
+                        {
+                            ChangeState(State.Attack);
+                        }
                     }
                     else
                     {
@@ -73,8 +73,9 @@ public class Mage : Monster
                     }
                     break;
                 case State.Attack:
-                    if (CanSeePlayer() && !OnAttackArea())
+                    if (CanSeePlayer())
                     {
+                        if(OnAttackArea() == false)
                         ChangeState(State.Move);
                     }
                     else
@@ -88,6 +89,8 @@ public class Mage : Monster
         {
             ChangeState(State.Die);
         }
+
+        stateMachine.UpdateState();
     }
 
     private void ChangeState(State nextState)
@@ -112,8 +115,8 @@ public class Mage : Monster
 
     private bool CanSeePlayer()
     {
-
-        float distance = Vector3.Distance(playerPosition, transform.position);
+        playerPosition = GameObject.FindWithTag("Player");
+        float distance = Vector3.Distance(playerPosition.transform.position, transform.position);
         if (distance < 20f)
         {
             return true;
@@ -126,7 +129,8 @@ public class Mage : Monster
 
     private bool OnAttackArea()
     {
-        float distance = Vector3.Distance(playerPosition, transform.position);
+        playerPosition = GameObject.FindWithTag("Player");
+        float distance = Vector3.Distance(playerPosition.transform.position, transform.position);
         if (distance < 10f)
         {
             return true;

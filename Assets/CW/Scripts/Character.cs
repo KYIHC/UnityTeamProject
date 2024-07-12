@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
-    private Camera camera;
+    private Camera mainCamera;
     private Animator anim;
     private Vector3 CharacterMove;
     private NavMeshAgent nav;
@@ -20,7 +20,7 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        camera = Camera.main;
+        mainCamera = Camera.main;
         anim = GetComponentInChildren<Animator>();
         nav = GetComponent<NavMeshAgent>();
         nav.updateRotation = false;
@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
         if(Input.GetMouseButton(1))
         {
             RaycastHit hit;
-            if(Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition),out hit))
+            if(Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),out hit))
             {
                 
                 

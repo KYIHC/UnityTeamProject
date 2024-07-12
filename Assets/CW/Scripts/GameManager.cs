@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public Character character;
 
-
     private void Awake()
     {
         if (instance == null)
@@ -20,6 +19,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("게임 매니저가 두개입니다.");
             Destroy(gameObject);
         }
-        
     }
+  
 }
