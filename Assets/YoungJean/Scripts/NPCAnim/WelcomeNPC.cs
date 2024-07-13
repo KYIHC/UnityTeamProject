@@ -57,6 +57,8 @@ public class WelcomeNPC : MonoBehaviour
                 anim.SetBool("isPatrol", false);
                 anim.SetBool("isTalk", true);
                 nav.isStopped = true;
+                transform.GetComponent<InteractionEvent>().GetDialogue();
+
                 break;
         }
     }
