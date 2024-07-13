@@ -23,7 +23,7 @@ public class followCamera : MonoBehaviour
             transform.position = target.position + offset;
             target.transform.LookAt(target.transform.position + characterLook);
             Quaternion rotation = Quaternion.Euler(rotationOffset);
-            transform.rotation = rotation * Quaternion.LookRotation(target.position - transform.position);
+            transform.rotation = rotation * Quaternion.LookRotation (target.position - transform.position);
         }
 
     }

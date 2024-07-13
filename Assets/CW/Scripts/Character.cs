@@ -7,18 +7,25 @@ using UnityEngine.AI;
 public class Character : MonoBehaviour
 {
     public Camera mainCamera;
+    public GameObject[] weapons;
+    public bool[] hasWeapon;
+
+
     private Animator anim;
     private Vector3 CharacterMove;
+    
     private NavMeshAgent nav;
 
     public bool isMove;
     public bool isAttack;
+    public bool isrolling;
 
     Weapon weapon;
+    Vector3 RollingVec;
 
 
 
-    public float Speed = 5f;
+    float attackDelay;
     public float AttackDelay = 0.5f;
 
 
@@ -26,7 +33,7 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-
+        
 
 
         
@@ -52,7 +59,7 @@ public class Character : MonoBehaviour
         {
             Attack();
         }
-
+        Rolling();
 
 
 
@@ -94,11 +101,51 @@ public class Character : MonoBehaviour
 
     public void Attack()
     {
-        if(weapon==null)        
-            return;
+        int weaponIndex =0;
+        weapon = weapons[weaponIndex].GetComponent<Weapon>();
+        weapon.gameObject.SetActive(true);
 
-        AttackDelay = Time.deltaTime;
+       
         
+
+        attackDelay += Time.deltaTime;
+        isAttack =weapon.attackSpeed< attackDelay;
+
+        if(Input.GetMouseButton(0)/*&&isAttack*/)
+        {
+            Debug.Log("¿Ô");
+            weapon.useWeapon();
+            switch(weapon.weaponType)
+            {
+                case Weapon.WeaponType.SWORD:
+                    anim.SetTrigger("Sword");
+                    break;
+            }
+            attackDelay = 0;
+        }
+        
+    }
+
+    void Rolling()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (nav.velocity.magnitude >3f)
+            {
+                RollingVec = CharacterMove;
+                nav.speed *= 2;
+                anim.SetTrigger("Rolling");
+                isrolling = true;
+
+                Invoke("RollingBreak", 0.5f);
+            }
+        }
+    }
+
+    void RollingBreak()
+    {
+        nav.speed *= 0.5f;
+        isrolling = false;
     }
 
 

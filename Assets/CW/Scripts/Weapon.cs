@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     public WeaponType weaponType;
     public int damage;
     public BoxCollider weaponArea;
+    public float attackSpeed;
 
 
 
@@ -37,14 +38,17 @@ public class Weapon : MonoBehaviour
 
     IEnumerator UseSword()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         weaponArea.enabled = true;
+
+        yield return new WaitForSeconds(0.3f);
         weaponArea.enabled = false;
     }
     IEnumerator UseShield()
     {
         yield return null;
         weaponArea.enabled = true;
+        yield return new WaitForSeconds(0.3f);
         weaponArea.enabled = false;
     }
 }
