@@ -142,4 +142,14 @@ public class SwordMan : Monster
     {
         Destroy(gameObject);
     }
+
+    public void StartAttack()
+    {
+        attackCollider.enabled = true;
+    }
+
+    public void EndAttack()
+    {
+        attackCollider.enabled = false;
+    }
 }
