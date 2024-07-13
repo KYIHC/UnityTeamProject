@@ -28,7 +28,7 @@ public class DialogueParser : MonoBehaviour
 
             while (row[0].ToString() == "");
 
-            dialogue.context = contextList.ToArray();//대사 클래스의 대사 내용에 contextList를 배열로 변환하여 저장.
+            dialogue.contexts = contextList.ToArray();//대사 클래스의 대사 내용에 contextList를 배열로 변환하여 저장.
             
             dialogueList.Add(dialogue);//대사 리스트에 대사 클래스 추가.
         }

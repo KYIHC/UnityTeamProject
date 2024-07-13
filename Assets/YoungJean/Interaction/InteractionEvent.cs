@@ -5,6 +5,9 @@ using UnityEngine;
 public class InteractionEvent : MonoBehaviour
 {
     [SerializeField] DialougeEvent dialouge;
+    
+
+  
 
     public Dialogue[] GetDialogue()
     {

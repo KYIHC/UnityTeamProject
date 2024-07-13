@@ -9,6 +9,7 @@ public class WelcomeNPC : MonoBehaviour
     private Animator anim;
     private NavMeshAgent nav;
     private GameObject player;
+    private DialogueManager theDM;
     public enum NPCState
     {
         Idle,
@@ -22,6 +23,7 @@ public class WelcomeNPC : MonoBehaviour
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
+        theDM = FindObjectOfType<DialogueManager>();
         Setstate(NPCState.Idle);
 
     }
@@ -57,7 +59,8 @@ public class WelcomeNPC : MonoBehaviour
                 anim.SetBool("isPatrol", false);
                 anim.SetBool("isTalk", true);
                 nav.isStopped = true;
-                transform.GetComponent<InteractionEvent>().GetDialogue();
+                //transform.GetComponent<InteractionEvent>().GetDialogue();
+                theDM.ShowDialogue(transform.GetComponent<InteractionEvent>().GetDialogue());
 
                 break;
         }
