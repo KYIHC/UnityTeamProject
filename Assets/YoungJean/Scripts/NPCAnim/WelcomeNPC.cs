@@ -6,74 +6,61 @@ using UnityEngine.AI;
 
 public class WelcomeNPC : MonoBehaviour
 {
-    public NavMeshAgent nav;
-    public Animator anim;
-    public Vector3 originPos;
-    public Vector3 targetPos;
-    public GameObject player;
+    private Animator anim;
+    private NavMeshAgent nav;
+    private GameObject player;
+    public enum NPCState
+    {
+        Idle,
+        Walking,
+        Talking
+    }
+    private NPCState state;
 
-    public enum State
+    void Start()
     {
-        patrol,
-        trace,
-        talk,
-    }
-    public void Start()
-    {
-        nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        originPos = transform.position;
-        targetPos = new Vector3(originPos.x, originPos.y, originPos.z - 5);
-        SetState(State.patrol);
+        nav = GetComponent<NavMeshAgent>();
+        player = GameObject.Find("Player");
+        Setstate(NPCState.Idle);
+
     }
+
     public void Update()
     {
-        
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+        if (distance < 2) Setstate(NPCState.Talking);
+        else if (distance < 10) Setstate(NPCState.Walking);
+        else Setstate(NPCState.Idle);
 
-        
-
+        Debug.Log(state);
 
     }
-    public void SetState(State state)
+   public void Setstate(NPCState nPCState)
     {
+        state = nPCState;
+
         switch (state)
         {
-            case State.patrol:
-                StartCoroutine(Patrol());
+            case NPCState.Idle:
+                anim.SetBool("isPatrol", false);
+                anim.SetBool("isTalk", false);
+                nav.isStopped = true;
+                break;
+            case NPCState.Walking:
                 anim.SetBool("isPatrol", true);
-                if (player.transform.position.z - transform.position.z < 5f)
-                {                    
-                    SetState(State.trace);
-                }
-                break;
-            case State.trace:
+                anim.SetBool("isTalk", false);
+                nav.isStopped = false;
                 nav.SetDestination(player.transform.position);
-                if (player.transform.position.z - transform.position.z < 0.5f)
-                {
-                    SetState(State.talk);
-                }
                 break;
-            case State.talk:
+            case NPCState.Talking:
                 anim.SetBool("isPatrol", false);
                 anim.SetBool("isTalk", true);
+                nav.isStopped = true;
                 break;
         }
     }
-    IEnumerator Patrol()
-    {
-
-        while (player.transform.position.z - transform.position.z < 5f)
-        {
-
-            anim.SetBool("isPatrol", true);
-            nav.SetDestination(targetPos);
-            yield return new WaitForSeconds(5f);
-
-            nav.SetDestination(originPos);
-            yield return new WaitForSeconds(5f);
-
-        }
 
 
-    }
+
 }

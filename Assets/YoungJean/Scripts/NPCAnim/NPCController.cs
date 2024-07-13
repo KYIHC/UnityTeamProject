@@ -28,11 +28,7 @@ public class NPCController : MonoBehaviour
         originPos = transform.position;
     }
 
-    private void Update()
-    {
-        // NPCÀÇ »óÅÂ 
-        Debug.Log(originPos);
-    }
+   
     public void SetState(NPCState state)
     {
         switch (state)
