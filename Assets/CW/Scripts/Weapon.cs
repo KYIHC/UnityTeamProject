@@ -22,14 +22,14 @@ public class Weapon : MonoBehaviour
         switch(weaponType)
         {
             case WeaponType.SWORD:
-                StartCoroutine("UseSword");
                 StopCoroutine("UseSword");
+                StartCoroutine("UseSword");
 
                 break;
 
             case WeaponType.SHIELD:
-                StartCoroutine("UseShield");
                 StopCoroutine("UseShield");
+                StartCoroutine("UseShield");
                 break;
 
 
@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
     {
         yield return null;
         weaponArea.enabled = true;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(2f);
         weaponArea.enabled = false;
     }
 }

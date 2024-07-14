@@ -9,8 +9,8 @@ public class followCamera : MonoBehaviour
     public Transform target;
     public Vector3 offset;
     public Vector3 rotationOffset;
-    
-    
+
+
 
     Vector3 characterLook;
 
@@ -18,13 +18,26 @@ public class followCamera : MonoBehaviour
     {
         if (target != null)
         {
-            
+
             Vector3 characterLook = new Vector3(x, 0, z).normalized;
             transform.position = target.position + offset;
             target.transform.LookAt(target.transform.position + characterLook);
             Quaternion rotation = Quaternion.Euler(rotationOffset);
-            transform.rotation = rotation * Quaternion.LookRotation (target.position - transform.position);
+            transform.rotation = rotation * Quaternion.LookRotation(target.position - transform.position);
+
+
         }
 
     }
 }
+
+
+
+/*    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag=="floor")
+        {
+            transform.position=target.position+new 
+        }
+    }
+}*/

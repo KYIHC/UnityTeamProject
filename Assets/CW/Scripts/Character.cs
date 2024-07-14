@@ -17,8 +17,9 @@ public class Character : MonoBehaviour
     private NavMeshAgent nav;
 
     public bool isMove;
-    public bool isAttack;
+    public bool isAttackReady;
     public bool isrolling;
+    public bool attackCheck;
 
     Weapon weapon;
     Vector3 RollingVec;
@@ -26,7 +27,7 @@ public class Character : MonoBehaviour
 
 
     float attackDelay;
-    public float AttackDelay = 0.5f;
+    
 
 
 
@@ -45,8 +46,9 @@ public class Character : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && attackCheck != true)
         {
+
             RaycastHit hit;
 
             if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
@@ -55,14 +57,9 @@ public class Character : MonoBehaviour
             }
 
         }
-        if (Input.GetMouseButton(0))
-        {
-            Attack();
-        }
+        
+        Attack();
         Rolling();
-
-
-
         LookMoveDir();
 
 
@@ -101,7 +98,11 @@ public class Character : MonoBehaviour
 
     public void Attack()
     {
-        int weaponIndex =0;
+
+        int weaponIndex = 0;
+
+
+
         weapon = weapons[weaponIndex].GetComponent<Weapon>();
         weapon.gameObject.SetActive(true);
 
@@ -109,19 +110,22 @@ public class Character : MonoBehaviour
         
 
         attackDelay += Time.deltaTime;
-        isAttack =weapon.attackSpeed< attackDelay;
+        isAttackReady = weapon.attackSpeed< attackDelay;
 
-        if(Input.GetMouseButton(0)/*&&isAttack*/)
+        if(Input.GetMouseButton(0)&& isAttackReady)
         {
-            Debug.Log("¿Ô");
+            attackCheck = true;
             weapon.useWeapon();
             switch(weapon.weaponType)
             {
                 case Weapon.WeaponType.SWORD:
+                    
                     anim.SetTrigger("Sword");
                     break;
             }
             attackDelay = 0;
+            Invoke("attackChecking", 1f);
+            
         }
         
     }
@@ -133,7 +137,7 @@ public class Character : MonoBehaviour
             if (nav.velocity.magnitude >3f)
             {
                 RollingVec = CharacterMove;
-                nav.speed *= 2;
+                nav.speed = 12;
                 anim.SetTrigger("Rolling");
                 isrolling = true;
 
@@ -148,6 +152,11 @@ public class Character : MonoBehaviour
         isrolling = false;
     }
 
+
+    void attackChecking()
+    {
+        attackCheck = false;
+    }
 
 
 }
