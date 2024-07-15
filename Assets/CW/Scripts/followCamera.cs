@@ -24,20 +24,7 @@ public class followCamera : MonoBehaviour
             target.transform.LookAt(target.transform.position + characterLook);
             Quaternion rotation = Quaternion.Euler(rotationOffset);
             transform.rotation = rotation * Quaternion.LookRotation(target.position - transform.position);
-
-
         }
 
     }
 }
-
-
-
-/*    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag=="floor")
-        {
-            transform.position=target.position+new 
-        }
-    }
-}*/

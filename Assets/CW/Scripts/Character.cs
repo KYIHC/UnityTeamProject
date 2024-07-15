@@ -80,7 +80,7 @@ public class Character : MonoBehaviour
 
     public void LookMoveDir()
     {
-        if (isMove == true)
+        if (isMove == true&&!attackCheck)
         {
             if (nav.velocity.magnitude == 0f)
             {
