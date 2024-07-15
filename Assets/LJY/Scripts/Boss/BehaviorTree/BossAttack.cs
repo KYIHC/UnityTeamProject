@@ -7,12 +7,14 @@ public class BossAttack : MonoBehaviour
     private Animator anim;
     #region public 변수
     public bool isAttack = false;
+    public Collider attackCollider;
     #endregion
 
     #region private 변수
     private bool[] count;
     private float groundSkillCoolTime = 15.0f;
     private float slashSkillCoolTime = 20.0f;
+    
     #endregion
 
     private void OnEnable()
@@ -58,11 +60,13 @@ public class BossAttack : MonoBehaviour
     {
         isAttack = true;
         anim.SetBool("isGroundAttack", true);
+        attackCollider.enabled = true;
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isGroundAttack", false);
-        isAttack = false;
-        groundSkillCoolTime = 15.0f;
+        attackCollider.enabled = false;
         StartCoroutine(SkillCoolTime(groundSkillCoolTime, 0));
+        yield return new WaitForSeconds(1.0f);
+        isAttack = false;
         yield return null;
     }
 
@@ -70,19 +74,26 @@ public class BossAttack : MonoBehaviour
     {
         isAttack = true;
         anim.SetBool("isSlash", true);
+        attackCollider.enabled = true;
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isSlash", false);
-        isAttack = false;
+        attackCollider.enabled = false;
         StartCoroutine(SkillCoolTime(slashSkillCoolTime, 1));
+        yield return new WaitForSeconds(1.0f);
+        isAttack = false;
         yield return null;
+      
     }
 
     IEnumerator NormalAttack()
     {
         isAttack = true;
         anim.SetBool("isAttack", true);
-        yield return new WaitForSeconds(1.3f);
+        attackCollider.enabled = true;
+        yield return new WaitForSeconds(1.0f);
         anim.SetBool("isAttack", false);
+        attackCollider.enabled = false;
+        yield return new WaitForSeconds(1.0f);
         isAttack = false;
         yield return null;
     }

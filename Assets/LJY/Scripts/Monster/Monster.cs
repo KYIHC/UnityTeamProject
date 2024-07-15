@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour,IHitable
     public float maxHP;
     public float currentHP;
     public float damage;
-    public BoxCollider attackCollider;
+    public Collider attackCollider;
     #endregion
 
     public virtual void Hit(float damage)
