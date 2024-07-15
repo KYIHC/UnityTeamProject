@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,8 @@ public class WelcomeNPC : MonoBehaviour
     private NavMeshAgent nav;
     private GameObject player;
     private DialogueManager theDM;
+
+    private bool isTalk=false; 
     public enum NPCState
     {
         Idle,
@@ -27,18 +30,22 @@ public class WelcomeNPC : MonoBehaviour
         Setstate(NPCState.Idle);
 
     }
+    public Animator GetAnim()
+    {
+        return anim;
+    }
 
     public void Update()
     {
         float distance = Vector3.Distance(player.transform.position, transform.position);
-        if (distance < 2) Setstate(NPCState.Talking);
+        if (distance < 2&& !isTalk) Setstate(NPCState.Talking);
         else if (distance < 10) Setstate(NPCState.Walking);
         else Setstate(NPCState.Idle);
 
         Debug.Log(state);
 
     }
-   public void Setstate(NPCState nPCState)
+    public void Setstate(NPCState nPCState)
     {
         state = nPCState;
 
@@ -58,6 +65,7 @@ public class WelcomeNPC : MonoBehaviour
             case NPCState.Talking:
                 anim.SetBool("isPatrol", false);
                 anim.SetBool("isTalk", true);
+                isTalk = true;
                 nav.isStopped = true;
                 //transform.GetComponent<InteractionEvent>().GetDialogue();
                 theDM.ShowDialogue(transform.GetComponent<InteractionEvent>().GetDialogue());
