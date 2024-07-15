@@ -8,7 +8,6 @@ public class BossPhaseOne : Monster
 {
 
     public float attackRange = 7.0f;
-    public float moveSpeed = 4.0f;
 
     private BTSelector root;
     private BossAttack bossAttack;
@@ -20,8 +19,8 @@ public class BossPhaseOne : Monster
         root = new BTSelector();
         BTSequence attackSequence = new BTSequence();
         BTSequence chaseSequence = new BTSequence();
-        BTActtion attackActtion = new BTActtion(Attack);
-        BTActtion chaseActtion = new BTActtion(Chase);
+        BTAction attackActtion = new BTAction(Attack);
+        BTAction chaseActtion = new BTAction(Chase);
         BTCondition playerRange = new BTCondition(IsPlayerInRange);
         bossAttack = GetComponent<BossAttack>();
         anim = GetComponent<Animator>();
@@ -56,14 +55,16 @@ public class BossPhaseOne : Monster
     {
         if (bossAttack.isAttack == false)
         {
+            anim.SetBool("isChase", false);
             nav.isStopped = true;
-            StartCoroutine(bossAttack.BasicAttack());
+            bossAttack.PhaseOneAttack();
             return BTState.Success;
         }
-        else
+        else if(bossAttack.isAttack == true)
         {
             return BTState.Running;
         }
+        else { return BTState.Failure; }
     }
 
     public BTState Chase()
@@ -77,11 +78,11 @@ public class BossPhaseOne : Monster
             nav.SetDestination(playerPosition.transform.position);
             return BTState.Running;
         }
-        else
+         else if (bossAttack.isAttack == true)
         {
-            anim.SetBool("isChase", false);
             return BTState.Success;
         }
+        else { return BTState.Failure; }
     }
 
     public override void Hit(float damage)

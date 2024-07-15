@@ -22,11 +22,11 @@ public abstract class BTNode
     }
 }
 
-public class BTActtion : BTNode
+public class BTAction : BTNode
 {
     private System.Func<BTState> action;
 
-    public BTActtion(System.Func<BTState> action)
+    public BTAction(System.Func<BTState> action)
     {
         this.action = action;
     }
