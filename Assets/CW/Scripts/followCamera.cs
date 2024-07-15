@@ -19,7 +19,7 @@ public class followCamera : MonoBehaviour
         if (target != null)
         {
 
-            Vector3 characterLook = new Vector3(x, 0, z).normalized;
+            Vector3 characterLook = new Vector3(target.position.x, 0, target.position.z).normalized;
             transform.position = target.position + offset;
             target.transform.LookAt(target.transform.position + characterLook);
             Quaternion rotation = Quaternion.Euler(rotationOffset);
