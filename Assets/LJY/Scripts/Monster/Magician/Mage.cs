@@ -32,7 +32,7 @@ public class Mage : Monster
 
     public override void Hit(float damage)
     {
-        currentHP -= damage;  
+        base.Hit(damage);
     }
 
     private void Start()

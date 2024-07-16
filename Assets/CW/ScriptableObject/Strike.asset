@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f35d9a6019c70354e8927d52cafc1ad1, type: 3}
+  m_Name: Strike
+  m_EditorClassIdentifier: 
+  damage: 10
+  coolTime: 10
+  animationName: Skill_Strike
+  icon: {fileID: 21300000, guid: 551e989bef45ccb44a9c368693b1d947, type: 3}

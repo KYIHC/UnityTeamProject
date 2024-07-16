@@ -11,15 +11,13 @@ public class WelcomeNPC : MonoBehaviour
     private NavMeshAgent nav;
     private GameObject player;
     private DialogueManager theDM;
-    public GameObject exit;
 
-    private bool isTalk = false;
+    private bool isTalk=false; 
     public enum NPCState
     {
         Idle,
         Walking,
-        Talking,
-        Exit
+        Talking
     }
     private NPCState state;
 
@@ -27,34 +25,25 @@ public class WelcomeNPC : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-        player = GameObject.Find("Character");
+        player = GameObject.Find("Player");
         theDM = FindObjectOfType<DialogueManager>();
         Setstate(NPCState.Idle);
 
     }
-
+    public Animator GetAnim()
+    {
+        return anim;
+    }
 
     public void Update()
     {
-        float distance = Vector3.Distance(player.transform.position, transform.position);        
-        if (distance < 2 && !isTalk) Setstate(NPCState.Talking);
-        else if (distance < 10 && !isTalk) Setstate(NPCState.Walking);
-        else if (distance < 2 && isTalk)
-        {
-            //3초후 Idle로 전환
-            Invoke("Setstate", 5);
-
-        }
-        else if (distance < 10 && isTalk) Setstate(NPCState.Exit);
-        
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+        if (distance < 2&& !isTalk) Setstate(NPCState.Talking);
+        else if (distance < 10) Setstate(NPCState.Walking);
+        else Setstate(NPCState.Idle);
 
         Debug.Log(state);
-        
 
-    }
-    public void Setstate()
-    {
-        Setstate(NPCState.Idle);
     }
     public void Setstate(NPCState nPCState)
     {
@@ -76,25 +65,15 @@ public class WelcomeNPC : MonoBehaviour
             case NPCState.Talking:
                 anim.SetBool("isPatrol", false);
                 anim.SetBool("isTalk", true);
+                isTalk = true;
                 nav.isStopped = true;
                 //transform.GetComponent<InteractionEvent>().GetDialogue();
-
                 theDM.ShowDialogue(transform.GetComponent<InteractionEvent>().GetDialogue());
-                isTalk = true;
-                break;
-            case NPCState.Exit:
-                anim.SetBool("isPatrol", true);
-                anim.SetBool("isTalk", false);
-                nav.isStopped = false;
-
-                nav.SetDestination(exit.transform.position);
-                Destroy(gameObject, 10f);
-
-
 
                 break;
         }
     }
+
 
 
 }

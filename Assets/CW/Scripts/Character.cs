@@ -13,13 +13,15 @@ public class Character : MonoBehaviour
 
     private Animator anim;
     private Vector3 CharacterMove;
-    
+
     private NavMeshAgent nav;
 
     public bool isMove;
     public bool isAttackReady;
     public bool isrolling;
     public bool attackCheck;
+   
+
 
     Weapon weapon;
     Vector3 RollingVec;
@@ -27,17 +29,17 @@ public class Character : MonoBehaviour
 
 
     float attackDelay;
-    
+
 
 
 
 
     private void Awake()
     {
-        
 
 
-        
+
+
 
         anim = GetComponentInChildren<Animator>();
         nav = GetComponent<NavMeshAgent>();
@@ -57,7 +59,7 @@ public class Character : MonoBehaviour
             }
 
         }
-        
+
         Attack();
         Rolling();
         LookMoveDir();
@@ -67,7 +69,7 @@ public class Character : MonoBehaviour
 
     }
 
-    
+
 
     public void setCharacterMove(Vector3 charMove)
     {
@@ -80,7 +82,7 @@ public class Character : MonoBehaviour
 
     public void LookMoveDir()
     {
-        if (isMove == true&&!attackCheck)
+        if (isMove == true && !attackCheck)
         {
             if (nav.velocity.magnitude == 0f)
             {
@@ -106,35 +108,35 @@ public class Character : MonoBehaviour
         weapon = weapons[weaponIndex].GetComponent<Weapon>();
         weapon.gameObject.SetActive(true);
 
-       
-        
+
+
 
         attackDelay += Time.deltaTime;
-        isAttackReady = weapon.attackSpeed< attackDelay;
+        isAttackReady = weapon.attackSpeed < attackDelay;
 
-        if(Input.GetMouseButton(0)&& isAttackReady)
+        if (Input.GetMouseButton(0) && isAttackReady && !isMove)
         {
             attackCheck = true;
             weapon.useWeapon();
-            switch(weapon.weaponType)
+            switch (weapon.weaponType)
             {
                 case Weapon.WeaponType.SWORD:
-                    
+
                     anim.SetTrigger("Sword");
                     break;
             }
             attackDelay = 0;
             Invoke("attackChecking", 1f);
-            
+
         }
-        
+
     }
 
     void Rolling()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (nav.velocity.magnitude >3f)
+            if (nav.velocity.magnitude > 3f)
             {
                 RollingVec = CharacterMove;
                 nav.speed = 12;
@@ -156,6 +158,16 @@ public class Character : MonoBehaviour
     void attackChecking()
     {
         attackCheck = false;
+    }
+
+    public void ActivateSkill(SOSkill skill)
+    {
+
+
+        anim.Play(skill.animationName);
+        print(string.Format("적에게 스킬{0}로 {1}의 피해를 주었습니다.", skill.name, skill.damage));
+
+
     }
 
 
