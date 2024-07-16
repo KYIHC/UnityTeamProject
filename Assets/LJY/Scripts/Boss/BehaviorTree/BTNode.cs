@@ -67,7 +67,7 @@ public class BTSelector : BTNode
         foreach (BTNode node in children)
         {
             BTState result = node.Evaluate();
-            if (result != BTState.Success)
+            if (result == BTState.Success)
             {
                 return BTState.Success;
             }
