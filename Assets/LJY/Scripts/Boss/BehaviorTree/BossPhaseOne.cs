@@ -99,10 +99,12 @@ public class BossPhaseOne : Monster
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Boss"))
+      
+        if (other.CompareTag("Player"))
         {
             Debug.Log("Hit");
-            //other.GetComponent<IHitable>().Hit(damage);
+           
+           
         }
     }
 

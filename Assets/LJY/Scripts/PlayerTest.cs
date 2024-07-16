@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class PlayerTest : MonoBehaviour
 {
-    private void OnTriggerExit(Collider other)
+    private Animator anim;
+
+    private void Start()
     {
-        if (other.CompareTag("MonsterSword"))
+        anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Monster Attack");
+            anim.SetTrigger("Attack");
         }
+       
     }
 
 }
