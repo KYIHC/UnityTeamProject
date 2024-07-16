@@ -68,6 +68,7 @@ public class Character : MonoBehaviour
         Attack();
         Rolling();
         LookMoveDir();
+        
 
 
 
@@ -190,6 +191,16 @@ public class Character : MonoBehaviour
             yield return new WaitForSeconds(5f);
             isRollingReady = true;
         }
+    }
+
+    public void stopedMove()
+    {
+        nav.isStopped = true;
+    }
+
+    public void resumeMove()
+    {
+        nav.isStopped = false;
     }
 
 
