@@ -134,8 +134,8 @@ public class Character : MonoBehaviour
                     break;
             }
             attackDelay = 0;
-            attackCheck = false;
-            nav.isStopped = true;
+            
+            StartCoroutine(resumeMove());
 
         }
 
@@ -167,18 +167,18 @@ public class Character : MonoBehaviour
     }
 
 
-    void attackChecking()
-    {
-        attackCheck = false;
-    }
+    
 
     public void ActivateSkill(SOSkill skill)
     {
-
-
-        anim.Play(skill.animationName);
-        print(string.Format("적에게 스킬{0}로 {1}의 피해를 주었습니다.", skill.name, skill.damage));
-
+        attackCheck = true;
+        if (attackCheck == true)
+        {
+            anim.Play(skill.animationName);
+            print(string.Format("적에게 스킬{0}로 {1}의 피해를 주었습니다.", skill.name, skill.damage));
+            
+        }
+        StartCoroutine(resumeMove());
 
     }
 
@@ -191,16 +191,22 @@ public class Character : MonoBehaviour
             yield return new WaitForSeconds(5f);
             isRollingReady = true;
         }
+        yield return null;
     }
 
-    public void stopedMove()
+    
+
+    public void stopMove()
     {
+        if(attackCheck==true)
         nav.isStopped = true;
     }
 
-    public void resumeMove()
+    IEnumerator resumeMove()
     {
-        nav.isStopped = false;
+        yield return new WaitForSeconds(1f);
+        attackCheck = false;
+        yield return null;
     }
 
 
