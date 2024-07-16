@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerTest : MonoBehaviour
 {
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("MonsterSword"))
         {
             Debug.Log("Monster Attack");
         }
     }
-
 }

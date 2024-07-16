@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class BossPhaseOne : Monster
 {
 
-    public float attackRange = 7.0f;
+    public float attackRange = 5.5f;
+    public Transform rayPosition;
 
     private BTSelector root;
     private BossAttack bossAttack;
@@ -24,7 +26,7 @@ public class BossPhaseOne : Monster
         BTCondition playerRange = new BTCondition(IsPlayerInRange);
         bossAttack = GetComponent<BossAttack>();
         anim = GetComponent<Animator>();
-        nav = GetComponent<NavMeshAgent>(); 
+        nav = GetComponent<NavMeshAgent>();
 
         root.AddChild(attackSequence);
         root.AddChild(chaseSequence);
@@ -37,10 +39,7 @@ public class BossPhaseOne : Monster
 
     private void Update()
     {
-        if (!bossAttack.isAttack)
-        {
-            root.Evaluate();
-        }
+        root.Evaluate();
     }
 
 
@@ -55,12 +54,20 @@ public class BossPhaseOne : Monster
     {
         if (bossAttack.isAttack == false)
         {
-            anim.SetBool("isChase", false);
             nav.isStopped = true;
-            bossAttack.PhaseOneAttack();
+            anim.SetBool("isChase", false);
+            if (HeadCheck())
+            {
+                bossAttack.PhaseOneAttack();
+            }
+            else
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(playerPosition.transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
+            }
             return BTState.Success;
         }
-        else if(bossAttack.isAttack == true)
+        else if (bossAttack.isAttack == true)
         {
             return BTState.Running;
         }
@@ -72,13 +79,13 @@ public class BossPhaseOne : Monster
         if (bossAttack.isAttack == false && !IsPlayerInRange())
         {
             Quaternion targetRotation = Quaternion.LookRotation(playerPosition.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5.0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
             nav.isStopped = false;
             anim.SetBool("isChase", true);
             nav.SetDestination(playerPosition.transform.position);
             return BTState.Running;
         }
-         else if (bossAttack.isAttack == true)
+        else if (bossAttack.isAttack == true)
         {
             return BTState.Success;
         }
@@ -92,10 +99,24 @@ public class BossPhaseOne : Monster
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Boss"))
         {
-            other.GetComponent<IHitable>().Hit(damage);
+            Debug.Log("Hit");
+            //other.GetComponent<IHitable>().Hit(damage);
         }
+    }
+
+    private bool HeadCheck()
+    {
+        RaycastHit hit;
+        bool isHit = Physics.Raycast(rayPosition.position, rayPosition.forward, out hit, attackRange);
+        if (isHit && hit.collider.CompareTag("Player"))
+        {
+            Debug.Log("HeadCheck");
+            return true;
+        }
+        else { return false; }
 
     }
+
 }

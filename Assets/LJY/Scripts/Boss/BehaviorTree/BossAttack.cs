@@ -7,14 +7,13 @@ public class BossAttack : MonoBehaviour
     private Animator anim;
     #region public 변수
     public bool isAttack = false;
-    public Collider attackCollider;
+    public GameObject attackCollider;
     #endregion
 
     #region private 변수
     private bool[] count;
     private float groundSkillCoolTime = 15.0f;
     private float slashSkillCoolTime = 20.0f;
-    
     #endregion
 
     private void OnEnable()
@@ -29,6 +28,7 @@ public class BossAttack : MonoBehaviour
 
     public void PhaseOneAttack()
     {
+
         while (isAttack == false)
         {
             int a = Random.Range(0, 2);
@@ -36,16 +36,19 @@ public class BossAttack : MonoBehaviour
             {
                 StartCoroutine(NormalAttack());
             }
-            else if (count[0] || count[1] && count[a])
+            else if (count[0] || count[1])
             {
-                switch (a)
+                if (count[a])
                 {
-                    case 0:
-                        StartCoroutine(GroundAttack());
-                        break;
-                    case 1:
-                        StartCoroutine(SlashAttack());
-                        break;
+                    switch (a)
+                    {
+                        case 0:
+                            StartCoroutine(GroundAttack());
+                            break;
+                        case 1:
+                            StartCoroutine(SlashAttack());
+                            break;
+                    }
                 }
             }
             else
@@ -54,46 +57,48 @@ public class BossAttack : MonoBehaviour
             }
             break;
         }
+
     }
 
     IEnumerator GroundAttack()
     {
+        StartCoroutine(SkillCoolTime(groundSkillCoolTime, 0));
+        attackCollider.SetActive(true);
         isAttack = true;
         anim.SetBool("isGroundAttack", true);
-        attackCollider.enabled = true;
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isGroundAttack", false);
-        attackCollider.enabled = false;
-        StartCoroutine(SkillCoolTime(groundSkillCoolTime, 0));
-        yield return new WaitForSeconds(1.0f);
+        attackCollider.SetActive(false);
+        yield return new WaitForSeconds(2.0f);
         isAttack = false;
         yield return null;
     }
 
     IEnumerator SlashAttack()
     {
+        StartCoroutine(SkillCoolTime(slashSkillCoolTime, 1));
+        attackCollider.SetActive(true);
         isAttack = true;
         anim.SetBool("isSlash", true);
-        attackCollider.enabled = true;
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isSlash", false);
-        attackCollider.enabled = false;
-        StartCoroutine(SkillCoolTime(slashSkillCoolTime, 1));
-        yield return new WaitForSeconds(1.0f);
+        attackCollider.SetActive(false);
+        yield return new WaitForSeconds(2.0f);
         isAttack = false;
         yield return null;
-      
+
     }
 
     IEnumerator NormalAttack()
     {
         isAttack = true;
         anim.SetBool("isAttack", true);
-        attackCollider.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        attackCollider.SetActive(true);
         yield return new WaitForSeconds(1.0f);
         anim.SetBool("isAttack", false);
-        attackCollider.enabled = false;
-        yield return new WaitForSeconds(1.0f);
+        attackCollider.SetActive(false);
+        yield return new WaitForSeconds(2.0f);
         isAttack = false;
         yield return null;
     }
