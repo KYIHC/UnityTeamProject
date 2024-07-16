@@ -626,7 +626,7 @@
     "m_ShaderOutputName": "Center",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.5,
+        "x": 0.8299999833106995,
         "y": 0.5
     },
     "m_DefaultValue": {
