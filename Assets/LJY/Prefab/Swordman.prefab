@@ -1207,7 +1207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4148849017979870536}
-  - component: {fileID: 8426031371114658895}
+  - component: {fileID: 6574105881242564345}
   m_Layer: 0
   m_Name: sword
   m_TagString: MonsterSword
@@ -1230,8 +1230,8 @@ Transform:
   m_Father: {fileID: 3780621919759426352}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &8426031371114658895
-CapsuleCollider:
+--- !u!65 &6574105881242564345
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1239,11 +1239,10 @@ CapsuleCollider:
   m_GameObject: {fileID: 5199917571606977102}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.26939794
-  m_Height: 1.1320629
-  m_Direction: 2
-  m_Center: {x: -0.079208784, y: -0.020000009, z: 0.7887027}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.66328, y: 0.1521034, z: 1.0499009}
+  m_Center: {x: -0.14955644, y: -0.056247063, z: 0.770992}
 --- !u!1 &5233778073078861953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7825344408253322479
 Transform:
   m_ObjectHideFlags: 0
@@ -1791,7 +1790,7 @@ MonoBehaviour:
   maxHP: 100
   currentHP: 0
   damage: 20
-  attackCollider: {fileID: 8426031371114658895}
+  attackCollider: {fileID: 6574105881242564345}
 --- !u!143 &733468603240296868
 CharacterController:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class MAttackState : MBaseState
     public MAttackState(Monster monster): base(monster) { }
     private Animator anim;
     private NavMeshAgent nav;
-    private Collider attackCollider;
+    private BoxCollider attackCollider;
     public override void OnStateEnter()
     {
         anim = monster.GetComponent<Animator>();
