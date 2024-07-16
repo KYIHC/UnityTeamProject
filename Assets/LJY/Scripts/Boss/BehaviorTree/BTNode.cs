@@ -1,14 +1,14 @@
 
 using System.Collections.Generic;
-
+public enum BTState
+{
+    Failure,
+    Success,
+    Running
+}
 public abstract class BTNode 
 {
-    public enum BTState
-    {
-        Failure,
-        Success,
-        Running
-    }
+    
     protected List<BTNode> children = new List<BTNode>();
 
     public void AddChild(BTNode node)
@@ -22,11 +22,11 @@ public abstract class BTNode
     }
 }
 
-public class BTActtion : BTNode
+public class BTAction : BTNode
 {
     private System.Func<BTState> action;
 
-    public BTActtion(System.Func<BTState> action)
+    public BTAction(System.Func<BTState> action)
     {
         this.action = action;
     }
@@ -66,7 +66,7 @@ public class BTSelector : BTNode
         foreach (BTNode node in children)
         {
             BTState result = node.Evaluate();
-            if (result != BTState.Success)
+            if (result == BTState.Success)
             {
                 return BTState.Success;
             }
