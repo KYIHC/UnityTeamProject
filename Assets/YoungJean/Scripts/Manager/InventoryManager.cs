@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager instance;
+   public static InventoryManager instance;
+
     private void Awake()
     {
         if (instance != null)
@@ -17,7 +18,7 @@ public class InventoryManager : MonoBehaviour
 
     public delegate void OnSlotCountChange(int val);
     public OnSlotCountChange onSlotCountChange;
-    private int slotCount;
+   private int slotCount;
 
     public int SlotCount
     {
@@ -30,6 +31,6 @@ public class InventoryManager : MonoBehaviour
     }
     private void Start()
     {
-        SlotCount = 4;
+        slotCount = 4;
     }
 }
