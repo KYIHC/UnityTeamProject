@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
 
     public WeaponType weaponType;
     public int damage;
-    public BoxCollider weaponArea;
+    public GameObject weaponArea;
     public float attackSpeed;
 
 
@@ -39,16 +39,16 @@ public class Weapon : MonoBehaviour
     IEnumerator UseSword()
     {
         yield return new WaitForSeconds(0.1f);
-        weaponArea.enabled = true;
+        weaponArea.SetActive(true);
 
         yield return new WaitForSeconds(0.3f);
-        weaponArea.enabled = false;
+        weaponArea.SetActive(false);
     }
     IEnumerator UseShield()
     {
         yield return null;
-        weaponArea.enabled = true;
+        weaponArea.SetActive(true);
         yield return new WaitForSeconds(2f);
-        weaponArea.enabled = false;
+        weaponArea.SetActive(false);
     }
 }

@@ -18,10 +18,12 @@ public class Character : MonoBehaviour
 
     public bool isMove;
     public bool isAttackReady;
-    public bool isrolling;
+    public bool isRolling;
     public bool attackCheck;
-   
+    public bool isRollingReady;
 
+
+    
 
     Weapon weapon;
     Vector3 RollingVec;
@@ -29,6 +31,7 @@ public class Character : MonoBehaviour
 
 
     float attackDelay;
+    float rollingDelay;
 
 
 
@@ -38,24 +41,26 @@ public class Character : MonoBehaviour
     {
 
 
+        isRollingReady=true;
 
 
-
-        anim = GetComponentInChildren<Animator>();
+    anim = GetComponentInChildren<Animator>();
         nav = GetComponent<NavMeshAgent>();
         nav.updateRotation = false;
 
     }
     private void Update()
     {
-        if (Input.GetMouseButton(1) && attackCheck != true)
+        if (Input.GetMouseButton(1) && attackCheck == false)
         {
-
+            
             RaycastHit hit;
 
             if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
             {
                 setCharacterMove(hit.point);
+                
+
             }
 
         }
@@ -66,13 +71,13 @@ public class Character : MonoBehaviour
 
 
 
-
     }
 
 
 
     public void setCharacterMove(Vector3 charMove)
     {
+        nav.isStopped = false;
         nav.SetDestination(charMove);
         CharacterMove = charMove;
         isMove = true;
@@ -82,7 +87,7 @@ public class Character : MonoBehaviour
 
     public void LookMoveDir()
     {
-        if (isMove == true && !attackCheck)
+        if (isMove == true)
         {
             if (nav.velocity.magnitude == 0f)
             {
@@ -93,8 +98,10 @@ public class Character : MonoBehaviour
             var dir = new Vector3(nav.steeringTarget.x, transform.position.y, nav.steeringTarget.z) - transform.position;
             dir.y = 0;
             anim.transform.forward = dir;
+            
 
         }
+        
 
     }
 
@@ -114,7 +121,7 @@ public class Character : MonoBehaviour
         attackDelay += Time.deltaTime;
         isAttackReady = weapon.attackSpeed < attackDelay;
 
-        if (Input.GetMouseButton(0) && isAttackReady && !isMove)
+        if (Input.GetMouseButton(0) && isAttackReady)
         {
             attackCheck = true;
             weapon.useWeapon();
@@ -126,7 +133,8 @@ public class Character : MonoBehaviour
                     break;
             }
             attackDelay = 0;
-            Invoke("attackChecking", 1f);
+            attackCheck = false;
+            nav.isStopped = true;
 
         }
 
@@ -134,24 +142,27 @@ public class Character : MonoBehaviour
 
     void Rolling()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+        if (Input.GetKeyDown(KeyCode.Space) && isRollingReady && nav.velocity.magnitude > 3f)
         {
-            if (nav.velocity.magnitude > 3f)
-            {
-                RollingVec = CharacterMove;
-                nav.speed = 12;
-                anim.SetTrigger("Rolling");
-                isrolling = true;
+            
 
-                Invoke("RollingBreak", 0.5f);
-            }
+            RollingVec = CharacterMove;
+            nav.speed = 12;
+            anim.SetTrigger("Rolling");
+            isRolling = true;
+
+            Invoke("RollingBreak", 0.5f);
+            rollingDelay = 0;
+            StartCoroutine(rollingInterval());
         }
     }
 
     void RollingBreak()
     {
         nav.speed *= 0.5f;
-        isrolling = false;
+        isRolling = false;
+
     }
 
 
@@ -169,6 +180,19 @@ public class Character : MonoBehaviour
 
 
     }
+
+    IEnumerator rollingInterval()
+    {
+        
+        isRollingReady = false;
+        if (isRollingReady == false)
+        {
+            yield return new WaitForSeconds(5f);
+            isRollingReady = true;
+        }
+    }
+
+
 
 
 }

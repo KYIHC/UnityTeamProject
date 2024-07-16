@@ -33,9 +33,10 @@ public class SkillButton : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(activationKey)&&character.isMove==false)
+        if (Input.GetKeyDown(activationKey))
         {
             SkillSlot();
+
         }
 
 
