@@ -6,26 +6,30 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    InventoryManager inventoryManager;
+    Inventory inven;
     public GameObject inventoryPanel;
     bool activeInventory = false;
 
     public Slot[] slots;
     public Transform slotHolder; 
+    
 
     private void Start()
     {
-        inventoryManager = InventoryManager.instance;
+        inven = Inventory.instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();
-        inventoryManager.onSlotCountChange += SlotChange;
-        inventoryPanel.SetActive(activeInventory);   
+        inven.onSlotCountChange += SlotChange;
+        inven.onChangeItem += RedrawSlotUI;
+        inventoryPanel.SetActive(activeInventory);
+        
+        
     }
 
     private void SlotChange(int val)
     {
         for(int i = 0; i < slots.Length; i++)
         {
-            if(i < inventoryManager.SlotCount)
+            if(i < inven.SlotCount)
             {
                 slots[i].GetComponent<Button>().interactable = true;    
             }
@@ -47,6 +51,20 @@ public class InventoryUI : MonoBehaviour
 
     public void addSlot()
     {
-        inventoryManager.SlotCount++;
+        inven.SlotCount++;
+    }
+
+    void RedrawSlotUI()
+    {
+        for (int i = 0; i < slots.Length; i++)
+            slots[i].RemoveSlot();
+        for (int i = 0; i < inven.items.Count; i++)
+        {
+            slots[i].item = inven.items[i];
+            slots[i].UpdateSlotUI();
+        }
+            
+
+
     }
 }

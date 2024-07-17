@@ -8,6 +8,7 @@ TagManager:
   - Boss
   - MonsterProjectile
   - MonsterSword
+  - Item
   layers:
   - Default
   - TransparentFX

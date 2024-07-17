@@ -48,7 +48,7 @@ public class WelcomeNPC : MonoBehaviour
         else if (distance < 10 && isTalk) Setstate(NPCState.Exit);
         
 
-        Debug.Log(state);
+        
         
 
     }
