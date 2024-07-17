@@ -263,16 +263,16 @@ GameObject:
   m_Component:
   - component: {fileID: 2299485457966395300}
   - component: {fileID: 1757477710198272787}
-  - component: {fileID: 1379150387817447481}
   - component: {fileID: 1379150387817447480}
   - component: {fileID: 1379150387817447485}
+  - component: {fileID: 6357909016275464973}
   m_Layer: 0
   m_Name: magition
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2299485457966395300
 Transform:
   m_ObjectHideFlags: 0
@@ -312,24 +312,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!143 &1379150387817447481
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486954768591172894}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &1379150387817447480
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -369,9 +351,23 @@ MonoBehaviour:
   maxHP: 100
   currentHP: 0
   damage: 10
-  attackCollider: {fileID: 0}
+  attackObject: {fileID: 0}
   projectilePrefab: {fileID: -5766696766654483482, guid: 6710c43a42e63b54eb6b538db85685e7, type: 3}
   ShootPoint: {fileID: 1379150387183899148}
+--- !u!136 &6357909016275464973
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486954768591172894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1507526547825659351
 GameObject:
   m_ObjectHideFlags: 0
