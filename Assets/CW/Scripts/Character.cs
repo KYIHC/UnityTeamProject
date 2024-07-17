@@ -25,6 +25,7 @@ public class Character : MonoBehaviour
     public bool isRolling;
     public bool attackCheck;
     public bool isRollingReady;
+    public bool StopMode;
 
     
 
@@ -241,17 +242,33 @@ public class Character : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("trigger enter called");
+        
+        
+        
+            if (other.tag == "Monster" || other.tag == "Boss")
+            {
+                
+                nav.isStopped=true;
 
-        if(other.tag=="Monster")
-        {
-            Debug.Log(other.tag);
-            nav.destination = transform.position;
-
-        }
+            }
+        
+        
     }
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Monster" || other.tag == "Boss")
+        {
+            nav.isStopped = false;
+
+        }
+
+            
+    }
+
+
+
+
 
 
 

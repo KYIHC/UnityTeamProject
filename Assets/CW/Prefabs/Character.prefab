@@ -1686,6 +1686,7 @@ MonoBehaviour:
   isRolling: 0
   attackCheck: 0
   isRollingReady: 0
+  StopMode: 0
 --- !u!195 &4662681415678365563
 NavMeshAgent:
   m_ObjectHideFlags: 0
