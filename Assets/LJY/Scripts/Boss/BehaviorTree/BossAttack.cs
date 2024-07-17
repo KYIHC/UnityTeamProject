@@ -17,8 +17,8 @@ public class BossAttack : MonoBehaviour
 
     #region private º¯¼ö
     private bool[] count;
-    private float groundSkillCoolTime = 15.0f;
-    private float slashSkillCoolTime = 20.0f;
+    private float groundSkillCoolTime = 10.0f;
+    private float slashSkillCoolTime = 15.0f;
     private Animator anim;
     private NavMeshAgent nav;
     #endregion
@@ -35,7 +35,7 @@ public class BossAttack : MonoBehaviour
         }
     }
 
-    public void PhaseOneAttack(int patternCount)
+    public void AttackPatterm(int patternCount)
     {
 
         while (isAttack == false)
@@ -44,7 +44,6 @@ public class BossAttack : MonoBehaviour
 
             if (count[pattern] == true && patternCount < 4)
             {
-
                 switch (pattern)
                 {
                     case 0:
@@ -59,7 +58,7 @@ public class BossAttack : MonoBehaviour
 
                 }
             }
-            else if (count[pattern] == true && patternCount < 6)
+            else if (count[pattern] == true && 4 < patternCount )
             {
                 switch (pattern)
                 {
@@ -71,6 +70,12 @@ public class BossAttack : MonoBehaviour
                         break;
                     case 2:
                         StartCoroutine(SlashAttack());
+                        break;
+                    case 3:
+                        StartCoroutine(JumpAndSpin());
+                        break;
+                    case 4:
+                        StartCoroutine(Raise());
                         break;
 
                 }
@@ -90,10 +95,10 @@ public class BossAttack : MonoBehaviour
         anim.SetBool("isAttack", true);
         yield return new WaitForSeconds(0.2f);
         attackObject.SetActive(true);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(animationClip[0].length - 0.2f);
         anim.SetBool("isAttack", false);
         attackObject.SetActive(false);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         isAttack = false;
         yield return null;
     }
@@ -105,10 +110,10 @@ public class BossAttack : MonoBehaviour
         attackObject.SetActive(true);
         isAttack = true;
         anim.SetBool("isGroundAttack", true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(animationClip[1].length);
         anim.SetBool("isGroundAttack", false);
         attackObject.SetActive(false);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         isAttack = false;
         yield return null;
     }
@@ -119,23 +124,43 @@ public class BossAttack : MonoBehaviour
         attackObject.SetActive(true);
         isAttack = true;
         anim.SetBool("isSlash", true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(animationClip[2].length);
         anim.SetBool("isSlash", false);
         attackObject.SetActive(false);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         isAttack = false;
         yield return null;
     }
 
     IEnumerator JumpAndSpin()
     {
+        StartCoroutine(SkillCoolTime(groundSkillCoolTime, 3));
         isAttack = true;
         nav.isStopped = false;
-        nav.SetDestination(transform.position + transform.forward * 5);
-        nav.speed = 10;
+        nav.SetDestination(transform.position + transform.forward * 10);
+        nav.speed = 8;
         anim.SetBool("isJump", true);
         attackObject.SetActive(true);
-        yield return new WaitForSeconds(animationClip[4].length + (animationClip[5].length * 0.8f));
+        yield return new WaitForSeconds(animationClip[3].length);
+        nav.isStopped = true;
+        yield return new WaitForSeconds((animationClip[4].length* 0.5f));
+        anim.SetBool("isJump", false);
+        nav.speed = 4.0f;
+        attackObject.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+        isAttack = false;
+        yield return null;
+    }
+
+    IEnumerator Raise()
+    {
+        StartCoroutine(SkillCoolTime(slashSkillCoolTime, 4));
+        isAttack = true;
+        anim.SetBool("isRaise", true);
+        yield return new WaitForSeconds(animationClip[5].length + (animationClip[6].length *3));
+        anim.SetBool("isRaise", false);
+        yield return new WaitForSeconds(animationClip[7].length + 1.0f);
+        isAttack = false;
         yield return null;
     }
 

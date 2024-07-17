@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7294947157501734985, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_Name
-      value: skeleton_king_Phase2
+      value: 'skeleton_king_Phase2 '
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_RootOrder
@@ -17,31 +17,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7.23
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.11
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 247.42
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.9799653
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.19916841
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -49,15 +49,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 337.023
       objectReference: {fileID: 0}
     - target: {fileID: 7959843401272306419, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7959843401272306425, guid: 11838230c5181314e90c729583b52e69, type: 3}
+      propertyPath: animationClip.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959843401272306425, guid: 11838230c5181314e90c729583b52e69, type: 3}
+      propertyPath: animationClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: e5500fdcb88db2c408e30081772464cc, type: 2}
+    - target: {fileID: 7959843401272306425, guid: 11838230c5181314e90c729583b52e69, type: 3}
+      propertyPath: animationClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 7400000, guid: 5ccefe4a8fa8f4b28a338f5cf2c1bcb0, type: 2}
+    - target: {fileID: 7959843401272306425, guid: 11838230c5181314e90c729583b52e69, type: 3}
+      propertyPath: animationClip.Array.data[2]
+      value: 
+      objectReference: {fileID: 7400000, guid: 2980535b3cf944a768ada715dfc7d113, type: 2}
+    - target: {fileID: 7959843401272306425, guid: 11838230c5181314e90c729583b52e69, type: 3}
+      propertyPath: animationClip.Array.data[3]
+      value: 
+      objectReference: {fileID: 7400000, guid: 3bff85fa0a37f4a7b886e6aba4d44b54, type: 2}
+    - target: {fileID: 7959843401272306425, guid: 11838230c5181314e90c729583b52e69, type: 3}
+      propertyPath: animationClip.Array.data[4]
+      value: 
+      objectReference: {fileID: 7400000, guid: 2a048fe81f5c12e4c9f0f3150b8f7079, type: 2}
     - target: {fileID: 7959843401272306429, guid: 11838230c5181314e90c729583b52e69, type: 3}
       propertyPath: patterCount
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959843401272306431, guid: 11838230c5181314e90c729583b52e69, type: 3}
+      propertyPath: m_Speed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11838230c5181314e90c729583b52e69, type: 3}

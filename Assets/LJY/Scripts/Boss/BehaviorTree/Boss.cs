@@ -62,7 +62,7 @@ public class Boss : Monster
             anim.SetBool("isChase", false);
             if (HeadCheck())
             {
-                bossAttack.PhaseOneAttack(patterCount);
+                bossAttack.AttackPatterm(patterCount);
             }
             else
             {
