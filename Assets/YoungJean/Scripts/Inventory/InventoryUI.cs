@@ -29,6 +29,8 @@ public class InventoryUI : MonoBehaviour
     {
         for(int i = 0; i < slots.Length; i++)
         {
+
+            slots[i].slotNum = i;
             if(i < inven.SlotCount)
             {
                 slots[i].GetComponent<Button>().interactable = true;    
