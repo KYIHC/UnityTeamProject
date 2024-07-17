@@ -8,11 +8,22 @@ public class InventoryUI : MonoBehaviour
 {
     Inventory inven;
     public GameObject inventoryPanel;
-    bool activeInventory = false;
-
+    public bool activeInventory = false;
+    public static InventoryUI instance;
     public Slot[] slots;
-    public Transform slotHolder; 
-    
+    public Transform slotHolder;
+
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+
+    }
 
     private void Start()
     {
@@ -24,6 +35,7 @@ public class InventoryUI : MonoBehaviour
         
         
     }
+    
 
     private void SlotChange(int val)
     {
@@ -64,9 +76,9 @@ public class InventoryUI : MonoBehaviour
         {
             slots[i].item = inven.items[i];
             slots[i].UpdateSlotUI();
-        }
-            
+        }           
 
 
     }
+    
 }
