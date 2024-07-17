@@ -145,11 +145,11 @@ public class SwordMan : Monster
 
     public void StartAttack()
     {
-        attackObject.SetActive(true);
+        attackCollider.enabled = true;
     }
 
     public void EndAttack()
     {
-        attackObject.SetActive(false);
+        attackCollider.enabled = false;
     }
 }

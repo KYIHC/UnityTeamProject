@@ -8,11 +8,12 @@ public class MAttackState : MBaseState
     public MAttackState(Monster monster): base(monster) { }
     private Animator anim;
     private NavMeshAgent nav;
+    private BoxCollider attackCollider;
     public override void OnStateEnter()
     {
         anim = monster.GetComponent<Animator>();
         nav = monster.GetComponent<NavMeshAgent>();
-        monster.attackObject.SetActive(true);
+        attackCollider = monster.attackCollider;
         anim.SetBool("isAttack", true);
         nav.isStopped = true;
     }
@@ -24,7 +25,7 @@ public class MAttackState : MBaseState
 
     public override void OnStateExit()
     {
-        monster.attackObject.SetActive(false);
+        attackCollider.enabled = false;
         nav.isStopped = false;
         anim.SetBool("isAttack", false);
     }

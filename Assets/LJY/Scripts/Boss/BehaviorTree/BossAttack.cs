@@ -60,62 +60,62 @@ public class BossAttack : MonoBehaviour
             {
                 StartCoroutine(NormalAttack());
             }
-                break;
-            }
-
+            break;
         }
 
-        IEnumerator NormalAttack()
-        {
-            isAttack = true;
-            anim.SetBool("isAttack", true);
-            yield return new WaitForSeconds(0.2f);
-            attackObject.SetActive(true);
-            yield return new WaitForSeconds(1.0f);
-            anim.SetBool("isAttack", false);
-            attackObject.SetActive(false);
-            yield return new WaitForSeconds(2.0f);
-            isAttack = false;
-            yield return null;
-        }
-
-        IEnumerator GroundAttack()
-        {
-            Debug.Log("GroundAttack");
-            StartCoroutine(SkillCoolTime(groundSkillCoolTime, 1));
-            attackObject.SetActive(true);
-            isAttack = true;
-            anim.SetBool("isGroundAttack", true);
-            yield return new WaitForSeconds(1.5f);
-            anim.SetBool("isGroundAttack", false);
-            attackObject.SetActive(false);
-            yield return new WaitForSeconds(2.0f);
-            isAttack = false;
-            yield return null;
-        }
-
-        IEnumerator SlashAttack()
-        {
-            StartCoroutine(SkillCoolTime(slashSkillCoolTime, 2));
-            attackObject.SetActive(true);
-            isAttack = true;
-            anim.SetBool("isSlash", true);
-            yield return new WaitForSeconds(1.5f);
-            anim.SetBool("isSlash", false);
-            attackObject.SetActive(false);
-            yield return new WaitForSeconds(2.0f);
-            isAttack = false;
-            yield return null;
-
-        }
-
-        IEnumerator SkillCoolTime(float coolTime, int index)
-        {
-            count[index] = false;
-            Debug.Log(index + "coolTime");
-            yield return new WaitForSeconds(coolTime);
-            count[index] = true;
-            Debug.Log(index + "coolTimeEnd");
-            yield return null;
-        }
     }
+
+    IEnumerator NormalAttack()
+    {
+        isAttack = true;
+        anim.SetBool("isAttack", true);
+        yield return new WaitForSeconds(0.2f);
+        attackObject.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        anim.SetBool("isAttack", false);
+        attackObject.SetActive(false);
+        yield return new WaitForSeconds(2.0f);
+        isAttack = false;
+        yield return null;
+    }
+
+    IEnumerator GroundAttack()
+    {
+        Debug.Log("GroundAttack");
+        StartCoroutine(SkillCoolTime(groundSkillCoolTime, 1));
+        attackObject.SetActive(true);
+        isAttack = true;
+        anim.SetBool("isGroundAttack", true);
+        yield return new WaitForSeconds(1.5f);
+        anim.SetBool("isGroundAttack", false);
+        attackObject.SetActive(false);
+        yield return new WaitForSeconds(2.0f);
+        isAttack = false;
+        yield return null;
+    }
+
+    IEnumerator SlashAttack()
+    {
+        StartCoroutine(SkillCoolTime(slashSkillCoolTime, 2));
+        attackObject.SetActive(true);
+        isAttack = true;
+        anim.SetBool("isSlash", true);
+        yield return new WaitForSeconds(1.5f);
+        anim.SetBool("isSlash", false);
+        attackObject.SetActive(false);
+        yield return new WaitForSeconds(2.0f);
+        isAttack = false;
+        yield return null;
+
+    }
+
+    IEnumerator SkillCoolTime(float coolTime, int index)
+    {
+        count[index] = false;
+        Debug.Log(index + "coolTime");
+        yield return new WaitForSeconds(coolTime);
+        count[index] = true;
+        Debug.Log(index + "coolTimeEnd");
+        yield return null;
+    }
+}
