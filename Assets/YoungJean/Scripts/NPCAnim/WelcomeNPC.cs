@@ -52,10 +52,10 @@ public class WelcomeNPC : MonoBehaviour
         
 
     }
-    public void Setstate()
+  /*  public void Setstate()
     {
         Setstate(NPCState.Idle);
-    }
+    }*/
     public void Setstate(NPCState nPCState)
     {
         state = nPCState;
