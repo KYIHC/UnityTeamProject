@@ -8,10 +8,22 @@ public class QuestHelper : MonoBehaviour
     public NavMeshAgent nav;
     public Transform target;
     public LineRenderer lineRenderer;
+    public bool isDraw = false;
 
+    public static QuestHelper instance;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
 
     private void Update()
     {
+        if(isDraw)
         DrawPath();
     }
 

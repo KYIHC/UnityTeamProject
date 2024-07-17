@@ -81,6 +81,9 @@ public class WelcomeNPC : MonoBehaviour
 
                 theDM.ShowDialogue(transform.GetComponent<InteractionEvent>().GetDialogue());
                 isTalk = true;
+                GameObject go = GameObject.Find("GeneralGoodMerchant");
+                QuestHelper.instance.target = go.transform;
+                QuestHelper.instance.isDraw = true;
                 break;
             case NPCState.Exit:
                 anim.SetBool("isPatrol", true);
@@ -98,3 +101,4 @@ public class WelcomeNPC : MonoBehaviour
 
 
 }
+
