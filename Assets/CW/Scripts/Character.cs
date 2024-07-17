@@ -204,8 +204,10 @@ public class Character : MonoBehaviour
 
     IEnumerator resumeMove()
     {
+        nav.isStopped = true;
         yield return new WaitForSeconds(1f);
         attackCheck = false;
+        
         yield return null;
     }
 
