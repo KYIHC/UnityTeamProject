@@ -1678,7 +1678,6 @@ MonoBehaviour:
   weapons:
   - {fileID: 601074727182427352}
   - {fileID: 2901196307141760310}
-  stopDistance: 1
   hasWeapon: 
   isMove: 0
   isAttackReady: 0

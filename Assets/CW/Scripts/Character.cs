@@ -8,10 +8,7 @@ public class Character : MonoBehaviour
 {
     public Camera mainCamera;
     public GameObject[] weapons;
-
-
-    
-    public float stopDistance=1.0f;
+    public bool[] hasWeapon;
 
 
     private Animator anim;
@@ -19,16 +16,14 @@ public class Character : MonoBehaviour
 
     private NavMeshAgent nav;
 
-    public bool[] hasWeapon;
     public bool isMove;
     public bool isAttackReady;
     public bool isRolling;
     public bool attackCheck;
     public bool isRollingReady;
 
+
     
-
-
 
     Weapon weapon;
     Vector3 RollingVec;
@@ -46,10 +41,10 @@ public class Character : MonoBehaviour
     {
 
 
-        isRollingReady = true;
+        isRollingReady=true;
 
 
-        anim = GetComponentInChildren<Animator>();
+    anim = GetComponentInChildren<Animator>();
         nav = GetComponent<NavMeshAgent>();
         nav.updateRotation = false;
 
@@ -58,13 +53,13 @@ public class Character : MonoBehaviour
     {
         if (Input.GetMouseButton(1) && attackCheck == false)
         {
-
+            
             RaycastHit hit;
 
             if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
             {
                 setCharacterMove(hit.point);
-
+                
 
             }
 
@@ -73,25 +68,7 @@ public class Character : MonoBehaviour
         Attack();
         Rolling();
         LookMoveDir();
-
         
-
-        /*NavMeshAgent[] allAgents = FindObjectsOfType<NavMeshAgent>();
-        foreach(NavMeshAgent otherAgent in allAgents)
-        {
-            if(otherAgent!=nav)
-            {
-                float distance = Vector3.Distance(nav.transform.position, otherAgent.transform.position);
-                if(distance<stopDistance)
-                {
-                    nav.isStopped = true;
-                    return;
-                }
-            }
-        }
-        nav.isStopped = false;*/
-
-
 
 
 
@@ -122,16 +99,16 @@ public class Character : MonoBehaviour
             var dir = new Vector3(nav.steeringTarget.x, transform.position.y, nav.steeringTarget.z) - transform.position;
             dir.y = 0;
             anim.transform.forward = dir;
-
+            
 
         }
-
+        
 
     }
 
     public void Attack()
     {
-        anim.SetBool("Sword", false);
+
         int weaponIndex = 0;
 
 
@@ -153,24 +130,23 @@ public class Character : MonoBehaviour
             {
                 case Weapon.WeaponType.SWORD:
 
-                    anim.SetBool("Sword",true);
+                    anim.SetTrigger("Sword");
                     break;
             }
             attackDelay = 0;
             
-
             StartCoroutine(resumeMove());
 
         }
-        
+
     }
 
     void Rolling()
     {
-
+        
         if (Input.GetKeyDown(KeyCode.Space) && isRollingReady && nav.velocity.magnitude > 3f)
         {
-
+            
 
             RollingVec = CharacterMove;
             nav.speed = 12;
@@ -191,7 +167,7 @@ public class Character : MonoBehaviour
     }
 
 
-
+    
 
     public void ActivateSkill(SOSkill skill)
     {
@@ -200,7 +176,7 @@ public class Character : MonoBehaviour
         {
             anim.Play(skill.animationName);
             print(string.Format("적에게 스킬{0}로 {1}의 피해를 주었습니다.", skill.name, skill.damage));
-
+            
         }
         StartCoroutine(resumeMove());
 
@@ -208,7 +184,7 @@ public class Character : MonoBehaviour
 
     IEnumerator rollingInterval()
     {
-
+        
         isRollingReady = false;
         if (isRollingReady == false)
         {
@@ -218,40 +194,22 @@ public class Character : MonoBehaviour
         yield return null;
     }
 
-
+    
 
     public void stopMove()
     {
-        if (attackCheck == true)
-            nav.isStopped = true;
-        if (isMove == false)
-            nav.isStopped = true;
+        if(attackCheck==true)
+        nav.isStopped = true;
     }
 
     IEnumerator resumeMove()
     {
         nav.isStopped = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(1f);
         attackCheck = false;
-
+        
         yield return null;
     }
-
-    
-
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log("trigger enter called");
-
-        if(other.tag=="Monster")
-        {
-            Debug.Log(other.tag);
-            nav.destination = transform.position;
-
-        }
-    }
-
-    
 
 
 
