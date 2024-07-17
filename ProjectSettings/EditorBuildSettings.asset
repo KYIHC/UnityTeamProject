@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/YoungJean/Scene/AwakeScene.unity
+    guid: 03db8cfde01c4534784d517fc41c2091
+  - enabled: 1
+    path: Assets/YoungJean/Scene/Village.unity
+    guid: a7ff4eacfa494a645943e3435f7ae86a
+  - enabled: 1
+    path: Assets/LJY/Scene/Dungeon.unity
+    guid: 0fdb7a1a4109a5740982a88fd5331f50
   m_configObjects: {}
