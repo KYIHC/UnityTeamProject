@@ -17,23 +17,29 @@ public class Boss : Monster
     private BossAttack bossAttack;
     private NavMeshAgent nav;
     private Animator anim;
+    private bool isDie = false;
     #endregion
  
     private void OnEnable()
     {
         root = new BTSelector();
         bossAttack = GetComponent<BossAttack>();
+        BTSequence lifeCheckSequence = new BTSequence();
         BTSequence attackSequence = new BTSequence();
         BTSequence chaseSequence = new BTSequence();
+        BTAction dieAction = new BTAction(Die);
         BTAction attackActtion = new BTAction(Attack);
         BTAction chaseActtion = new BTAction(Chase);
         BTCondition playerRange = new BTCondition(IsPlayerInRange);
+        BTCondition playerDie = new BTCondition(IsPlayerDie);
         
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-
+        root.AddChild(lifeCheckSequence);
         root.AddChild(attackSequence);
         root.AddChild(chaseSequence);
+        lifeCheckSequence.AddChild(playerDie);
+        lifeCheckSequence.AddChild(dieAction);
         attackSequence.AddChild(playerRange);
         attackSequence.AddChild(attackActtion);
         chaseSequence.AddChild(chaseActtion);
@@ -46,6 +52,11 @@ public class Boss : Monster
         root.Evaluate();
     }
 
+    private bool IsPlayerDie()
+    {
+        if (currentHP == 0) { return true;}
+        else { return false; }
+    }
 
     private bool IsPlayerInRange()
     {
@@ -53,7 +64,17 @@ public class Boss : Monster
         float distanceToPlayer = Vector3.Distance(transform.position, playerPosition.transform.position);
         return distanceToPlayer <= attackRange;
     }
-
+    public BTState Die()
+    {
+        if (isDie == false)
+        {
+            anim.SetTrigger("isDeath");
+            Destroy(gameObject, 4.0f);
+            isDie = true;
+            return BTState.Success;
+        }
+        else { return BTState.Success; }
+    }
     public BTState Attack()
     {
         if (bossAttack.isAttack == false)
@@ -71,11 +92,7 @@ public class Boss : Monster
             }
             return BTState.Success;
         }
-        else if (bossAttack.isAttack == true)
-        {
-            return BTState.Running;
-        }
-        else { return BTState.Failure; }
+        else { return BTState.Success; }
     }
 
     public BTState Chase()
@@ -87,13 +104,9 @@ public class Boss : Monster
             nav.isStopped = false;
             anim.SetBool("isChase", true);
             nav.SetDestination(playerPosition.transform.position);
-            return BTState.Running;
-        }
-        else if (bossAttack.isAttack == true)
-        {
             return BTState.Success;
         }
-        else { return BTState.Failure; }
+        else { return BTState.Success; }
     }
 
     public override void Hit(float damage)
@@ -107,8 +120,6 @@ public class Boss : Monster
         if (other.CompareTag("Player"))
         {
             Debug.Log("Hit");
-           
-           
         }
     }
 
@@ -122,7 +133,6 @@ public class Boss : Monster
             return true;
         }
         else { return false; }
-
     }
 
 }
