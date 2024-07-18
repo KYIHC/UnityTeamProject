@@ -206,7 +206,14 @@ public class Character : MonoBehaviour
             print(string.Format("적에게 스킬{0}로 {1}의 피해를 주었습니다.", skill.name, skill.damage));
 
         }
-        StartCoroutine(resumeMove());
+        if (skill.animationName == "Skill_Kick")
+        {
+            StartCoroutine(resumeMove());
+        }
+        if(skill.animationName=="Skill_Strike")
+        {
+            StartCoroutine(SkillStrike());
+        }
 
     }
 
@@ -235,13 +242,23 @@ public class Character : MonoBehaviour
     IEnumerator resumeMove()
     {
         nav.isStopped = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.45f);
         attackCheck = false;
 
         yield return null;
     }
 
+    IEnumerator SkillStrike()
+    {
+        nav.isStopped = true;
+        yield return new WaitForSeconds(1.0f);
+        attackCheck = false;
+
+        yield return null;
+    }
     
+
+
 
     private void OnTriggerStay(Collider other)
     {
