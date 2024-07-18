@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
     public static InventoryUI instance;
     public Slot[] slots;
     public Transform slotHolder;
+    public Text CurrentMoney;
 
 
     private void Awake()
@@ -31,6 +32,7 @@ public class InventoryUI : MonoBehaviour
         slots = slotHolder.GetComponentsInChildren<Slot>();
         inven.onSlotCountChange += SlotChange;
         inven.onChangeItem += RedrawSlotUI;
+        RedrawSlotUI();
         inventoryPanel.SetActive(activeInventory);
         
         
@@ -61,6 +63,7 @@ public class InventoryUI : MonoBehaviour
             activeInventory = !activeInventory;
             inventoryPanel.SetActive(activeInventory);
         }
+        CurrentMoney.text = "Money : " + ItemDatabase.instance.Money.ToString();
     }
 
     public void addSlot()

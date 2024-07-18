@@ -56,6 +56,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             ItemDatabase.instance.Money += item.itemCost;
             Inventory.instance.RemoveItem(slotNum);
             isSell = false;
+            checkSell.SetActive(isSell);
         }
     }
 

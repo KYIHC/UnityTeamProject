@@ -7,6 +7,7 @@ public class GeneralGood : MonoBehaviour
 {
     GameObject player;
     public GameObject Shop;
+    public bool isOpen;
 
     private void Start()
     {
@@ -18,10 +19,8 @@ public class GeneralGood : MonoBehaviour
 
         if (Vector3.Distance(player.transform.position, transform.position) < 2 && Input.GetKeyDown(KeyCode.F))
         {
-            Shop.SetActive(true);
-            InventoryUI.instance.activeInventory = true;
-            InventoryUI.instance.inventoryPanel.SetActive(InventoryUI.instance.activeInventory);
-            
+            isOpen = true;
+            ActiveShop(isOpen);
         }
         else if (Vector3.Distance(player.transform.position, transform.position) < 10)
         {
@@ -37,10 +36,32 @@ public class GeneralGood : MonoBehaviour
 
     public void OnShopExit()
     {
-        Shop.SetActive(false);
+        isOpen = false;
+        ActiveShop(isOpen);
+        /*Shop.SetActive(false);
         InventoryUI.instance.activeInventory = false;
 
-        InventoryUI.instance.inventoryPanel.SetActive(InventoryUI.instance.activeInventory);
+        InventoryUI.instance.inventoryPanel.SetActive(InventoryUI.instance.activeInventory);*/
 
     }
+    public void ActiveShop(bool isOpen)
+    {
+        Shop.SetActive(isOpen);
+        InventoryUI.instance.activeInventory = isOpen;
+        InventoryUI.instance.inventoryPanel.SetActive(InventoryUI.instance.activeInventory);
+        for (int i = 0; i < InventoryUI.instance.slots.Length; i++)
+        {
+            InventoryUI.instance.slots[i].isShopMode = isOpen;
+        }
+    }
+
+    public void SellButton()
+    {
+        for(int i = InventoryUI.instance.slots.Length ; i > 0; i--)
+        {
+            InventoryUI.instance.slots[i-1].SellItem();
+        }
+    }
+
+
 }
