@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35d9a6019c70354e8927d52cafc1ad1, type: 3}
   m_Name: Strike
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 50
   coolTime: 10
   animationName: Skill_Strike
   icon: {fileID: 21300000, guid: 551e989bef45ccb44a9c368693b1d947, type: 3}

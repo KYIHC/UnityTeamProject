@@ -1675,7 +1675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca0c8fc49631cc04489d2747e8786579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
   weapons:
   - {fileID: 601074727182427352}
   - {fileID: 2901196307141760310}

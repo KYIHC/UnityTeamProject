@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
-    public Camera mainCamera;
+    private Camera mainCamera;
     public GameObject[] weapons;
 
 
@@ -45,8 +45,11 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-
-
+        GameObject cameraObj = GameObject.FindWithTag("MainCamera");
+        if(cameraObj!=null)
+        {
+            mainCamera = cameraObj.GetComponent<Camera>();
+        }
         isRollingReady = true;
 
 

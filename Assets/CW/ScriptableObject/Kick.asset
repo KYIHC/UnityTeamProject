@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35d9a6019c70354e8927d52cafc1ad1, type: 3}
   m_Name: Kick
   m_EditorClassIdentifier: 
-  damage: 5
-  coolTime: 3
+  damage: 15
+  coolTime: 1
   animationName: Skill_Kick
   icon: {fileID: 21300000, guid: 4ed5bef21d80b454b83ca210bbbb0026, type: 3}

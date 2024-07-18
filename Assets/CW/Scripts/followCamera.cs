@@ -6,13 +6,24 @@ public class followCamera : MonoBehaviour
 {
     float x, z;
 
-    public Transform target;
+    private Transform target;
     public Vector3 offset;
     public Vector3 rotationOffset;
 
 
 
     Vector3 characterLook;
+
+
+    private void Start()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if(player!=null)
+        {
+            target = player.transform;
+        }
+        
+    }
 
     private void Update()
     {
@@ -27,4 +38,6 @@ public class followCamera : MonoBehaviour
         }
 
     }
+
+    
 }
