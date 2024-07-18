@@ -1,23 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class PlayerTest : MonoBehaviour
+
+[CustomEditor(typeof(MonsterDataToJson))]
+public class PlayerTest : Editor
 {
-    private Animator anim;
 
-    private void Start()
+    public override void OnInspectorGUI()
     {
-        anim = GetComponent<Animator>();
-    }
+        base.OnInspectorGUI();
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        MonsterDataToJson monsterData = target as MonsterDataToJson;
+
+        if (GUILayout.Button("Save"))
         {
-            anim.SetTrigger("Attack");
+            Debug.Log("Save");
+            monsterData.Save();
         }
-       
+        if (GUILayout.Button("Load"))
+        {
+            Debug.Log("Load");
+            monsterData.Load();
+        }
     }
+
+
 
 }

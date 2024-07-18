@@ -1,0 +1,1 @@
+{"name":"리치왕","maxHP":700.0,"currentHP":700.0,"damage":15.0,"skills":[{"id":1,"damage":20.0,"coolTime":10.0},{"id":2,"damage":8.0,"coolTime":15.0},{"id":3,"damage":15.0,"coolTime":10.0}]}

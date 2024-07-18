@@ -155,7 +155,7 @@ public class BossAttack : MonoBehaviour
         isAttack = true;
         nav.isStopped = false;
         nav.SetDestination(transform.position + (transform.forward * 15));
-        nav.speed = 9;
+        nav.speed = 10;
         anim.SetBool("isJump", true);
         attackObject.SetActive(true);
         yield return new WaitForSeconds(animationClip[3].length);
