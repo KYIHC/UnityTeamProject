@@ -2077,11 +2077,11 @@ GameObject:
   - component: {fileID: 7959843401272306425}
   m_Layer: 0
   m_Name: skeleton_king_Phase1
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7959843401272306419
 Transform:
   m_ObjectHideFlags: 0
@@ -2142,7 +2142,7 @@ MonoBehaviour:
   attackObject: {fileID: 0}
   attackRange: 5.5
   rayPosition: {fileID: 1199487015052294824}
-  patterCount: 3
+  patterCount: 4
 --- !u!195 &7959843401272306431
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2153,7 +2153,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 4
   m_Acceleration: 100
   avoidancePriority: 49
   m_AngularSpeed: 120
@@ -2190,8 +2190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19d28cde57cb4f43ad3dbfe35153c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationClip: []
   isAttack: 0
   attackObject: {fileID: 780168152123581360}
+  count: 
 --- !u!1 &7310940720650471552
 GameObject:
   m_ObjectHideFlags: 0

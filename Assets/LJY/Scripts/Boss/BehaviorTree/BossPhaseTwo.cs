@@ -8,6 +8,7 @@ public class BossPhaseTwo : Monster
 {
     #region public 
     public float attackRange = 5.5f;
+    public float skillRange = 15.0f;
     public Transform rayPosition;
     public int patterCount;
     #endregion
@@ -27,20 +28,27 @@ public class BossPhaseTwo : Monster
         BTSequence skillAttackSequence = new BTSequence();
         BTSequence attackSequence = new BTSequence();
         BTSequence chaseSequence = new BTSequence();
-        BTAction skillAttack = new BTAction(SkillAttack);
-        BTAction attackActtion = new BTAction(Attack);
-        BTAction chaseActtion = new BTAction(Chase);
+        BTAction skillAction = new BTAction(SkillAttack);
+        BTAction attackAction = new BTAction(Attack);
+        BTAction dieAction = new BTAction(Die);
+        BTAction chaseAction = new BTAction(Chase);
         BTCondition playerRange = new BTCondition(IsPlayerInRange);
         BTCondition playerDie = new BTCondition(IsPlayerDie);
+        BTCondition skillRange = new BTCondition(IsSkillRange);
 
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         root.AddChild(lifeCheckSequence);
+        root.AddChild(skillAttackSequence);
         root.AddChild(attackSequence);
         root.AddChild(chaseSequence);
-        lifeCheckSequence.AddChild(playerRange);
-        lifeCheckSequence.AddChild(attackActtion);
-        chaseSequence.AddChild(chaseActtion);
+        lifeCheckSequence.AddChild(playerDie);
+        lifeCheckSequence.AddChild(dieAction);
+        skillAttackSequence.AddChild(skillRange);
+        skillAttackSequence.AddChild(skillAction);
+        attackSequence.AddChild(playerRange);
+        attackSequence.AddChild(attackAction);
+        chaseSequence.AddChild(chaseAction);
 
         root.Evaluate();
     }
@@ -52,6 +60,14 @@ public class BossPhaseTwo : Monster
     private bool IsPlayerDie()
     {
         if (currentHP == 0) { return true; }
+        else { return false; }
+    }
+    private bool IsSkillRange()
+    {
+        playerPosition = GameObject.FindWithTag("Player");
+        float distanceToPlayer = Vector3.Distance(transform.position, playerPosition.transform.position);
+        if (distanceToPlayer <= skillRange && distanceToPlayer > attackRange)
+        { return true; }
         else { return false; }
     }
 
@@ -75,7 +91,25 @@ public class BossPhaseTwo : Monster
 
     public BTState SkillAttack()
     {
-        return BTState.Success;
+        if (bossAttack.isAttack == false && bossAttack.count[5] == true)
+        {
+            nav.isStopped = true;
+            anim.SetBool("isChase", false);
+            if (HeadCheck(skillRange))
+            {
+                bossAttack.StartJumpAndSpin();
+            }
+            else
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(playerPosition.transform.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
+            }
+            return BTState.Success;
+        }
+        else
+        { 
+            return BTState.Failure;
+        }
     }
     public BTState Attack()
     {
@@ -83,7 +117,7 @@ public class BossPhaseTwo : Monster
         {
             nav.isStopped = true;
             anim.SetBool("isChase", false);
-            if (HeadCheck())
+            if (HeadCheck(attackRange))
             {
                 bossAttack.AttackPatterm(patterCount);
             }
@@ -94,12 +128,12 @@ public class BossPhaseTwo : Monster
             }
             return BTState.Success;
         }
-        else { return BTState.Success; }
+        else { return BTState.Running; }
     }
 
     public BTState Chase()
     {
-        if (bossAttack.isAttack == false && !IsPlayerInRange())
+        if (bossAttack.isAttack == false)
         {
             Quaternion targetRotation = Quaternion.LookRotation(playerPosition.transform.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5);
@@ -125,7 +159,7 @@ public class BossPhaseTwo : Monster
         }
     }
 
-    private bool HeadCheck()
+    private bool HeadCheck(float attackRange)
     {
         RaycastHit hit;
         bool isHit = Physics.Raycast(rayPosition.position, rayPosition.forward, out hit, attackRange);

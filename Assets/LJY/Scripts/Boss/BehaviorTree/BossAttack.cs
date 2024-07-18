@@ -13,12 +13,13 @@ public class BossAttack : MonoBehaviour
     #region public 변수
     public bool isAttack = false;
     public GameObject attackObject;
+    public bool[] count;
     #endregion
 
     #region private 변수
-    private bool[] count;
     private float groundSkillCoolTime = 10.0f;
     private float slashSkillCoolTime = 15.0f;
+    private float jumpSkillCoolTime = 20.0f;
     private Animator anim;
     private NavMeshAgent nav;
     #endregion
@@ -28,7 +29,7 @@ public class BossAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-        count = new bool[5];
+        count = new bool[6];
         for (int i = 0; i < count.Length; i++)
         {
             count[i] = true;
@@ -42,7 +43,7 @@ public class BossAttack : MonoBehaviour
         {
             int pattern = Random.Range(0, patternCount);
 
-            if (count[pattern] == true && patternCount < 4)
+            if (count[pattern] == true && patternCount < 5)
             {
                 switch (pattern)
                 {
@@ -54,6 +55,9 @@ public class BossAttack : MonoBehaviour
                         break;
                     case 2:
                         StartCoroutine(SlashAttack());
+                        break;
+                    case 3:
+                        StartCoroutine(Spin());
                         break;
 
                 }
@@ -72,7 +76,7 @@ public class BossAttack : MonoBehaviour
                         StartCoroutine(SlashAttack());
                         break;
                     case 3:
-                        StartCoroutine(JumpAndSpin());
+                        StartCoroutine(Spin());
                         break;
                     case 4:
                         StartCoroutine(Raise());
@@ -131,14 +135,27 @@ public class BossAttack : MonoBehaviour
         isAttack = false;
         yield return null;
     }
-
-    IEnumerator JumpAndSpin()
+    IEnumerator Spin()
     {
         StartCoroutine(SkillCoolTime(groundSkillCoolTime, 3));
         isAttack = true;
+        attackObject.SetActive(true);
+        anim.SetBool("isSpin", true);
+        yield return new WaitForSeconds(animationClip[4].length * 0.5f);
+        anim.SetBool("isSpin", false);
+        attackObject.SetActive(false);
+        yield return new WaitForSeconds(1.0f);
+        isAttack = false;
+        yield return null;
+    }
+
+    IEnumerator JumpAndSpin()
+    {
+        StartCoroutine(SkillCoolTime(jumpSkillCoolTime, 5));
+        isAttack = true;
         nav.isStopped = false;
-        nav.SetDestination(transform.position + transform.forward * 10);
-        nav.speed = 8;
+        nav.SetDestination(transform.position + (transform.forward * 15));
+        nav.speed = 9;
         anim.SetBool("isJump", true);
         attackObject.SetActive(true);
         yield return new WaitForSeconds(animationClip[3].length);
@@ -170,5 +187,10 @@ public class BossAttack : MonoBehaviour
         yield return new WaitForSeconds(coolTime);
         count[index] = true;
         yield return null;
+    }
+
+    public void StartJumpAndSpin()
+    {
+        StartCoroutine(JumpAndSpin());
     }
 }
