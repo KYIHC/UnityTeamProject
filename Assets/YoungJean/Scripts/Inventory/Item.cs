@@ -18,6 +18,7 @@ public class Item
     public string itemName;
     public Sprite itemImage;
     public List<ItemEffect> efts;
+    public int itemCost;
 
     public bool Use()
     {

@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Slot : MonoBehaviour,IPointerUpHandler
+public class Slot : MonoBehaviour, IPointerUpHandler
 {
     public int slotNum;
     public Item item;
     public Image itemicon;
 
-   
-    
+
+    public bool isShopMode;
+    public bool isSell = false;
+    public GameObject checkSell;
+
+
     public void UpdateSlotUI()
     {
         itemicon.sprite = item.itemImage;
@@ -23,12 +27,41 @@ public class Slot : MonoBehaviour,IPointerUpHandler
         itemicon.gameObject.SetActive(false);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData) // 클릭했을때
     {
-        bool isUse = item.Use();
-        if (isUse)
+        if (item != null)
         {
-            Inventory.instance.RemoveItem(slotNum);
+            if (!isShopMode) // 사용모드
+            {
+                bool isUse = item.Use();
+                if (isUse)
+                {
+                    Inventory.instance.RemoveItem(slotNum);
+                }
+            }
+            else // 상점모드
+            {
+                isSell = true; // 상점모드에서 클릭하면, isSell로 바꾸고 CheckSell을 활성화
+                checkSell.SetActive(true);
+
+            }
         }
+
+    }
+
+    public void SellItem()
+    {
+        if (isSell)
+        {
+            ItemDatabase.instance.Money += item.itemCost;
+            Inventory.instance.RemoveItem(slotNum);
+            isSell = false;
+        }
+    }
+
+    private void OnDisable()
+    {
+        isSell = false;
+        checkSell.SetActive(isSell);
     }
 }

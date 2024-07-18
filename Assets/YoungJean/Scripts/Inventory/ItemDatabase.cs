@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemDatabase : MonoBehaviour
 {
     public static ItemDatabase instance;
+    public int Money;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class ItemDatabase : MonoBehaviour
 
     private void Start()
     {
+        Money = 1000;
         for (int i = 0; i < 6; i++)
         {
 
