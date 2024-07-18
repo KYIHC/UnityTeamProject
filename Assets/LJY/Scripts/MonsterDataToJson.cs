@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -15,7 +14,9 @@ public class MonsterDataToJson : MonoBehaviour
         foreach (MonsterData data in monsterDatas)
         {
             string path = $"{Application.streamingAssetsPath}/{data.name}_Data.json";
-            string json = JsonUtility.ToJson(data); 
+            string json = JsonUtility.ToJson(data);
+
+
             File.WriteAllText(path, json);
         }
     }
@@ -37,7 +38,6 @@ public class MonsterDataToJson : MonoBehaviour
                 readFromJson.Add(name, data);
             }
         }
-        Debug.Log(readFromJson["¼Òµå¸Ç"]);
     }
 }
 
