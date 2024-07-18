@@ -9,10 +9,15 @@ public class GeneralGood : MonoBehaviour
     public GameObject Shop;
     public bool isOpen;
 
+    public ShopData shopData;
+    public ShopSlot[] shopSlots;
+    public Transform shopHolder;
+
     private void Start()
     {
         Shop.SetActive(false);
         player = GameObject.Find("Character");
+        shopSlots = shopHolder.GetComponentsInChildren<ShopSlot>();
     }
     private void Update()
     {
@@ -21,6 +26,12 @@ public class GeneralGood : MonoBehaviour
         {
             isOpen = true;
             ActiveShop(isOpen);
+            shopData = transform.GetComponent<ShopData>();
+            for(int i= 0; i < shopData.stocks.Count; i++)
+            {
+             shopSlots[i].item = shopData.stocks[i];
+                shopSlots[i].UpdateSlotUI();
+            }
         }
         else if (Vector3.Distance(player.transform.position, transform.position) < 10)
         {
