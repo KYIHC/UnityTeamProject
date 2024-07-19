@@ -151,6 +151,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb9b976e37516e40b45c831fde7efe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotnum: 0
+  item:
+    itemType: 0
+    itemName: 
+    itemImage: {fileID: 0}
+    efts: []
+    itemCost: 0
+  itemIcon: {fileID: 6360799519517435483}
+  soldOut: 0
 --- !u!1 &5108147658173851799
 GameObject:
   m_ObjectHideFlags: 0
