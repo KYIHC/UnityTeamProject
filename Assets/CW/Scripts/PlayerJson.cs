@@ -14,6 +14,17 @@ public class PlayerJson : MonoBehaviour
 
     public void Save()
     {
+        if (playerDatas == null)
+        {
+            Debug.LogError("playerDatas 리스트가 NULL입니다");
+            return;
+        }
+
+        if(playerDatas.Count==0)
+        {
+            Debug.LogWarning("playerDatas 리스트가 비어 있습니다.");
+            return;
+        }
         foreach(PlayerData data in playerDatas)
         {
             string path = $"{Application.streamingAssetsPath}/{data.name}_Data.json";
@@ -26,7 +37,7 @@ public class PlayerJson : MonoBehaviour
     {
         readFromJson.Clear();
 
-        string[] names = { "" };
+        string[] names = { "에드워드 엘릭" };
 
         foreach(string name in names)
         {
@@ -42,6 +53,8 @@ public class PlayerJson : MonoBehaviour
     }
 }
 
+
+[Serializable]
 public class PlayerData
 {
     public string name;

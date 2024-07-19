@@ -10,8 +10,9 @@ public class Character : MonoBehaviour
     public GameObject[] weapons;
 
 
-    
-    public float stopDistance=1.0f;
+
+
+    public float stopDistance = 1.0f;
 
 
     private Animator anim;
@@ -27,7 +28,7 @@ public class Character : MonoBehaviour
     public bool isRollingReady;
     public bool StopMode;
 
-    
+
 
 
 
@@ -37,7 +38,7 @@ public class Character : MonoBehaviour
 
 
     float attackDelay;
-    float rollingDelay;
+
 
 
 
@@ -46,7 +47,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         GameObject cameraObj = GameObject.FindWithTag("MainCamera");
-        if(cameraObj!=null)
+        if (cameraObj != null)
         {
             mainCamera = cameraObj.GetComponent<Camera>();
         }
@@ -78,7 +79,7 @@ public class Character : MonoBehaviour
         Rolling();
         LookMoveDir();
 
-        
+
 
         /*NavMeshAgent[] allAgents = FindObjectsOfType<NavMeshAgent>();
         foreach(NavMeshAgent otherAgent in allAgents)
@@ -149,7 +150,8 @@ public class Character : MonoBehaviour
         attackDelay += Time.deltaTime;
         isAttackReady = weapon.attackSpeed < attackDelay;
 
-        if (Input.GetMouseButton(0) && isAttackReady)
+
+        if (Input.GetMouseButton(0) && isAttackReady && !InventoryUI.instance.activeInventory)
         {
             attackCheck = true;
             weapon.useWeapon();
@@ -157,16 +159,16 @@ public class Character : MonoBehaviour
             {
                 case Weapon.WeaponType.SWORD:
 
-                    anim.SetBool("Sword",true);
+                    anim.SetBool("Sword", true);
                     break;
             }
             attackDelay = 0;
-            
+
 
             StartCoroutine(resumeMove());
 
         }
-        
+
     }
 
     void Rolling()
@@ -182,7 +184,7 @@ public class Character : MonoBehaviour
             isRolling = true;
 
             Invoke("RollingBreak", 0.5f);
-            rollingDelay = 0;
+
             StartCoroutine(rollingInterval());
         }
     }
@@ -210,7 +212,7 @@ public class Character : MonoBehaviour
         {
             StartCoroutine(resumeMove());
         }
-        if(skill.animationName=="Skill_Strike")
+        if (skill.animationName == "Skill_Strike")
         {
             StartCoroutine(SkillStrike());
         }
@@ -256,26 +258,26 @@ public class Character : MonoBehaviour
 
         yield return null;
     }
-    
 
 
 
-    private void OnTriggerStay(Collider other)
+
+    /*private void OnTriggerStay(Collider other)
     {
-        
-        
-        
-            if (other.tag == "Monster" || other.tag == "Boss")
-            {
-                
-                nav.isStopped=true;
 
-            }
-        
-        
+
+
+        if (other.tag == "Monster" || other.tag == "Boss")
+        {
+
+            StartCoroutine(navStop());
+
+        }
+
+
     }
 
-    private void OnTriggerExit(Collider other)
+    *//*private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Monster" || other.tag == "Boss")
         {
@@ -283,8 +285,17 @@ public class Character : MonoBehaviour
 
         }
 
-            
-    }
+
+    }*//*
+
+    IEnumerator navStop()
+    {
+        
+        nav.isStopped = true;
+        yield return new WaitForSeconds(2f);
+        nav.isStopped = false;
+
+    }*/
 
 
 

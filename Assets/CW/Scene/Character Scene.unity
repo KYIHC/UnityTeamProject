@@ -151,6 +151,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7202b4d7aeee14f4f992cd2e8c1b73a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDatas:
+  - name: "\uC5D0\uB4DC\uC6CC\uB4DC \uC5D8\uB9AD"
+    attackDamage: 25
+    gold: 0
+    CurrentHp: 0
+    maxHp: 200
+  readFromJson:
+  - name: "\uC5D0\uB4DC\uC6CC\uB4DC \uC5D8\uB9AD"
+    attackDamage: 25
+    gold: 0
+    CurrentHp: 0
+    maxHp: 200
 --- !u!4 &12291414
 Transform:
   m_ObjectHideFlags: 0
@@ -626,6 +638,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 140000030, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140000030, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140000030, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140000030, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140000030, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 140000030, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4662681415678365561, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
       propertyPath: m_RootOrder
       value: 3
