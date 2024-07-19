@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class MonsterDataToJson : MonoBehaviour
+public class MonsterDataToJson 
 {
     public List<MonsterData> monsterDatas;
     public Dictionary<string, MonsterData> readFromJson = new Dictionary<string, MonsterData>();
