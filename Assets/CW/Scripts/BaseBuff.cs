@@ -13,10 +13,7 @@ public class BaseBuff : MonoBehaviour
 
 
 
-    private void Awake()
-    {
-        
-    }
+    
 
     public void Init(string type,float per, float du)
     {
@@ -27,12 +24,16 @@ public class BaseBuff : MonoBehaviour
         icon.fillAmount = 1;
 
 
+        Execute();
+
     }
 
     WaitForSeconds seconds = new WaitForSeconds(0.1f);
 
     public void Execute()
     {
+        Datamanager.instance.onBuff.Add(this);
+        Datamanager.instance.ChooseBuff(type);
         StartCoroutine(Activation());
 
 
@@ -54,6 +55,8 @@ public class BaseBuff : MonoBehaviour
 
     public void DeActivation()
     {
+        Datamanager.instance.onBuff.Remove(this);
+        Datamanager.instance.ChooseBuff(type);
         Destroy(gameObject);
     }
 

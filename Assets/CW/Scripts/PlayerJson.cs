@@ -62,6 +62,7 @@ public class PlayerData
     public int gold;
     public int CurrentHp;
     public int maxHp = 200;
+    public int armorDef;
 }
 
 
