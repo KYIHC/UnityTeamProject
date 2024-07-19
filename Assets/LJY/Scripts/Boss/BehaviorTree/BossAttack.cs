@@ -67,19 +67,19 @@ public class BossAttack : MonoBehaviour
                 switch (pattern)
                 {
                     case 0:
-                        StartCoroutine(SlashAttack());
+                        StartCoroutine(NormalAttack());
                         break;
                     case 1:
-                        StartCoroutine(SlashAttack());
+                        StartCoroutine(GroundAttack());
                         break;
                     case 2:
                         StartCoroutine(SlashAttack());
                         break;
                     case 3:
-                        StartCoroutine(SlashAttack());
+                        StartCoroutine(Spin());
                         break;
                     case 4:
-                        StartCoroutine(SlashAttack());
+                        StartCoroutine(Raise());
                         break;
 
                 }
@@ -124,7 +124,7 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator SlashAttack()
     {
-       // StartCoroutine(SkillCoolTime(slashSkillCoolTime, 2));
+        StartCoroutine(SkillCoolTime(slashSkillCoolTime, 2));
         attackObject.SetActive(true);
         isAttack = true;
         anim.SetBool("isSlash", true);
@@ -193,4 +193,6 @@ public class BossAttack : MonoBehaviour
     {
         StartCoroutine(JumpAndSpin());
     }
+
+    
 }

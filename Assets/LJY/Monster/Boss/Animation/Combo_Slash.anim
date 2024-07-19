@@ -85536,35 +85536,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.3
-    functionName: LeftSlash
-    data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 30c599e6f2acbb84883f99f063d0986e, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.46666667
-    functionName: RightSlash
-    data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 30c599e6f2acbb84883f99f063d0986e, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.56666666
-    functionName: UpSlash
-    data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 30c599e6f2acbb84883f99f063d0986e, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.93333334
-    functionName: DownSlash
-    data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 30c599e6f2acbb84883f99f063d0986e, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.2666667
-    functionName: UpSlash
+    functionName: Slash
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 30c599e6f2acbb84883f99f063d0986e, type: 3}
     floatParameter: 0
