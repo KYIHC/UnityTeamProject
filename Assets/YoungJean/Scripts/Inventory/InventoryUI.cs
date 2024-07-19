@@ -60,10 +60,14 @@ public class InventoryUI : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
         {
+            
             activeInventory = !activeInventory;
+           
             inventoryPanel.SetActive(activeInventory);
+            
         }
         CurrentMoney.text = "Money : " + ItemDatabase.instance.Money.ToString();
+       
     }
 
     public void addSlot()

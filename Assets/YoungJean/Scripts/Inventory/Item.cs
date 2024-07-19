@@ -19,6 +19,9 @@ public class Item
     public Sprite itemImage;
     public List<ItemEffect> efts;
     public int itemCost;
+    public string description;
+    public int atk;
+    public int def;
 
     public bool Use()
     {

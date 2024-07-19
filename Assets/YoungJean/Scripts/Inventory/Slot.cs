@@ -29,13 +29,14 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData) // 클릭했을때
     {
+       
         if (item != null)
         {
             if (!isShopMode) // 사용모드
             {
                 bool isUse = item.Use();
                 if (isUse)
-                {
+                { 
                     Inventory.instance.RemoveItem(slotNum);
                 }
             }

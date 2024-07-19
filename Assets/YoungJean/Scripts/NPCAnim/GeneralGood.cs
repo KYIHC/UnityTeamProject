@@ -18,6 +18,11 @@ public class GeneralGood : MonoBehaviour
         Shop.SetActive(false);
         player = GameObject.Find("Character");
         shopSlots = shopHolder.GetComponentsInChildren<ShopSlot>();
+        for(int i = 0; i < shopSlots.Length; i++)
+        {
+            shopSlots[i].Init(this); 
+            shopSlots[i].slotnum = i;
+        }
     }
     private void Update()
     {
@@ -27,9 +32,10 @@ public class GeneralGood : MonoBehaviour
             isOpen = true;
             ActiveShop(isOpen);
             shopData = transform.GetComponent<ShopData>();
-            for(int i= 0; i < shopData.stocks.Count; i++)
+           
+            for (int i = 0; i < shopData.stocks.Count; i++)
             {
-             shopSlots[i].item = shopData.stocks[i];
+                shopSlots[i].item = shopData.stocks[i];
                 shopSlots[i].UpdateSlotUI();
             }
         }
@@ -49,6 +55,11 @@ public class GeneralGood : MonoBehaviour
     {
         isOpen = false;
         ActiveShop(isOpen);
+        shopData = null;
+        for(int i = 0; i < shopSlots.Length; i++)
+        {
+            shopSlots[i].RemoveSlot();
+        }
         /*Shop.SetActive(false);
         InventoryUI.instance.activeInventory = false;
 
@@ -68,10 +79,16 @@ public class GeneralGood : MonoBehaviour
 
     public void SellButton()
     {
-        for(int i = InventoryUI.instance.slots.Length ; i > 0; i--)
+        for (int i = InventoryUI.instance.slots.Length; i > 0; i--)
         {
-            InventoryUI.instance.slots[i-1].SellItem();
+            InventoryUI.instance.slots[i - 1].SellItem();
         }
+    }
+
+    public void Buy(int index)
+    {
+        shopData.soldOuts[index] = true;
+
     }
 
 
