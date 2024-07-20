@@ -62,17 +62,19 @@ public class BossParticle : MonoBehaviour
         StartCoroutine(StopParticleAfterDelay(4.2f,4));
     }
 
-    public void RasisDown()
+    public void RaiseDown()
     {
-        Vector3 randomOffset = new Vector3(Random.Range(-5f, 10f), 0f, 0f);
-        raiseDrop.transform.position = dropPosition.position + randomOffset;
-        raiseDrop.transform.rotation = dropPosition.rotation;
-        Instantiate(raiseDrop);
+        var raise = MObjectPooling.GetObject(0);
+        Vector3 randomOffset = new Vector3(Random.Range(-5f, 5f), 0f, 0f);
+        raise.transform.position = dropPosition.position + randomOffset;
+        raise.transform.rotation = dropPosition.rotation;
+        raise.Shoot(); 
     }
 
     private IEnumerator StopParticleAfterDelay(float delay, int index)
     {
         yield return new WaitForSeconds(delay);
         raiseParticle.Stop();
+        Destroy(raiseParticle.gameObject, 3);
     }
 }

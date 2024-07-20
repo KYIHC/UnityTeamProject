@@ -104,14 +104,13 @@ public class BossAttack : MonoBehaviour
         yield return new WaitForSeconds(animationClip[0].length - 0.2f);
         anim.SetBool("isAttack", false);
         attackObject.SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         isAttack = false;
         yield return null;
     }
 
     IEnumerator GroundAttack()
     {
-        Debug.Log("GroundAttack");
         StartCoroutine(SkillCoolTime(groundSkillCoolTime, 1));
         attackObject.SetActive(true);
         isAttack = true;
@@ -119,7 +118,7 @@ public class BossAttack : MonoBehaviour
         yield return new WaitForSeconds(animationClip[1].length);
         anim.SetBool("isGroundAttack", false);
         attackObject.SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         isAttack = false;
         yield return null;
     }
@@ -133,7 +132,7 @@ public class BossAttack : MonoBehaviour
         yield return new WaitForSeconds(animationClip[2].length);
         anim.SetBool("isSlash", false);
         attackObject.SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         isAttack = false;
         yield return null;
     }
@@ -146,7 +145,7 @@ public class BossAttack : MonoBehaviour
         yield return new WaitForSeconds(animationClip[4].length * 0.5f);
         anim.SetBool("isSpin", false);
         attackObject.SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         isAttack = false;
         yield return null;
     }
@@ -157,7 +156,7 @@ public class BossAttack : MonoBehaviour
         isAttack = true;
         nav.isStopped = false;
         nav.SetDestination(transform.position + (transform.forward * 15));
-        nav.speed = 10;    
+        nav.speed = 11;    
         anim.SetBool("isJump", true);
         attackObject.SetActive(true);
         yield return new WaitForSeconds(animationClip[3].length);
@@ -166,7 +165,7 @@ public class BossAttack : MonoBehaviour
         anim.SetBool("isJump", false);
         nav.speed = 4.0f;
         attackObject.SetActive(false);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
         isAttack = false;
         yield return null;
     }
@@ -176,7 +175,7 @@ public class BossAttack : MonoBehaviour
         StartCoroutine(SkillCoolTime(slashSkillCoolTime, 4));
         isAttack = true;
         anim.SetBool("isRaise", true);
-        yield return new WaitForSeconds(animationClip[5].length + 0.1f);
+        yield return new WaitForSeconds(animationClip[5].length + 0.05f);
         bossParticle.Raise();
         yield return new WaitForSeconds((animationClip[6].length * 3));
         anim.SetBool("isRaise", false);

@@ -23,10 +23,6 @@ public class MonsterDataManager : MonoBehaviour
         {
             instance = this;
         }
-    }
-
-    private void Start()
-    {
         monsterDataToJson = new MonsterDataToJson();
         monsterDataToJson.Load();
         monsterDataDic = monsterDataToJson.readFromJson;
@@ -37,8 +33,5 @@ public class MonsterDataManager : MonoBehaviour
         bossDatas = bossPhaseOne.skills;
         bossTwoDatas = bossPhaseTwo.skills;
     }
-
-
-
 
 }

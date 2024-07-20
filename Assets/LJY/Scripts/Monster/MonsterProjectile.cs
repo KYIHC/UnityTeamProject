@@ -9,5 +9,8 @@ public abstract class MonsterProjectile : MonoBehaviour
     public float lifeTime;
 
 
-
+    public virtual void Shoot()
+    {
+        
+    }
 }
