@@ -8,7 +8,8 @@ public enum ItemType
 {
     Equipment,
     Consumables,
-    Etc
+    Etc,    
+    Manufacture,
 }
 
 [Serializable]
@@ -22,6 +23,9 @@ public class Item
     public string description;
     public int atk;
     public int def;
+    
+    public List<string> materials;
+    public List<int> materialCount;
 
     public bool Use()
     {

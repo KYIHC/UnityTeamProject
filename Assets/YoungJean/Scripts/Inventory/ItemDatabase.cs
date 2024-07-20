@@ -20,11 +20,25 @@ public class ItemDatabase : MonoBehaviour
     private void Start()
     {
         Money = 1000;
-        for (int i = 0; i < 6; i++)
+        //公扁 积己
+        GameObject go = Instantiate(fieldItemPrefab, pos[0].transform.position, Quaternion.identity);
+        go.GetComponent<FieldItems>().SetItem(itemsDB[0]);
+
+        //规绢备 积己
+         go = Instantiate(fieldItemPrefab, pos[1].transform.position, Quaternion.identity);
+        go.GetComponent<FieldItems>().SetItem(itemsDB[1]);
+        
+        // 扁鸥 酒捞袍 积己
+        for(int i = 2; i < 6; i++)
+        {
+            go = Instantiate(fieldItemPrefab, pos[i].transform.position, Quaternion.identity);
+            go.GetComponent<FieldItems>().SetItem(itemsDB[Random.Range(2, 5)]);
+        }
+        /*for (int i = 0; i < 6; i++)
         {
 
          GameObject go =  Instantiate(fieldItemPrefab, pos[i].transform.position,Quaternion.identity);
             go.GetComponent<FieldItems>().SetItem(itemsDB[Random.Range(0, 3)]);
-        }
+        }*/
     }
 }

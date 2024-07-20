@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] Text txt_Name;
 
     Dialogue[] dialogues;
-    bool isDialogue = false;//대화중일 경우 true
+   public  bool isDialogue = false;//대화중일 경우 true
     bool isNext = false;//특정 키 입력 대기
 
     [Header("텍스트 출력 딜레이")]
