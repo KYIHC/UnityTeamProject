@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class EnergyBall : MonsterProjectile
 {
+
     public GameObject impactParticle;
     public GameObject projectileParticle;
     public GameObject muzzleParticle;
     private void OnEnable()
     {
-        lifeTime = 3f;
-        speed = 10f;
-        damage = 10f;
+        damage = MonsterDataManager.instance.magicData.damage;
     }
 
     private void OnTriggerEnter(Collider other)

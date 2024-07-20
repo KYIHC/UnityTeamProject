@@ -22,6 +22,7 @@ public class BossAttack : MonoBehaviour
     private float jumpSkillCoolTime = 20.0f;
     private Animator anim;
     private NavMeshAgent nav;
+    private BossParticle bossParticle;
     #endregion
 
 
@@ -29,6 +30,7 @@ public class BossAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
+        bossParticle = GetComponent<BossParticle>();
         count = new bool[6];
         for (int i = 0; i < count.Length; i++)
         {
@@ -155,7 +157,7 @@ public class BossAttack : MonoBehaviour
         isAttack = true;
         nav.isStopped = false;
         nav.SetDestination(transform.position + (transform.forward * 15));
-        nav.speed = 10;
+        nav.speed = 10;    
         anim.SetBool("isJump", true);
         attackObject.SetActive(true);
         yield return new WaitForSeconds(animationClip[3].length);
@@ -174,7 +176,9 @@ public class BossAttack : MonoBehaviour
         StartCoroutine(SkillCoolTime(slashSkillCoolTime, 4));
         isAttack = true;
         anim.SetBool("isRaise", true);
-        yield return new WaitForSeconds(animationClip[5].length + (animationClip[6].length *3));
+        yield return new WaitForSeconds(animationClip[5].length + 0.1f);
+        bossParticle.Raise();
+        yield return new WaitForSeconds((animationClip[6].length * 3));
         anim.SetBool("isRaise", false);
         yield return new WaitForSeconds(animationClip[7].length + 1.0f);
         isAttack = false;

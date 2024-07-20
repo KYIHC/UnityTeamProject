@@ -9,6 +9,8 @@ TagManager:
   - MonsterProjectile
   - MonsterSword
   - Item
+  - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX
