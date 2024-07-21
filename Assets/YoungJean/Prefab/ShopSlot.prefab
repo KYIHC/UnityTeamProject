@@ -170,6 +170,11 @@ MonoBehaviour:
     itemImage: {fileID: 0}
     efts: []
     itemCost: 0
+    description: 
+    atk: 0
+    def: 0
+    materials: []
+    materialCount: 
   itemIcon: {fileID: 6360799519517435483}
   soldOut: 0
 --- !u!1 &5108147658173851799
