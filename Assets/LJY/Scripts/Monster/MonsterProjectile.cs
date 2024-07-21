@@ -4,13 +4,9 @@ using UnityEngine;
 
 public abstract class MonsterProjectile : MonoBehaviour
 {
-    public float speed;
+    public float speed = 10;
     public float damage;
-    public float lifeTime;
 
-
-    public virtual void Shoot()
-    {
-        
-    }
+    public virtual void Shoot() { }
+    
 }

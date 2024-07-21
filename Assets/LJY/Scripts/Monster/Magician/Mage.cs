@@ -11,7 +11,6 @@ public class Mage : Monster
     #endregion
 
     #region public 변수
-    public MonsterProjectile projectilePrefab;
     public Transform ShootPoint;
     #endregion
     #region 몬스터 정보 변수
@@ -157,10 +156,10 @@ public class Mage : Monster
 
     public void Shoot()
     {
-        MonsterProjectile energyBall = Instantiate(projectilePrefab, ShootPoint.position, ShootPoint.rotation);
-        
-        energyBall.GetComponent<Rigidbody>().AddForce(ShootPoint.forward * energyBall.speed,ForceMode.Impulse);
-        Destroy(energyBall, 3f);
-
+        var energyBall =  MObjectPooling.GetObject(1);
+        energyBall.transform.position = ShootPoint.position;
+        energyBall.transform.rotation = ShootPoint.rotation;
+        energyBall.transform.forward = ShootPoint.forward;
+        energyBall.Shoot();
     }
 }

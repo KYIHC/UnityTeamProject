@@ -9,8 +9,6 @@ public class MonsterDataManager : MonoBehaviour
     MonsterDataToJson monsterDataToJson;
     
     public Dictionary<string, MonsterData> monsterDataDic = new Dictionary<string, MonsterData>();
-    public List<SkillData> bossDatas = new List<SkillData>();
-    public List<SkillData> bossTwoDatas = new List<SkillData>();
     public MonsterData swordManData;
     public MonsterData magicData;
     public MonsterData bossPhaseOne;
@@ -30,8 +28,6 @@ public class MonsterDataManager : MonoBehaviour
         magicData = monsterDataDic["¸ÅÁö¼Ç"];
         bossPhaseOne = monsterDataDic["¸®Ä¡¿Õ"];
         bossPhaseTwo = monsterDataDic["¸®Ä¡¿Õ2"];
-        bossDatas = bossPhaseOne.skills;
-        bossTwoDatas = bossPhaseTwo.skills;
     }
 
 }

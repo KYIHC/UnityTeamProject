@@ -13,6 +13,7 @@ public class BossParticle : MonoBehaviour
     public Transform slamPosition;
     public Transform raisePosition;
     public Transform dropPosition;
+    public Transform attackGroundPostion;
 
     private ParticleSystem raiseParticle;
 
@@ -71,6 +72,14 @@ public class BossParticle : MonoBehaviour
         raise.Shoot(); 
     }
 
+    public void AttackGround()
+    {
+        bossParticle[5].transform.position = attackGroundPostion.position;
+        bossParticle[5].transform.rotation = attackGroundPostion.rotation;
+        Instantiate(bossParticle[5]);
+        bossParticle[5].Play();
+    
+    }
     private IEnumerator StopParticleAfterDelay(float delay, int index)
     {
         yield return new WaitForSeconds(delay);

@@ -14,30 +14,43 @@ public class BossAttack : MonoBehaviour
     public bool isAttack = false;
     public GameObject attackObject;
     public bool[] count;
+    public float damage;
     #endregion
 
     #region private º¯¼ö
-    private float groundSkillCoolTime = 10.0f;
-    private float slashSkillCoolTime = 15.0f;
-    private float jumpSkillCoolTime = 20.0f;
+    private float groundSkillCoolTime;
+    private float slashSkillCoolTime;
+    private float jumpSkillCoolTime;
+    private float spinSkillCoolTime;
+    private float riseSkillCoolTime;
+    private float currentDamage;
     private Animator anim;
     private NavMeshAgent nav;
     private BossParticle bossParticle;
     #endregion
 
 
-    private void OnEnable()
+    private void Start()
     {
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
         bossParticle = GetComponent<BossParticle>();
         count = new bool[6];
+        groundSkillCoolTime = MonsterDataManager.instance.bossPhaseTwo.skills[0].coolTime;
+        slashSkillCoolTime = MonsterDataManager.instance.bossPhaseTwo.skills[1].coolTime;
+        spinSkillCoolTime = MonsterDataManager.instance.bossPhaseTwo.skills[2].coolTime;
+        riseSkillCoolTime = MonsterDataManager.instance.bossPhaseTwo.skills[3].coolTime;
+        jumpSkillCoolTime = MonsterDataManager.instance.bossPhaseTwo.skills[4].coolTime;
         for (int i = 0; i < count.Length; i++)
         {
             count[i] = true;
         }
     }
 
+    private void Update()
+    {
+        damage = currentDamage;
+    }
     public void AttackPatterm(int patternCount)
     {
 
@@ -45,7 +58,7 @@ public class BossAttack : MonoBehaviour
         {
             int pattern = Random.Range(0, patternCount);
 
-            if (count[pattern] == true && patternCount < 5)
+            if (count[pattern] == true && patternCount < 4)
             {
                 switch (pattern)
                 {
@@ -58,10 +71,6 @@ public class BossAttack : MonoBehaviour
                     case 2:
                         StartCoroutine(SlashAttack());
                         break;
-                    case 3:
-                        StartCoroutine(Spin());
-                        break;
-
                 }
             }
             else if (count[pattern] == true && 4 < patternCount )
@@ -97,6 +106,8 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator NormalAttack()
     {
+        yield return new WaitForEndOfFrame();
+        currentDamage = MonsterDataManager.instance.bossPhaseTwo.damage;
         isAttack = true;
         anim.SetBool("isAttack", true);
         yield return new WaitForSeconds(0.2f);
@@ -111,6 +122,8 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator GroundAttack()
     {
+        yield return new WaitForEndOfFrame();
+        currentDamage = MonsterDataManager.instance.bossPhaseTwo.skills[0].damage;
         StartCoroutine(SkillCoolTime(groundSkillCoolTime, 1));
         attackObject.SetActive(true);
         isAttack = true;
@@ -125,6 +138,8 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator SlashAttack()
     {
+        yield return new WaitForEndOfFrame();
+        currentDamage = MonsterDataManager.instance.bossPhaseTwo.skills[1].damage;
         StartCoroutine(SkillCoolTime(slashSkillCoolTime, 2));
         attackObject.SetActive(true);
         isAttack = true;
@@ -138,7 +153,9 @@ public class BossAttack : MonoBehaviour
     }
     IEnumerator Spin()
     {
-        StartCoroutine(SkillCoolTime(groundSkillCoolTime, 3));
+        yield return new WaitForEndOfFrame();
+        currentDamage = MonsterDataManager.instance.bossPhaseTwo.skills[2].damage;
+        StartCoroutine(SkillCoolTime(spinSkillCoolTime, 3));
         isAttack = true;
         attackObject.SetActive(true);
         anim.SetBool("isSpin", true);
@@ -152,6 +169,8 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator JumpAndSpin()
     {
+        yield return new WaitForEndOfFrame();
+        currentDamage = MonsterDataManager.instance.bossPhaseTwo.skills[4].damage;
         StartCoroutine(SkillCoolTime(jumpSkillCoolTime, 5));
         isAttack = true;
         nav.isStopped = false;
@@ -172,7 +191,8 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator Raise()
     {
-        StartCoroutine(SkillCoolTime(slashSkillCoolTime, 4));
+        yield return new WaitForEndOfFrame();
+        StartCoroutine(SkillCoolTime(riseSkillCoolTime, 4));
         isAttack = true;
         anim.SetBool("isRaise", true);
         yield return new WaitForSeconds(animationClip[5].length + 0.05f);

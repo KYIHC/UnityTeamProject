@@ -41798,7 +41798,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.8333333
+  - time: 1
     functionName: RaiseDown
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 30c599e6f2acbb84883f99f063d0986e, type: 3}

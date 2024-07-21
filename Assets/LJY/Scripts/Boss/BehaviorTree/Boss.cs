@@ -20,7 +20,7 @@ public class Boss : Monster
     private bool isDie = false;
     #endregion
  
-    private void OnEnable()
+    private void Start()
     {
         root = new BTSelector();
         bossAttack = GetComponent<BossAttack>();
@@ -44,7 +44,11 @@ public class Boss : Monster
         attackSequence.AddChild(attackActtion);
         chaseSequence.AddChild(chaseActtion);
 
+        monsterName = MonsterDataManager.instance.bossPhaseOne.name;
+        maxHP = MonsterDataManager.instance.bossPhaseOne.maxHP;
+        currentHP = maxHP;
         root.Evaluate();
+        
     }
 
     private void Update()
@@ -68,12 +72,13 @@ public class Boss : Monster
     {
         if (isDie == false)
         {
+            nav.isStopped = true;
             anim.SetTrigger("isDeath");
             Destroy(gameObject, 4.0f);
             isDie = true;
             return BTState.Success;
         }
-        else { return BTState.Success; }
+        else { return BTState.Failure; }
     }
     public BTState Attack()
     {

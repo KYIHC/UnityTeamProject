@@ -20,7 +20,7 @@ public class BossPhaseTwo : Monster
     private bool isDie = false;
     #endregion
 
-    private void OnEnable()
+    private void Start()
     {
         root = new BTSelector();
         bossAttack = GetComponent<BossAttack>();
@@ -50,6 +50,10 @@ public class BossPhaseTwo : Monster
         attackSequence.AddChild(attackAction);
         chaseSequence.AddChild(chaseAction);
 
+        monsterName = MonsterDataManager.instance.bossPhaseTwo.name;
+        maxHP = MonsterDataManager.instance.bossPhaseTwo.maxHP;
+        currentHP = maxHP;
+
         root.Evaluate();
     }
     private void Update()
@@ -66,7 +70,7 @@ public class BossPhaseTwo : Monster
     {
         playerPosition = GameObject.FindWithTag("Player");
         float distanceToPlayer = Vector3.Distance(transform.position, playerPosition.transform.position);
-        if (distanceToPlayer <= skillRange && distanceToPlayer > attackRange)
+        if (distanceToPlayer <= skillRange && distanceToPlayer > 10)
         { return true; }
         else { return false; }
     }
@@ -81,12 +85,13 @@ public class BossPhaseTwo : Monster
     {
         if (isDie == false)
         {
+            nav.isStopped = true;
             anim.SetTrigger("isDeath");
             Destroy(gameObject, 4.0f);
             isDie = true;
             return BTState.Success;
         }
-        else { return BTState.Success; }
+        else { return BTState.Failure; }
     }
 
     public BTState SkillAttack()
@@ -128,7 +133,7 @@ public class BossPhaseTwo : Monster
             }
             return BTState.Success;
         }
-        else { return BTState.Running; }
+        else { return BTState.Failure; }
     }
 
     public BTState Chase()

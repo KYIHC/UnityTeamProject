@@ -5,6 +5,7 @@ using UnityEngine;
 public class Monster : MonoBehaviour,IHittable
 {
     #region public º¯¼ö 
+    [HideInInspector]
     public GameObject playerPosition;
     #endregion
 
