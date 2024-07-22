@@ -28,11 +28,8 @@ public class MObjectPooling : MonoBehaviour
                 {
                     queue = new Queue<MonsterProjectile>();
                     objectPools.Add(i, queue);
-                    Debug.Log(objectPools[i]);
-                    
                 }
                 objectPools[i].Enqueue(CreateParticle(i));
-                Debug.Log(objectPools[0]);
             }
         }
     }

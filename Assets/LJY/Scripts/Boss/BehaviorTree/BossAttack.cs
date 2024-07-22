@@ -14,7 +14,11 @@ public class BossAttack : MonoBehaviour
     public bool isAttack = false;
     public GameObject attackObject;
     public bool[] count;
-    public float damage;
+    public float damage
+    {
+        get { return currentDamage; }
+        set { currentDamage = value; }
+    }
     #endregion
 
     #region private º¯¼ö
@@ -47,10 +51,7 @@ public class BossAttack : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        damage = currentDamage;
-    }
+
     public void AttackPatterm(int patternCount)
     {
 
@@ -107,7 +108,7 @@ public class BossAttack : MonoBehaviour
     IEnumerator NormalAttack()
     {
         yield return new WaitForEndOfFrame();
-        currentDamage = MonsterDataManager.instance.bossPhaseTwo.damage;
+        damage = MonsterDataManager.instance.bossPhaseTwo.damage;
         isAttack = true;
         anim.SetBool("isAttack", true);
         yield return new WaitForSeconds(0.2f);
@@ -123,7 +124,7 @@ public class BossAttack : MonoBehaviour
     IEnumerator GroundAttack()
     {
         yield return new WaitForEndOfFrame();
-        currentDamage = MonsterDataManager.instance.bossPhaseTwo.skills[0].damage;
+        damage = MonsterDataManager.instance.bossPhaseTwo.skills[0].damage;
         StartCoroutine(SkillCoolTime(groundSkillCoolTime, 1));
         attackObject.SetActive(true);
         isAttack = true;
@@ -139,7 +140,7 @@ public class BossAttack : MonoBehaviour
     IEnumerator SlashAttack()
     {
         yield return new WaitForEndOfFrame();
-        currentDamage = MonsterDataManager.instance.bossPhaseTwo.skills[1].damage;
+        damage = MonsterDataManager.instance.bossPhaseTwo.skills[1].damage;
         StartCoroutine(SkillCoolTime(slashSkillCoolTime, 2));
         attackObject.SetActive(true);
         isAttack = true;
@@ -154,7 +155,7 @@ public class BossAttack : MonoBehaviour
     IEnumerator Spin()
     {
         yield return new WaitForEndOfFrame();
-        currentDamage = MonsterDataManager.instance.bossPhaseTwo.skills[2].damage;
+        damage = MonsterDataManager.instance.bossPhaseTwo.skills[2].damage;
         StartCoroutine(SkillCoolTime(spinSkillCoolTime, 3));
         isAttack = true;
         attackObject.SetActive(true);
@@ -170,7 +171,7 @@ public class BossAttack : MonoBehaviour
     IEnumerator JumpAndSpin()
     {
         yield return new WaitForEndOfFrame();
-        currentDamage = MonsterDataManager.instance.bossPhaseTwo.skills[4].damage;
+        damage = MonsterDataManager.instance.bossPhaseTwo.skills[4].damage;
         StartCoroutine(SkillCoolTime(jumpSkillCoolTime, 5));
         isAttack = true;
         nav.isStopped = false;

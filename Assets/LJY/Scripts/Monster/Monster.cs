@@ -14,6 +14,8 @@ public class Monster : MonoBehaviour,IHittable
     public float maxHP;
     public float currentHP;
     public float damage;
+ 
+
     public GameObject attackObject;
     #endregion
 
