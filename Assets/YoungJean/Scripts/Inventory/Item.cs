@@ -18,6 +18,7 @@ public class Item
     public ItemType itemType;
     public string itemName;
     public Sprite itemImage;
+    public int inchantLevel=1;
     public List<ItemEffect> efts;
     public int itemCost;
     public string description;

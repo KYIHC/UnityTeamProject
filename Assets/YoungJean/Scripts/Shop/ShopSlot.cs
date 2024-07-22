@@ -38,11 +38,12 @@ public class ShopSlot : MonoBehaviour
     {
         if (item != null)
         {
-            if (ItemDatabase.instance.Money >= item.itemCost && !soldOut && Inventory.instance.items.Count<Inventory.instance.SlotCount)
+            if (ItemDatabase.instance.Money >= item.itemCost && !soldOut && Inventory.instance.items.Count < Inventory.instance.SlotCount)
             {
                 ItemDatabase.instance.Money -= item.itemCost;
                 Inventory.instance.Additem(item);
-                if(item.itemType != ItemType.Consumables) soldOut = true;
+                if (item.itemType != ItemType.Consumables ) 
+                    soldOut = true;
                 ShopUI.Buy(slotnum);
                 UpdateSlotUI();
             }
