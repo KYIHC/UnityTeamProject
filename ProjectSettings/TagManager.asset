@@ -11,6 +11,8 @@ TagManager:
   - Item
   - Enemy
   - Ground
+  - Stone
+  - Wood
   layers:
   - Default
   - TransparentFX

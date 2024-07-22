@@ -73,6 +73,7 @@ public class InventoryUI : MonoBehaviour
     public void addSlot()
     {
         inven.SlotCount++;
+        ItemDatabase.instance.Money -= 100;
     }
 
     void RedrawSlotUI()
