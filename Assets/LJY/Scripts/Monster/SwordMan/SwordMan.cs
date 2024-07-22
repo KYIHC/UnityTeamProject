@@ -27,6 +27,8 @@ public class SwordMan : Monster
 
     private void Start()
     {
+        monsterName = MonsterDataManager.instance.swordManData.name;
+        maxHP = MonsterDataManager.instance.swordManData.maxHP;
         currentHP = maxHP;
         currentState = State.Idle;
         stateMachine = new StateMachine(new MIdleState(this));
