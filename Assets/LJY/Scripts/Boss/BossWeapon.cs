@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossWeapon : BossAttack
+public class BossWeapon : MonsterProjectile
 {
 
-
-    private float myDamage;
     private void Update()
     {
-        myDamage = base.damage;
+        damage = MonsterDataManager.instance.bossAttackDamage;
     }
 
 }

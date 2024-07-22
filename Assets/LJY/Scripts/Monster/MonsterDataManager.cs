@@ -14,6 +14,7 @@ public class MonsterDataManager : MonoBehaviour
     public MonsterData bossPhaseOne;
     public MonsterData bossPhaseTwo;
     public float swordManDamage;
+    public float bossAttackDamage;
 
     private void Awake()
     {

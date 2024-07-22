@@ -9,7 +9,7 @@ public class PlayerTest2 : MonoBehaviour
     {
         if (other.gameObject.tag == "MonsterSword")
         {
-            float damage = other.GetComponent<BossAttack>().damage;
+            float damage = other.GetComponent<MonsterProjectile>().damage;
             Debug.Log(damage);
         }
     }

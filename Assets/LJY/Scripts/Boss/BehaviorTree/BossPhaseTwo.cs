@@ -170,7 +170,6 @@ public class BossPhaseTwo : Monster
         bool isHit = Physics.Raycast(rayPosition.position, rayPosition.forward, out hit, attackRange);
         if (isHit && hit.collider.CompareTag("Player"))
         {
-            Debug.Log("HeadCheck");
             return true;
         }
         else { return false; }

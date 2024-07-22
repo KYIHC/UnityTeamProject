@@ -12,7 +12,7 @@ public class MObjectPooling : MonoBehaviour
     public List<MonsterProjectile> targetObject = new List<MonsterProjectile>();
     public Dictionary<int, Queue<MonsterProjectile>> objectPools = new Dictionary<int, Queue<MonsterProjectile>>();
 
-    private int count = 8;
+    private int count = 5;
     private void Awake()
     {
         Instance = this;

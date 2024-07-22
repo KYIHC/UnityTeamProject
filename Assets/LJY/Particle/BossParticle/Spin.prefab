@@ -14668,9 +14668,12 @@ GameObject:
   - component: {fileID: 4470876739280809132}
   - component: {fileID: 4978140692493864377}
   - component: {fileID: 6148921736154601486}
+  - component: {fileID: 3625264742443848392}
+  - component: {fileID: 7561096248006392527}
+  - component: {fileID: 4276632777255650778}
   m_Layer: 0
   m_Name: Spin
-  m_TagString: Untagged
+  m_TagString: MonsterSword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14682,8 +14685,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983169101265118745}
-  m_LocalRotation: {x: 0, y: -0.0727033, z: -0, w: 0.9973536}
-  m_LocalPosition: {x: 3.3544104, y: 3.4417489, z: 268.8318}
+  m_LocalRotation: {x: 0, y: 0.22641338, z: 0, w: 0.9740313}
+  m_LocalPosition: {x: 14.818158, y: 3.4417489, z: 259.6787}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -19554,6 +19557,49 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!135 &3625264742443848392
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983169101265118745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.23
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7561096248006392527
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983169101265118745}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4276632777255650778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983169101265118745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dead276915466741ae8803081c93299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  damage: 0
 --- !u!1 &2663656178651906310
 GameObject:
   m_ObjectHideFlags: 0
