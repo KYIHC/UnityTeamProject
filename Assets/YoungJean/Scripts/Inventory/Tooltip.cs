@@ -50,5 +50,5 @@ public class Tooltip : MonoBehaviour
     private void Update()
     {
         transform.position = new Vector3(Input.mousePosition.x - 60, Input.mousePosition.y + 40, 0);
-            }
+    }
 }
