@@ -91,6 +91,10 @@ public class BossPhaseTwo : Monster
             isDie = true;
             return BTState.Success;
         }
+        else if (isDie == true)
+        {
+            return BTState.Success;
+        }
         else { return BTState.Failure; }
     }
 

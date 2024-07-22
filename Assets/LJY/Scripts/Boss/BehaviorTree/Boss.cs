@@ -45,7 +45,8 @@ public class Boss : Monster
         chaseSequence.AddChild(chaseActtion);
 
         monsterName = MonsterDataManager.instance.bossPhaseOne.name;
-        maxHP = MonsterDataManager.instance.bossPhaseOne.maxHP;
+        maxHP = 0;
+        //maxHP = MonsterDataManager.instance.bossPhaseOne.maxHP;
         currentHP = maxHP;
         root.Evaluate();
         
@@ -73,9 +74,14 @@ public class Boss : Monster
         if (isDie == false)
         {
             nav.isStopped = true;
-            anim.SetTrigger("isDeath");
+            anim.SetTrigger("isStay");
             Destroy(gameObject, 4.0f);
+            DungeonManager.instance.phaseOneClear = true;
             isDie = true;
+            return BTState.Success;
+        }
+        else if (isDie == true)
+        {
             return BTState.Success;
         }
         else { return BTState.Failure; }

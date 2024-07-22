@@ -43,9 +43,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - MonsterStage
+  - BossPhaseOne
+  - BossPhaseTwo
   m_SortingLayers:
   - name: Default
     uniqueID: 0

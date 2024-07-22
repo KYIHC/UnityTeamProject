@@ -33,7 +33,7 @@ Material:
     - _TurnSpeed: 0.5
     - _TwirlStrength: 30
     m_Colors:
-    - _Color: {r: 23.248037, g: 9.791537, b: 28.4357, a: 0}
+    - _Color: {r: 39.303802, g: 86.09908, b: 113.74282, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6230211130524627106
 MonoBehaviour:
