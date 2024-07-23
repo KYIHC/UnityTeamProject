@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour,IHittable
 {
     private Camera mainCamera;
     public GameObject[] weapons;
+
+    
+    
 
 
 
@@ -39,6 +42,8 @@ public class Character : MonoBehaviour
 
     float attackDelay;
 
+    public float damage;
+
 
 
 
@@ -58,7 +63,17 @@ public class Character : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         nav.updateRotation = false;
 
+        damage = PlayerDataManager.instance.playerData.attackDamage;
+        
+
+
+
     }
+
+    
+
+
+
     private void Update()
     {
         if (Input.GetMouseButton(1) && attackCheck == false)
@@ -101,7 +116,10 @@ public class Character : MonoBehaviour
 
 
     }
-
+    public void Hit(float damage)
+    {
+        
+    }
 
 
     public void setCharacterMove(Vector3 charMove)

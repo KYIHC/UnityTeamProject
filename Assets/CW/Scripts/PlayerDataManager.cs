@@ -12,6 +12,10 @@ public class PlayerDataManager : MonoBehaviour
 
     public PlayerData playerData;
 
+    Character character;
+
+    
+
 
 
     private void Awake()
@@ -31,9 +35,14 @@ public class PlayerDataManager : MonoBehaviour
         playerJson = new PlayerJson();
         playerJson.Load();
         playerDataList = playerJson.readFromJson ?? new List<PlayerData>();
+        character = FindObjectOfType<Character>();
+
+        playerDataList[0].attackDamage = character.damage;
 
 
-
+        
+        
+        
     }
 
 

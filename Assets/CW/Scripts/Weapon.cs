@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
         if(character!=null)
         {
             bool value = character.attackCheck;
-            Debug.Log(value);
+            
         }
     }
 

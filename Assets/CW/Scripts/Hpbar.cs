@@ -21,19 +21,6 @@ public class Hpbar : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (PlayerDataManager.instance.playerData.CurrentHp > 0)
-            {
-                PlayerDataManager.instance.playerData.CurrentHp -= 10;
-            }
-            else
-            {
-                PlayerDataManager.instance.playerData.CurrentHp = 0;
-            }
-        }
-        
-
         HandleHp();
     }
 
