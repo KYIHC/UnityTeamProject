@@ -58,12 +58,14 @@ public class PlayerJson : MonoBehaviour
 public class PlayerData
 {
     public string name;
-    public int attackDamage = 25;
+    public float attackDamage = 25;
     public int gold;
-    public int CurrentHp;
-    public int maxHp = 200;
-    public int armorDef;
+    public float CurrentHp=200;
+    public float maxHp = 200;
+    public float armorDef;
 }
+
+
 
 
 
