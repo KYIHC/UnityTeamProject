@@ -35,8 +35,8 @@ public class BaseBuff : MonoBehaviour
 
     public void Execute()
     {
-        Datamanager.instance.onBuff.Add(this);
-        Datamanager.instance.ChooseBuff(type);
+        PlayerDataManager.instance.onBuff.Add(this);
+        PlayerDataManager.instance.ChooseBuff(type);
         StartCoroutine(Activation());
 
 
@@ -58,8 +58,8 @@ public class BaseBuff : MonoBehaviour
 
     public void DeActivation()
     {
-        Datamanager.instance.onBuff.Remove(this);
-        Datamanager.instance.ChooseBuff(type);
+        PlayerDataManager.instance.onBuff.Remove(this);
+        PlayerDataManager.instance.ChooseBuff(type);
         Destroy(gameObject);
     }
 

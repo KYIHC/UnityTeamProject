@@ -16,20 +16,20 @@ public class Hpbar : MonoBehaviour
     {
         
         
-        hpbar.value= (float)Datamanager.instance.playerData.CurrentHp / (float)Datamanager.instance.playerData.maxHp;
+        hpbar.value= (float)PlayerDataManager.instance.playerData.CurrentHp / (float)PlayerDataManager.instance.playerData.maxHp;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Datamanager.instance.playerData.CurrentHp > 0)
+            if (PlayerDataManager.instance.playerData.CurrentHp > 0)
             {
-                Datamanager.instance.playerData.CurrentHp -= 10;
+                PlayerDataManager.instance.playerData.CurrentHp -= 10;
             }
             else
             {
-                Datamanager.instance.playerData.CurrentHp = 0;
+                PlayerDataManager.instance.playerData.CurrentHp = 0;
             }
         }
         
@@ -40,7 +40,7 @@ public class Hpbar : MonoBehaviour
 
     void HandleHp()
     {
-        hpbar.value=(float)Datamanager.instance.playerData.CurrentHp/ (float)Datamanager.instance.playerData.maxHp;
+        hpbar.value=(float)PlayerDataManager.instance.playerData.CurrentHp/ (float)PlayerDataManager.instance.playerData.maxHp;
     }
 
 }
