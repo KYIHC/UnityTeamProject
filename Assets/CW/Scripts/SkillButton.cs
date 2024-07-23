@@ -36,6 +36,7 @@ public class SkillButton : MonoBehaviour
         if (Input.GetKeyDown(activationKey))
         {
             SkillSlot();
+            
 
         }
 

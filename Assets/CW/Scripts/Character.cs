@@ -9,15 +9,11 @@ public class Character : MonoBehaviour,IHittable
     private Camera mainCamera;
     public GameObject[] weapons;
 
-    
-    
-
-
 
 
     public float stopDistance = 1.0f;
 
-
+    public GameObject KickArea;
     public Animator anim;
     private Vector3 CharacterMove;
 
@@ -30,6 +26,7 @@ public class Character : MonoBehaviour,IHittable
     public bool attackCheck;
     public bool isRollingReady;
     public bool StopMode;
+    public bool isDead = false;
 
 
 
@@ -43,6 +40,7 @@ public class Character : MonoBehaviour,IHittable
     float attackDelay;
 
     public float damage;
+    public float originDamage;
 
 
 
@@ -69,8 +67,11 @@ public class Character : MonoBehaviour,IHittable
 
 
     }
+    private void Start()
+    {
+        originDamage = damage;
+    }
 
-    
 
 
 
@@ -93,7 +94,9 @@ public class Character : MonoBehaviour,IHittable
         Attack();
         Rolling();
         LookMoveDir();
-
+        OnDie();
+        damagepull();
+        
 
 
         /*NavMeshAgent[] allAgents = FindObjectsOfType<NavMeshAgent>();
@@ -223,15 +226,18 @@ public class Character : MonoBehaviour,IHittable
         if (attackCheck == true)
         {
             anim.Play(skill.animationName);
-            print(string.Format("적에게 스킬{0}로 {1}의 피해를 주었습니다.", skill.name, skill.damage));
+            
 
         }
         if (skill.animationName == "Skill_Kick")
         {
+            
+            
             StartCoroutine(resumeMove());
         }
         if (skill.animationName == "Skill_Strike")
         {
+            
             StartCoroutine(SkillStrike());
         }
 
@@ -261,35 +267,57 @@ public class Character : MonoBehaviour,IHittable
 
     public void OnDie()
     {
-        if(PlayerDataManager.instance.playerData.CurrentHp<0)
+        if(PlayerDataManager.instance.playerData.CurrentHp<=0&&!isDead)
         {
+            isDead = true;
+            nav.isStopped = true;
+            Debug.Log("die");
             anim.SetTrigger("doDie");
         }
+        return;
     }
 
 
     IEnumerator resumeMove()
     {
+        PlayerDataManager.instance.playerData.attackDamage -= 10;
+        KickArea.SetActive(true);
         nav.isStopped = true;
-        yield return new WaitForSeconds(0.45f);
+        yield return new WaitForSeconds(0.5f);
         attackCheck = false;
+        PlayerDataManager.instance.playerData.attackDamage = originDamage;
+        KickArea.SetActive(false);
 
         yield return null;
     }
 
     IEnumerator SkillStrike()
     {
+        PlayerDataManager.instance.playerData.attackDamage *=2;
+        weapon.weaponArea.SetActive(true);
         nav.isStopped = true;
+        
         yield return new WaitForSeconds(1.0f);
         attackCheck = false;
-
+        
+        weapon.weaponArea.SetActive(false);
+        PlayerDataManager.instance.playerData.attackDamage =originDamage;
         yield return null;
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("MonsterProjectile"))
+        {
+            MonsterProjectile projectile = other.GetComponent<MonsterProjectile>();
+            Hit(projectile.damage);
+        }
+    }
+
+    public void damagepull()
+    {
+        damage= PlayerDataManager.instance.playerData.attackDamage;
     }
 
 
