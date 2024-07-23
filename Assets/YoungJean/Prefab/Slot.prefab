@@ -234,15 +234,19 @@ MonoBehaviour:
     itemType: 0
     itemName: 
     itemImage: {fileID: 0}
+    inchantLevel: 1
     efts: []
     itemCost: 0
     description: 
     atk: 0
     def: 0
+    materials: []
+    materialCount: 
   itemicon: {fileID: 6360799519517435483}
   isShopMode: 0
   isSell: 0
   checkSell: {fileID: 5221076}
+  outline: {fileID: 4457854843209964025}
 --- !u!114 &1644467164927757286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +271,7 @@ GameObject:
   - component: {fileID: 7768369366218288584}
   - component: {fileID: 8468178300462922747}
   - component: {fileID: 6360799519517435483}
+  - component: {fileID: 4457854843209964025}
   m_Layer: 5
   m_Name: ItemImage
   m_TagString: Untagged
@@ -332,3 +337,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4457854843209964025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5108147658173851799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 0}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1

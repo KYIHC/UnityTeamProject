@@ -14,8 +14,9 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public bool isShopMode;
     public bool isSell = false;
     public GameObject checkSell;
+    public Outline outline;
 
-    
+
 
     public void UpdateSlotUI()
     {
@@ -36,7 +37,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             if (!isShopMode) // 사용모드
             {
                 bool isUse = item.Use();
-                
+
                 if (item.itemType == ItemType.Equipment)
                 {
 
@@ -52,7 +53,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                             = "현재 강화레벨 : " + item.inchantLevel +
                               "\n공격력 : " + item.atk +
                               "\n강화비용 : " + item.itemCost +
-                              "\n강화재료 : " + ItemDatabase.instance.itemsDB[5].itemName + " , " + ItemDatabase.instance.itemsDB[7].itemName+
+                              "\n강화재료 : " + ItemDatabase.instance.itemsDB[5].itemName + " , " + ItemDatabase.instance.itemsDB[7].itemName +
                              "\n 강화 확률" + (10 - item.inchantLevel) * 10 + "%";
                         }
                         else if (item.def > 0)
@@ -104,5 +105,54 @@ public class Slot : MonoBehaviour, IPointerUpHandler
         checkSell.SetActive(isSell);
     }
 
-    
+    private void Update()
+    {
+        if (item != null)
+        {
+            if (item.inchantLevel == 1)
+            {
+                outline.enabled = false;
+            }
+            else if (item.inchantLevel < 3)
+            {
+                outline.enabled = true;
+                outline.effectColor = Color.green;
+            }
+            else if (item.inchantLevel < 4)
+            {
+                outline.enabled = true;
+                outline.effectColor = Color.blue;
+            }
+            else if (item.inchantLevel < 5)
+            {
+                outline.enabled = true;
+                outline.effectColor = Color.red;
+            }
+            else if (item.inchantLevel < 6)
+            {
+                outline.enabled = true;
+                outline.effectColor = Color.magenta;
+            }
+            else if (item.inchantLevel < 7)
+            {
+                outline.enabled = true;
+                outline.effectColor = Color.cyan;
+            }
+            else if (item.inchantLevel < 8)
+            {
+                outline.enabled = true;
+                outline.effectColor = Color.white;
+            }
+            else if (item.inchantLevel < 9)
+            {
+                outline.enabled = true;
+                outline.effectColor = Color.black;
+            }
+            else if (item.inchantLevel == 10)
+            {
+                outline.enabled = true;
+                outline.effectColor = Color.yellow;
+            }
+        }
+    }
 }

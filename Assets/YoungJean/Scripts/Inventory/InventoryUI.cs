@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
+
+
 public class InventoryUI : MonoBehaviour
 {
     Inventory inven;
@@ -24,6 +26,8 @@ public class InventoryUI : MonoBehaviour
     public Image UpgradeImage;
     public TextMeshProUGUI UpgradeDescription;
     public Item upgradedItem;
+
+    
 
 
 
@@ -164,6 +168,7 @@ public class InventoryUI : MonoBehaviour
             ItemDatabase.instance.Money -= upgradedItem.itemCost;
             if (UnityEngine.Random.Range(0, 10) < 10 - upgradedItem.inchantLevel)
             {
+                
                 upgradedItem.inchantLevel++;
 
                 if (upgradedItem.atk > 0)
@@ -176,9 +181,10 @@ public class InventoryUI : MonoBehaviour
                 }
 
                 Debug.Log("강화성공");
-
+                
                 if (upgradedItem.atk > 0)
                 {
+                    
                     UpgradeDescription.text =
                         "현재 강화레벨 : " + upgradedItem.inchantLevel +
                         "\n공격력 : " + upgradedItem.atk +

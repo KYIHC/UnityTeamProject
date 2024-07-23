@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/YoungJean/Scene/AwakeScene.unity
     guid: 03db8cfde01c4534784d517fc41c2091
   - enabled: 1
+    path: Assets/CW/Scene/Character Scene.unity
+    guid: 8974ac2a4cd528846896bdd2cbd1703e
+  - enabled: 1
     path: Assets/YoungJean/Scene/Village.unity
     guid: a7ff4eacfa494a645943e3435f7ae86a
   - enabled: 1
