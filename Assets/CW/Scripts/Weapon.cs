@@ -70,5 +70,4 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(2f);
         weaponArea.SetActive(false);
     }*/
-    
 }

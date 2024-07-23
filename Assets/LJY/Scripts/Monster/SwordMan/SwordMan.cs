@@ -1,20 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SwordMan : Monster
 {
-    #region public 변수
-    public Slider hpBar;
-    public TextMeshProUGUI nameText;
-    public Canvas canvas;
-    #endregion
     #region private 변수
     private bool isDie = false;
-
     #endregion
     #region 상태관련 private변수 및 열거형
     private enum State
@@ -40,8 +32,6 @@ public class SwordMan : Monster
         currentHP = maxHP;
         currentState = State.Idle;
         stateMachine = new StateMachine(new MIdleState(this));
-        nameText.text = monsterName;
-
     }
 
     private void Update()
@@ -100,7 +90,6 @@ public class SwordMan : Monster
         }
 
         stateMachine.UpdateState();
-        HpCheck();
     }
 
     private void ChangeState(State nextState)
@@ -164,12 +153,5 @@ public class SwordMan : Monster
     public void EndAttack()
     {
         attackObject.SetActive(false);
-    }
-
-    public void HpCheck()
-    {
-        hpBar.value = currentHP / maxHP;
-    
-        canvas.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2.5f, 0));
     }
 }
