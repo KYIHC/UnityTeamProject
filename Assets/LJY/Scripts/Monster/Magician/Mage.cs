@@ -163,4 +163,19 @@ public class Mage : Monster
         energyBall.transform.forward = ShootPoint.forward;
         energyBall.Shoot();
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            float damage = other.GetComponent<Character>().damage;
+            Hit(damage);
+            MUIManager.instance.MonsterUI.SetActive(false);
+            MUIManager.instance.hpbar.fillAmount = currentHP / maxHP;
+            MUIManager.instance.hpText.text = $"{currentHP + " / " + maxHP}";
+            MUIManager.instance.monsterName.text = monsterName;
+            MUIManager.instance.monsterImage.sprite = MUIManager.instance.MonsterSprite[0];
+            MUIManager.instance.MonsterUI.SetActive(true);
+        }
+    }
 }
