@@ -14,8 +14,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public bool isShopMode;
     public bool isSell = false;
     public GameObject checkSell;
-
-
+   
     public void UpdateSlotUI()
     {
         itemicon.sprite = item.itemImage;
@@ -35,6 +34,12 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             if (!isShopMode) // 사용모드
             {
                 bool isUse = item.Use();
+                if (item.itemType == ItemType.Equipment)
+                {
+                    PlayerPrefs.SetInt("Upgrade", slotNum);
+                    
+
+                }
                 if (isUse)
                 { 
                     Inventory.instance.RemoveItem(slotNum);

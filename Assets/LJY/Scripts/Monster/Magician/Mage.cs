@@ -36,7 +36,8 @@ public class Mage : Monster
 
     private void Start()
     {
-
+        monsterName = MonsterDataManager.instance.magicData.name;
+        maxHP = MonsterDataManager.instance.magicData.maxHP;
         currentHP = maxHP;
         currentState = State.Idle;
         stateMachine = new StateMachine(new MIdleState(this));
@@ -139,7 +140,7 @@ public class Mage : Monster
     {
         playerPosition = GameObject.FindWithTag("Player");
         float distance = Vector3.Distance(playerPosition.transform.position, transform.position);
-        if (distance < 7f)
+        if (distance < 10f)
         {
             return true;
         }
