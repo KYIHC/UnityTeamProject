@@ -164,7 +164,8 @@ public class BossPhaseTwo : Monster
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Hit");
+          //float damae = other.GetComponent<Character>().damage
+           //     Hit(damae);
         }
     }
 
