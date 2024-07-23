@@ -9,8 +9,14 @@ public class BuffInput : MonoBehaviour
     public float duration;
     public Sprite icon;
 
-    
+    public BuffManager buffmanager;
 
+
+    private void Start()
+    {
+        buffmanager = FindObjectOfType<BuffManager>();
+        
+    }
 
 
     private void Update()
@@ -18,8 +24,8 @@ public class BuffInput : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.C))
         {
-
-            BuffManager.instance.CreateBuff(type, per, duration, icon);
+            buffmanager.CreateBuff(type, per, duration, icon);
+            
 
         }
         

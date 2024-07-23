@@ -16,7 +16,7 @@ public class Hpbar : MonoBehaviour
     {
         
         
-        hpbar.value= (float)PlayerDataManager.instance.playerData.CurrentHp / (float)PlayerDataManager.instance.playerData.maxHp;
+        hpbar.value= PlayerDataManager.instance.playerData.CurrentHp / PlayerDataManager.instance.playerData.maxHp;
     }
 
     private void Update()
@@ -27,7 +27,7 @@ public class Hpbar : MonoBehaviour
 
     void HandleHp()
     {
-        hpbar.value=(float)PlayerDataManager.instance.playerData.CurrentHp/ (float)PlayerDataManager.instance.playerData.maxHp;
+        hpbar.value=PlayerDataManager.instance.playerData.CurrentHp/ PlayerDataManager.instance.playerData.maxHp;
     }
 
 }

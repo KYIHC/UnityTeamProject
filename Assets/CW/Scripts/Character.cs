@@ -118,7 +118,7 @@ public class Character : MonoBehaviour,IHittable
     }
     public void Hit(float damage)
     {
-        
+        PlayerDataManager.instance.playerData.CurrentHp -= damage;
     }
 
 
@@ -259,6 +259,14 @@ public class Character : MonoBehaviour,IHittable
             nav.isStopped = true;
     }
 
+    public void OnDie()
+    {
+        if(PlayerDataManager.instance.playerData.CurrentHp<0)
+        {
+            anim.SetTrigger("doDie");
+        }
+    }
+
 
     IEnumerator resumeMove()
     {
@@ -278,6 +286,11 @@ public class Character : MonoBehaviour,IHittable
         yield return null;
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 
 
 

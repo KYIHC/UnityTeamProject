@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BuffManager : MonoBehaviour
 {
-    public static BuffManager instance;
+    /*public static BuffManager instance;*/
     
     public bool canChooseBuff = true;
     
@@ -17,7 +17,7 @@ public class BuffManager : MonoBehaviour
     
 
 
-    private void Awake()
+    /*private void Awake()
     {
         if (instance != null)
         {
@@ -26,7 +26,7 @@ public class BuffManager : MonoBehaviour
 
         }
         instance = this;
-    }
+    }*/
 
 
 
