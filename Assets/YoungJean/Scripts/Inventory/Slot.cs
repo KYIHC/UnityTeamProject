@@ -14,7 +14,9 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public bool isShopMode;
     public bool isSell = false;
     public GameObject checkSell;
-   
+
+    
+
     public void UpdateSlotUI()
     {
         itemicon.sprite = item.itemImage;
@@ -28,20 +30,50 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData) // 클릭했을때
     {
-       
+
         if (item != null)
         {
             if (!isShopMode) // 사용모드
             {
                 bool isUse = item.Use();
+                
                 if (item.itemType == ItemType.Equipment)
                 {
-                    PlayerPrefs.SetInt("Upgrade", slotNum);
-                    
+
+                    if (InventoryUI.instance.upgradePanel.activeSelf == true)
+                    {
+                        InventoryUI.instance.upgradeText.text = item.itemName + "을 강화하시겠습니까?";
+                        InventoryUI.instance.UpgradeImage.sprite = item.itemImage;
+                        InventoryUI.instance.UpgradeImage.gameObject.SetActive(true);
+
+                        if (item.atk > 0)
+                        {
+                            InventoryUI.instance.UpgradeDescription.text
+                            = "현재 강화레벨 : " + item.inchantLevel +
+                              "\n공격력 : " + item.atk +
+                              "\n강화비용 : " + item.itemCost +
+                              "\n강화재료 : " + ItemDatabase.instance.itemsDB[5].itemName + " , " + ItemDatabase.instance.itemsDB[7].itemName+
+                             "\n 강화 확률" + (10 - item.inchantLevel) * 10 + "%";
+                        }
+                        else if (item.def > 0)
+                        {
+                            InventoryUI.instance.UpgradeDescription.text
+                            = "현재 강화레벨 : " + item.inchantLevel +
+                              "\n방어력 : " + item.def +
+                              "\n강화비용 : " + item.itemCost +
+                              "\n강화재료 : " + ItemDatabase.instance.itemsDB[5].itemName + " , " + ItemDatabase.instance.itemsDB[7].itemName +
+                              "\n 강화 확률" + (10 - item.inchantLevel) * 10 + "%";
+                        }
+
+                        InventoryUI.instance.upgradedItem = item;
+
+                    }
+
+
 
                 }
                 if (isUse)
-                { 
+                {
                     Inventory.instance.RemoveItem(slotNum);
                 }
             }
@@ -71,4 +103,6 @@ public class Slot : MonoBehaviour, IPointerUpHandler
         isSell = false;
         checkSell.SetActive(isSell);
     }
+
+    
 }

@@ -8,7 +8,7 @@ public class AwakeScene : MonoBehaviour
 {
     public void onGameStartButtonClick()
     {
-        SceneManager.LoadScene("Village");
+        SceneManager.LoadScene("Dungeon");
     }
     public void onExitbuttonClick()
     {

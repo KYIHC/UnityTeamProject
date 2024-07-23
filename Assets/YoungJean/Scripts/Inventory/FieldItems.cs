@@ -14,10 +14,11 @@ public class FieldItems : MonoBehaviour
         item.itemType = _item.itemType;
         item.itemCost = _item.itemCost;
         item.description = _item.description;
+        item.inchantLevel = _item.inchantLevel;
         item.atk = _item.atk;
         item.def = _item.def;
 
-        image.sprite = item.itemImage;
+        image.sprite = _item.itemImage;
         item.efts = _item.efts;
     }
 
