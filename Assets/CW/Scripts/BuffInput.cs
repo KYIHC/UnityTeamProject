@@ -9,27 +9,8 @@ public class BuffInput : MonoBehaviour
     public float duration;
     public Sprite icon;
 
-    
-
-
-
-    private void Update()
+    public void Click()
     {
-        
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-
-            BuffManager.instance.CreateBuff(type, per, duration, icon);
-
-        }
-        
-
-
-
-
+        BuffManager.instance.CreateBuff(type,per,duration,icon);
     }
-
-    
-
-
 }

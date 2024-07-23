@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     public float stopDistance = 1.0f;
 
 
-    public Animator anim;
+    private Animator anim;
     private Vector3 CharacterMove;
 
     private NavMeshAgent nav;
@@ -151,7 +151,7 @@ public class Character : MonoBehaviour
         isAttackReady = weapon.attackSpeed < attackDelay;
 
 
-        if (Input.GetMouseButton(0) && isAttackReady /*&& !InventoryUI.instance.activeInventory*/)
+        if (Input.GetMouseButton(0) && isAttackReady && !InventoryUI.instance.activeInventory)
         {
             attackCheck = true;
             weapon.useWeapon();

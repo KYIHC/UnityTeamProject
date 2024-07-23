@@ -11,12 +11,9 @@ public class BaseBuff : MonoBehaviour
     public float currentTime;
     public Image icon;
 
-    private void Awake()
-    {
-        icon=GetComponent<Image>();
-    }
 
 
+    
 
     public void Init(string type,float per, float du)
     {
