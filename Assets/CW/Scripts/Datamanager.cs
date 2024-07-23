@@ -7,9 +7,12 @@ public class Datamanager : MonoBehaviour
     public static Datamanager instance;
     PlayerJson playerJson;
     public List<PlayerData> playerDataList = new List<PlayerData>();
-    PlayerData userData;
+    
     public float playerDamage;
-    public PlayerStats playerStat;
+
+    public PlayerData playerData;
+
+
 
     private void Awake()
     {
@@ -56,16 +59,22 @@ public class Datamanager : MonoBehaviour
 
     public void ChooseBuff(string type)
     {
+
         switch (type)
         {
             case "Atk":
-                playerStat.Atk = BuffChange(type, playerDataList[0].attackDamage);
+                playerData.attackDamage = BuffChange(type, playerDataList[0].attackDamage);
+
                 break;
-            case "Def":
-                playerStat.Def = BuffChange(type, playerDataList[0].armorDef);
-                break;
+            
+
+                
+
+
+
 
 
         }
     }
+
 }
