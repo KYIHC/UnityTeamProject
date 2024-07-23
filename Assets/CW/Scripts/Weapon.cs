@@ -51,7 +51,7 @@ public class Weapon : MonoBehaviour
 
     IEnumerator UseSword()
     {
-        if (character.isAttackReady&&character.isMove==false)
+        if (character.isAttackReady==true&&character.attackCheck==true)
         {
             yield return new WaitForSeconds(0.1f);
             weaponArea.SetActive(true);
@@ -70,4 +70,5 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(2f);
         weaponArea.SetActive(false);
     }*/
+    
 }
