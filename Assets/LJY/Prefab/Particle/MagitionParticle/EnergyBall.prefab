@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6620141919111758439}
   - component: {fileID: 6620141919097666443}
   - component: {fileID: 6620141919097705333}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4790,7 +4790,7 @@ GameObject:
   - component: {fileID: 6620141919111826869}
   - component: {fileID: 6620141919097675245}
   - component: {fileID: 6620141919095916007}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9568,7 +9568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6620141919111793873}
   - component: {fileID: 6620141919122454419}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9665,7 +9665,7 @@ GameObject:
   - component: {fileID: 6620141919097623655}
   - component: {fileID: 6620141919109129977}
   - component: {fileID: 6620141919122759299}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: BlueSparklerMissile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14557,7 +14557,7 @@ GameObject:
   - component: {fileID: 7562777705145060795}
   - component: {fileID: 3313103259812196791}
   - component: {fileID: 614176977322563860}
-  m_Layer: 0
+  m_Layer: 29
   m_Name: EnergyBall
   m_TagString: MonsterProjectile
   m_Icon: {fileID: 0}

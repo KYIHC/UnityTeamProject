@@ -30,7 +30,6 @@ public class EnergyBall : MonsterProjectile
         if (other.CompareTag("Player"))
         {
             energyBall[0].Stop();
-            //other.GetComponent<Character>().Hit(damage);
             Invoke("ReturnEnergyBall", 1.5f);
         }
         else
@@ -39,7 +38,5 @@ public class EnergyBall : MonsterProjectile
             return;
         }
         ReturnEnergyBall();
-
-
     }
 }

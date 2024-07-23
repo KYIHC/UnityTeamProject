@@ -54,7 +54,7 @@ public class DungeonManager : MonoBehaviour
         {
             GameManager.instance.DungeonPhase++;
             portal[0].SetActive(true);
-            waveClear = false;
+            waveClear = true;
         }
         else if (phaseOneClear == true)
         {

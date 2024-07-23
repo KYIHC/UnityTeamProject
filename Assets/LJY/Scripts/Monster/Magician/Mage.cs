@@ -95,7 +95,8 @@ public class Mage : Monster
             {
                 isDie = true;
                 ChangeState(State.Die);
-
+                MUIManager.instance.MonsterUI.SetActive(false);
+                DungeonManager.instance.currentWave--;
             }
         }
 
@@ -168,8 +169,7 @@ public class Mage : Monster
     {
         if (other.gameObject.tag == "Player")
         {
-            float damage = other.GetComponent<Character>().damage;
-            Hit(damage);
+            Hit(other.GetComponent<Character>().damage);
             MUIManager.instance.MonsterUI.SetActive(false);
             MUIManager.instance.hpbar.fillAmount = currentHP / maxHP;
             MUIManager.instance.hpText.text = $"{currentHP + " / " + maxHP}";
