@@ -241,6 +241,7 @@ public class Character : MonoBehaviour
             nav.isStopped = true;
     }
 
+
     IEnumerator resumeMove()
     {
         nav.isStopped = true;

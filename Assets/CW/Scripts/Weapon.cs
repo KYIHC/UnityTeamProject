@@ -15,15 +15,28 @@ public class Weapon : MonoBehaviour
     public GameObject weaponArea;
     public float attackSpeed;
 
+    public Character character;
 
+    private void Start()
+    {
+        character = FindObjectOfType<Character>();
+
+        if(character!=null)
+        {
+            bool value = character.attackCheck;
+            Debug.Log(value);
+        }
+    }
 
     public void useWeapon()
     {
-        switch(weaponType)
+        switch (weaponType)
         {
             case WeaponType.SWORD:
-                StopCoroutine("UseSword");
-                StartCoroutine("UseSword");
+                
+                    StopCoroutine("UseSword");
+                    StartCoroutine("UseSword");
+                
 
                 break;
 
@@ -38,17 +51,23 @@ public class Weapon : MonoBehaviour
 
     IEnumerator UseSword()
     {
-        yield return new WaitForSeconds(0.1f);
-        weaponArea.SetActive(true);
+        if (character.isAttackReady&&character.isMove==false)
+        {
+            yield return new WaitForSeconds(0.1f);
+            weaponArea.SetActive(true);
 
-        yield return new WaitForSeconds(0.3f);
-        weaponArea.SetActive(false);
+
+
+            yield return new WaitForSeconds(0.3f);
+            weaponArea.SetActive(false);
+        }
+        
     }
-    IEnumerator UseShield()
+    /*IEnumerator UseShield()
     {
         yield return null;
         weaponArea.SetActive(true);
         yield return new WaitForSeconds(2f);
         weaponArea.SetActive(false);
-    }
+    }*/
 }
