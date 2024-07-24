@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerDataManager : MonoBehaviour
 {
     public static PlayerDataManager instance;
+    public bool isDungeon = false;
     PlayerJson playerJson;
     public List<PlayerData> playerDataList = new List<PlayerData>();
     

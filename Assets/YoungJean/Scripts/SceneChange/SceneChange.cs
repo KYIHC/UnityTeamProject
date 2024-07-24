@@ -2,18 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneChange : MonoBehaviour
 {
-
+    public GameObject DungeonPanel;
+    public Button EnterButton;
+    public Button CancelButton;
+    bool panelDelay;
+    
     private void Start()
     {
+
         // ÇöÀç¾ÀÀÌ 
         if (SceneManager.GetActiveScene().name == "Character Scene")
         {
             SceneManager.LoadScene("Village");
 
         }
+        panelDelay= true;
+        
+       
+        
 
     }
 
@@ -24,12 +34,35 @@ public class SceneChange : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(transform.position, 3);
             foreach (var collider in colliders)
             {
-                if (collider.CompareTag("Player"))
+                if (collider.CompareTag("Player")&&panelDelay)
                 {
-                    SceneManager.LoadScene("Dungeon");                }
+                    
+                    DungeonPanel.SetActive(true);
+                    
+                }
             }
 
         }
-       
+
+    }
+
+    public void EnterDungeon()
+    {
+        
+        PlayerDataManager.instance.isDungeon = true;
+        SceneManager.LoadScene("Dungeon");
+    }
+    public void CancelDungeon()
+    {
+        panelDelay = false;
+        DungeonPanel.SetActive(false);
+        StartCoroutine(PanelDelay());
+        
+    }
+
+    public IEnumerator PanelDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        panelDelay = true;
     }
 }
