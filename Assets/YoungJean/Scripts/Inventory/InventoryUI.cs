@@ -39,6 +39,7 @@ public class InventoryUI : MonoBehaviour
             return;
         }
         instance = this;
+       
 
     }
 
@@ -84,7 +85,8 @@ public class InventoryUI : MonoBehaviour
 
         }
         CurrentMoney.text = "Money : " + ItemDatabase.instance.Money.ToString();
-        PlayerDataManager.instance.playerData.gold = ItemDatabase.instance.Money;
+        
+        PlayerDataManager.instance.playerDataList[0].gold = ItemDatabase.instance.Money;
 
         if (!activeInventory)
         {
@@ -175,12 +177,12 @@ public class InventoryUI : MonoBehaviour
                 if (upgradedItem.atk > 0)
                 {
                     upgradedItem.atk += 5;
-                    PlayerDataManager.instance.playerData.attackDamage += 5;
+                    PlayerDataManager.instance.playerDataList[0].attackDamage += 5;
                 }
                 else if (upgradedItem.def > 0)
                 {
                     upgradedItem.def += 5;
-                    PlayerDataManager.instance.playerData.armorDef += 5;
+                    PlayerDataManager.instance.playerDataList[0].armorDef += 5;
                 }
 
                 Debug.Log("강화성공");

@@ -14,7 +14,9 @@ public class Tooltip : MonoBehaviour
     public TextMeshProUGUI defText;
     public TextMeshProUGUI defValueText;
 
-
+    private void Awake()
+    {
+    }
     public void SetupTooltip(string name, string description, int cost,int atk, int def)
     {
         nameText.text = name;

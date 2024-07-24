@@ -76,12 +76,12 @@ public class Inventory : MonoBehaviour
                 if (item.atk > 0 && isWeapon == false)
                 {
                     isWeapon = true;
-                    PlayerDataManager.instance.playerData.attackDamage += item.atk;
+                    PlayerDataManager.instance.playerDataList[0].attackDamage += item.atk;
                 }
                 else if(item.def > 0 && isArmor == false)
                 {
                     isArmor = true;
-                    PlayerDataManager.instance.playerData.armorDef += item.def;
+                    PlayerDataManager.instance.playerDataList[0].armorDef += item.def;
                 }
             }
         }
