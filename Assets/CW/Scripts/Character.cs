@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using Newtonsoft.Json.Bson;
 
-public class Character : MonoBehaviour,IHittable
+public class Character : MonoBehaviour, IHittable
 {
     private Camera mainCamera;
     public GameObject[] weapons;
@@ -40,10 +41,9 @@ public class Character : MonoBehaviour,IHittable
     float attackDelay;
 
     public float damage;
-    public float originDamage;
+    
 
-
-
+   
 
 
 
@@ -62,14 +62,14 @@ public class Character : MonoBehaviour,IHittable
         nav.updateRotation = false;
 
         damage = PlayerDataManager.instance.playerData.attackDamage;
-        
+
 
 
 
     }
     private void Start()
     {
-        originDamage = damage;
+        PlayerDataManager.instance.playerDataList[0].attackDamage = damage;
     }
 
 
@@ -96,7 +96,7 @@ public class Character : MonoBehaviour,IHittable
         LookMoveDir();
         OnDie();
         damagepull();
-        
+
 
 
         /*NavMeshAgent[] allAgents = FindObjectsOfType<NavMeshAgent>();
@@ -226,18 +226,18 @@ public class Character : MonoBehaviour,IHittable
         if (attackCheck == true)
         {
             anim.Play(skill.animationName);
-            
+
 
         }
         if (skill.animationName == "Skill_Kick")
         {
-            
-            
+
+
             StartCoroutine(resumeMove());
         }
         if (skill.animationName == "Skill_Strike")
         {
-            
+
             StartCoroutine(SkillStrike());
         }
 
@@ -267,7 +267,7 @@ public class Character : MonoBehaviour,IHittable
 
     public void OnDie()
     {
-        if(PlayerDataManager.instance.playerData.CurrentHp<=0&&!isDead)
+        if (PlayerDataManager.instance.playerData.CurrentHp <= 0 && !isDead)
         {
             isDead = true;
             nav.isStopped = true;
@@ -285,7 +285,7 @@ public class Character : MonoBehaviour,IHittable
         nav.isStopped = true;
         yield return new WaitForSeconds(0.5f);
         attackCheck = false;
-        PlayerDataManager.instance.playerData.attackDamage = originDamage;
+        PlayerDataManager.instance.playerData.attackDamage = PlayerDataManager.instance.playerDataList[0].attackDamage;;
         KickArea.SetActive(false);
 
         yield return null;
@@ -293,22 +293,23 @@ public class Character : MonoBehaviour,IHittable
 
     IEnumerator SkillStrike()
     {
-        PlayerDataManager.instance.playerData.attackDamage *=2;
+        PlayerDataManager.instance.playerData.attackDamage *= 2;
         weapon.weaponArea.SetActive(true);
         nav.isStopped = true;
-        
+
         yield return new WaitForSeconds(1.0f);
         attackCheck = false;
-        
+
         weapon.weaponArea.SetActive(false);
-        PlayerDataManager.instance.playerData.attackDamage =originDamage;
+        
+        PlayerDataManager.instance.playerData.attackDamage = PlayerDataManager.instance.playerDataList[0].attackDamage;
         yield return null;
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("MonsterProjectile"))
+        if (other.CompareTag("MonsterProjectile"))
         {
             MonsterProjectile projectile = other.GetComponent<MonsterProjectile>();
             Hit(projectile.damage);
@@ -317,8 +318,9 @@ public class Character : MonoBehaviour,IHittable
 
     public void damagepull()
     {
-        damage= PlayerDataManager.instance.playerData.attackDamage;
+        damage = PlayerDataManager.instance.playerData.attackDamage;
     }
+
 
 
 

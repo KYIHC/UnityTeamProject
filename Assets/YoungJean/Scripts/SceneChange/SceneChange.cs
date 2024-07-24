@@ -21,7 +21,7 @@ public class SceneChange : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Village")
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 1);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 3);
             foreach (var collider in colliders)
             {
                 if (collider.CompareTag("Player"))
