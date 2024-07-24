@@ -210,7 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDataList: []
-  playerDamage: 0
   playerData:
     name: 
     attackDamage: 25

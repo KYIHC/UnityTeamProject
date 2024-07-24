@@ -169,7 +169,7 @@ public class Character : MonoBehaviour, IHittable
             attackDelay = 0;
 
 
-            StartCoroutine(resumeMove());
+            /*StartCoroutine(resumeMove());*/
 
         }
 
