@@ -861,8 +861,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1191617766}
-  btnsource: {fileID: 0}
-  soundPanel: {fileID: 0}
+  PlayerAttackClip: {fileID: 8300000, guid: 6094f52ec002b064f94ebeff42715ee9, type: 3}
+  SkillStrikeClip: {fileID: 8300000, guid: abb8d5b542af5ec42a2326182d982187, type: 3}
+  BuffClip: {fileID: 8300000, guid: 466f17685a0db6343a13329920730a12, type: 3}
+  kickClip: {fileID: 8300000, guid: a60619ae77bd3fa4db06a9e6090b9f58, type: 3}
+  walkClip: {fileID: 8300000, guid: 2f2d59f099a4a82499dbc61d13b642c4, type: 3}
 --- !u!4 &1191617768
 Transform:
   m_ObjectHideFlags: 0

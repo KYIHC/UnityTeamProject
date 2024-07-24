@@ -11,10 +11,13 @@ public class BuffInput : MonoBehaviour
 
     public BuffManager buffmanager;
 
+    Character character;
+
 
     private void Start()
     {
         buffmanager = FindObjectOfType<BuffManager>();
+        character = FindObjectOfType<Character>();
         
     }
 
@@ -22,9 +25,11 @@ public class BuffInput : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C)&&!character.isMove)
         {
+            SoundManager.instance.PlayBuffSound();
             buffmanager.CreateBuff(type, per, duration, icon);
+            
             
 
         }

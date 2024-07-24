@@ -34,6 +34,7 @@ public class BuffManager : MonoBehaviour
     {
         if (canChooseBuff)
         {
+            
             animator.SetBool("InBuff", true);
             GameObject go = Instantiate(buffPrefab, transform);
             go.GetComponent<BaseBuff>().Init(type, per, du);
@@ -63,7 +64,7 @@ public class BuffManager : MonoBehaviour
         }
 
 
-
+        
 
         canChooseBuff = true;
         cooltimeImg.fillAmount = 0;

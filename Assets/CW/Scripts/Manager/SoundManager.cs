@@ -7,14 +7,15 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField]
     public static SoundManager instance;
-
     public AudioSource musicSource;
-
-    public AudioSource btnsource;
-
-    public GameObject soundPanel;
-
+    private AudioSource sfxSource;
+    public AudioClip PlayerAttackClip;
+    public AudioClip SkillStrikeClip;
+    public AudioClip BuffClip;
+    public AudioClip kickClip;
+    public AudioClip walkClip;
     
+
 
     private void Awake()
     {
@@ -28,6 +29,8 @@ public class SoundManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+        sfxSource = gameObject.AddComponent<AudioSource>();
+
 
     }
 
@@ -36,14 +39,47 @@ public class SoundManager : MonoBehaviour
         musicSource.volume = volume;
     }
 
-    public void OnSfx()
+    public void PlayAttackSound()
     {
-        btnsource.Play();
+        sfxSource.PlayOneShot(PlayerAttackClip);
     }
 
-    public void gameinSoundSetting()
+    public void PlaySkillSound()
     {
-        soundPanel.SetActive(true);
-
+        sfxSource.PlayOneShot(SkillStrikeClip);
     }
+
+    public void PlayBuffSound()
+    {
+        sfxSource.PlayOneShot(BuffClip);
+    }
+
+    public void PlayKickSound()
+    {
+        sfxSource.PlayOneShot(kickClip);
+    }
+
+    
+
+    public void PlayWalkingSound()
+    {
+        if (!sfxSource.isPlaying)
+        {
+            sfxSource.clip = walkClip;
+            sfxSource.loop = true;
+            sfxSource.Play();
+        }
+    }
+
+    public void StopWalkingSound()
+    {
+        if (sfxSource.clip == walkClip)
+        {
+            sfxSource.Stop();
+            sfxSource.loop = false;
+            sfxSource.clip = null;
+        }
+    }
+
+
 }

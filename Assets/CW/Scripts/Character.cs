@@ -84,11 +84,17 @@ public class Character : MonoBehaviour, IHittable
                 if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
                 {
                     setCharacterMove(hit.point);
+                    SoundManager.instance.PlayWalkingSound();
 
 
                 }
+                
             }
 
+        }
+        if (!isMove)
+        {
+            SoundManager.instance.StopWalkingSound();
         }
 
         Attack();
@@ -172,6 +178,8 @@ public class Character : MonoBehaviour, IHittable
                     break;
             }
             attackDelay = 0;
+
+            SoundManager.instance.PlayAttackSound();
 
 
             StartCoroutine(resumeToMove());
@@ -284,6 +292,7 @@ public class Character : MonoBehaviour, IHittable
     IEnumerator resumeMove()
     {
         PlayerDataManager.instance.playerData.attackDamage -= 10;
+        SoundManager.instance.PlayKickSound();
         KickArea.SetActive(true);
         nav.isStopped = true;
         yield return new WaitForSeconds(0.5f);
@@ -297,6 +306,7 @@ public class Character : MonoBehaviour, IHittable
     IEnumerator SkillStrike()
     {
         PlayerDataManager.instance.playerData.attackDamage *= 2;
+        SoundManager.instance.PlaySkillSound();
         
         nav.isStopped = true;
 
