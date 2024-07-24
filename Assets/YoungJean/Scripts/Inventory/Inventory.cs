@@ -6,6 +6,8 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
+    public bool isWeapon = false;
+    public bool isArmor = false;
 
     private void Awake()
     {
@@ -65,11 +67,29 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+
+        
+        foreach (var item in items)
+        {
+            if (item.itemType == ItemType.Equipment)
+            {
+                if (item.atk > 0 && isWeapon == false)
+                {
+                    isWeapon = true;
+                    PlayerDataManager.instance.playerData.attackDamage += item.atk;
+                }
+                else if(item.def > 0 && isArmor == false)
+                {
+                    isArmor = true;
+                    PlayerDataManager.instance.playerData.armorDef += item.def;
+                }
+            }
+        }
     }
 
     public void RemoveItem(int index)
     {
-        
+
         items.RemoveAt(index);
         onChangeItem?.Invoke();
     }

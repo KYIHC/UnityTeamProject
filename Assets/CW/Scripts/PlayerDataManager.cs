@@ -36,7 +36,7 @@ public class PlayerDataManager : MonoBehaviour
         playerJson.Load();
         playerDataList = playerJson.readFromJson ?? new List<PlayerData>();
         character = FindObjectOfType<Character>();
-
+        playerData.name = "에드워드 엘릭";
         playerDataList[0].attackDamage = character.damage;
 
 
