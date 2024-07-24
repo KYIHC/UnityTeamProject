@@ -10,7 +10,11 @@ public class ItemHealingEffect : ItemEffect
 
     public override bool ExecuteEffect()
     {
-        Debug.Log("Healing the player for " + healingPoint + " points.");
+        PlayerDataManager.instance.playerData.CurrentHp += 50;
+        if(PlayerDataManager.instance.playerData.CurrentHp > PlayerDataManager.instance.playerData.maxHp)
+        {
+            PlayerDataManager.instance.playerData.CurrentHp = PlayerDataManager.instance.playerData.maxHp;
+        }
         return true;
     }
 }
