@@ -44,9 +44,8 @@ public class Boss : Monster
         attackSequence.AddChild(attackActtion);
         chaseSequence.AddChild(chaseActtion);
 
-        monsterName = MonsterDataManager.instance.bossPhaseOne.name;
-        maxHP = 0;
-        //maxHP = MonsterDataManager.instance.bossPhaseOne.maxHP;
+        monsterName = MonsterDataManager.instance.bossPhaseOne.name; 
+        maxHP = MonsterDataManager.instance.bossPhaseOne.maxHP;
         currentHP = maxHP;
         root.Evaluate();
         
@@ -55,6 +54,8 @@ public class Boss : Monster
     private void Update()
     {
         root.Evaluate();
+        if (currentHP <= 0)
+        { currentHP = 0; }
     }
 
     private bool IsPlayerDie()
@@ -75,8 +76,10 @@ public class Boss : Monster
         {
             nav.isStopped = true;
             anim.SetTrigger("isStay");
+            MUIManager.instance.BossUI.SetActive(false);
             Destroy(gameObject, 4.0f);
             DungeonManager.instance.phaseOneClear = true;
+            ItemDatabase.instance.Money += 100;
             isDie = true;
             return BTState.Success;
         }
@@ -128,9 +131,14 @@ public class Boss : Monster
     private void OnTriggerEnter(Collider other)
     {
       
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("PlayerWeapon") && currentHP > 0)
         {
-            Debug.Log("Hit");
+            Hit(other.GetComponent<Character>().damage);
+            MUIManager.instance.BossUI.SetActive(true);
+            MUIManager.instance.bossHpBar.fillAmount = currentHP / maxHP;
+            MUIManager.instance.bossHpText.text = $"{currentHP + " / " + maxHP}";
+            MUIManager.instance.bossName.text = $"{"해골성의 주인 " + monsterName}";
+            
         }
     }
 
@@ -140,7 +148,6 @@ public class Boss : Monster
         bool isHit = Physics.Raycast(rayPosition.position, rayPosition.forward, out hit, attackRange);
         if (isHit && hit.collider.CompareTag("Player"))
         {
-            Debug.Log("HeadCheck");
             return true;
         }
         else { return false; }

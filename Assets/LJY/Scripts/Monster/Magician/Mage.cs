@@ -91,6 +91,7 @@ public class Mage : Monster
         }
         else
         {
+            currentHP = 0;
             if (isDie == false)
             {
                 isDie = true;
@@ -158,7 +159,7 @@ public class Mage : Monster
 
     public void Shoot()
     {
-        var energyBall =  MObjectPooling.GetObject(1);
+        var energyBall = MObjectPooling.GetObject(1);
         energyBall.transform.position = ShootPoint.position;
         energyBall.transform.rotation = ShootPoint.rotation;
         energyBall.transform.forward = ShootPoint.forward;
@@ -167,15 +168,14 @@ public class Mage : Monster
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "PlayerWeapon" && currentHP >0)
         {
+            MUIManager.instance.MonsterUI.SetActive(true);
             Hit(other.GetComponent<Character>().damage);
-            MUIManager.instance.MonsterUI.SetActive(false);
             MUIManager.instance.hpbar.fillAmount = currentHP / maxHP;
             MUIManager.instance.hpText.text = $"{currentHP + " / " + maxHP}";
             MUIManager.instance.monsterName.text = monsterName;
             MUIManager.instance.monsterImage.sprite = MUIManager.instance.MonsterSprite[0];
-            MUIManager.instance.MonsterUI.SetActive(true);
         }
     }
 }

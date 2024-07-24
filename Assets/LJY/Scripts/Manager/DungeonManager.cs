@@ -32,7 +32,7 @@ public class DungeonManager : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         nav = player.GetComponent<NavMeshAgent>();
-        currentWave = 15;
+        currentWave = 8;
 
         if (phaseCheck == 0)
         {
@@ -79,6 +79,7 @@ public class DungeonManager : MonoBehaviour
 
     public void GotoPhaseOne()
     {
+        MUIManager.instance.SceneImage.CrossFadeAlpha(255f, 0.75f, false);
         stage[0].SetActive(false);
         stage[1].SetActive(true);
         stage[2].SetActive(false);
@@ -87,11 +88,14 @@ public class DungeonManager : MonoBehaviour
         nav.enabled = false;
         player.transform.position = spawnPoint[1].position;
         player.transform.forward = spawnPoint[1].forward;
+        MUIManager.instance.SceneImage.CrossFadeAlpha(0f, 0.75f, false);
         nav.enabled = true;
     }
 
     public void WaitingRoomSpawn()
     {
+        MUIManager.instance.SceneImage.CrossFadeAlpha(0f, 0.75f, false);
+        nav.enabled = false;
         stage[0].SetActive(false);
         stage[1].SetActive(true);
         stage[2].SetActive(true);
@@ -99,10 +103,13 @@ public class DungeonManager : MonoBehaviour
         stage[4].SetActive(true);
         player.transform.position = spawnPoint[2].position;
         player.transform.forward = spawnPoint[2].forward;
+        MUIManager.instance.SceneImage.CrossFadeAlpha(0f, 0.75f, false);
+        nav.enabled = true;
     }
 
     public void GotoPhaseTwo()
     {
+        MUIManager.instance.SceneImage.CrossFadeAlpha(0f, 0.75f, false);
         stage[0].SetActive(false);
         stage[1].SetActive(false);
         stage[2].SetActive(true);
@@ -111,6 +118,7 @@ public class DungeonManager : MonoBehaviour
         nav.enabled = false;
         player.transform.position = spawnPoint[3].position;
         player.transform.forward = spawnPoint[3].forward;
+        MUIManager.instance.SceneImage.CrossFadeAlpha(0f, 0.75f, false);
         nav.enabled = true;
     }
 }

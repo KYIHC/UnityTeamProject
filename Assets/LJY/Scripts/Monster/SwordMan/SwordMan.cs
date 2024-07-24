@@ -81,13 +81,14 @@ public class SwordMan : Monster
         }
         else
         {
+            currentHP = 0;
             if (isDie == false)
             {
                 isDie = true;
                 ChangeState(State.Die);
                 DungeonManager.instance.currentWave--;
                 MUIManager.instance.MonsterUI.SetActive(false);
-                
+
 
             }
         }
@@ -159,15 +160,14 @@ public class SwordMan : Monster
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "PlayerWeapon" && currentHP > 0)
         {
             Hit(other.GetComponent<Character>().damage);
-            MUIManager.instance.MonsterUI.SetActive(false);
+            MUIManager.instance.MonsterUI.SetActive(true);
             MUIManager.instance.hpbar.fillAmount = currentHP / maxHP;
             MUIManager.instance.hpText.text = $"{currentHP + " / " + maxHP}";
             MUIManager.instance.monsterName.text = monsterName;
             MUIManager.instance.monsterImage.sprite = MUIManager.instance.MonsterSprite[1];
-            MUIManager.instance.MonsterUI.SetActive(true);
         }
     }
 }

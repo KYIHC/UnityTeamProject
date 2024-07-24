@@ -14,6 +14,13 @@ public class MUIManager : MonoBehaviour
     public TextMeshProUGUI monsterName;
     public Image monsterImage;
     public Sprite[] MonsterSprite;
+
+    public GameObject BossUI;
+    public Image bossHpBar;
+    public TextMeshProUGUI bossHpText;
+    public TextMeshProUGUI bossName;
+
+    public Image SceneImage;
     private void Awake()
     {
         if (instance == null)

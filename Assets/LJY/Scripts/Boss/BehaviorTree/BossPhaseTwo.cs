@@ -59,6 +59,8 @@ public class BossPhaseTwo : Monster
     private void Update()
     {
         root.Evaluate();
+        if (currentHP <= 0)
+        { currentHP = 0; }
     }
 
     private bool IsPlayerDie()
@@ -87,7 +89,9 @@ public class BossPhaseTwo : Monster
         {
             nav.isStopped = true;
             anim.SetTrigger("isDeath");
+            MUIManager.instance.BossUI.SetActive(false);
             Destroy(gameObject, 4.0f);
+            ItemDatabase.instance.Money += 150;
             isDie = true;
             return BTState.Success;
         }
@@ -162,9 +166,14 @@ public class BossPhaseTwo : Monster
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("PlayerWeapon") && currentHP > 0)
         {
-            Debug.Log("Hit");
+            Hit(other.GetComponent<Character>().damage);
+            MUIManager.instance.BossUI.SetActive(true);
+            MUIManager.instance.bossHpBar.fillAmount = currentHP / maxHP;
+            MUIManager.instance.bossHpText.text = $"{currentHP + " / " + maxHP}";
+            MUIManager.instance.bossName.text = $"{"해골성의 주인 " + monsterName}";
+
         }
     }
 
