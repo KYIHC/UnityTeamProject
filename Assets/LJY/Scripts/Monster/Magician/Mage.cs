@@ -171,7 +171,7 @@ public class Mage : Monster
         if (other.gameObject.tag == "PlayerWeapon" && currentHP >0)
         {
             MUIManager.instance.MonsterUI.SetActive(true);
-            Hit(other.GetComponent<Character>().damage);
+            Hit(other.GetComponent<PlayerWeapon>().damage);
             MUIManager.instance.hpbar.fillAmount = currentHP / maxHP;
             MUIManager.instance.hpText.text = $"{currentHP + " / " + maxHP}";
             MUIManager.instance.monsterName.text = monsterName;

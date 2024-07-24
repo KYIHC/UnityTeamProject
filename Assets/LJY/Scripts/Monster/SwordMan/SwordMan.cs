@@ -162,7 +162,7 @@ public class SwordMan : Monster
     {
         if (other.gameObject.tag == "PlayerWeapon" && currentHP > 0)
         {
-            Hit(other.GetComponent<Character>().damage);
+            Hit(other.GetComponent<PlayerWeapon>().damage);
             MUIManager.instance.MonsterUI.SetActive(true);
             MUIManager.instance.hpbar.fillAmount = currentHP / maxHP;
             MUIManager.instance.hpText.text = $"{currentHP + " / " + maxHP}";

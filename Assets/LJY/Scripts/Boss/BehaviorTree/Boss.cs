@@ -133,7 +133,7 @@ public class Boss : Monster
       
         if (other.CompareTag("PlayerWeapon") && currentHP > 0)
         {
-            Hit(other.GetComponent<Character>().damage);
+            Hit(other.GetComponent<PlayerWeapon>().damage);
             MUIManager.instance.BossUI.SetActive(true);
             MUIManager.instance.bossHpBar.fillAmount = currentHP / maxHP;
             MUIManager.instance.bossHpText.text = $"{currentHP + " / " + maxHP}";

@@ -13545,15 +13545,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1452170439, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1874215233, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1874215233, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4662681415678365561, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
       propertyPath: m_RootOrder
@@ -13618,6 +13618,10 @@ PrefabInstance:
     - target: {fileID: 4662681415678365567, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662681415678365567, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3500efca1a2810e4989fc8a1a621b214, type: 3}
@@ -15380,6 +15384,14 @@ PrefabInstance:
     - target: {fileID: 2269964342925077082, guid: 5ab134ae7ecedba47abfe17423404b61, type: 3}
       propertyPath: m_Name
       value: BossField1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492154058038900140, guid: 5ab134ae7ecedba47abfe17423404b61, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8492154058038900140, guid: 5ab134ae7ecedba47abfe17423404b61, type: 3}
+      propertyPath: m_TagString
+      value: MonsterSword
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ab134ae7ecedba47abfe17423404b61, type: 3}
@@ -26331,6 +26343,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1669718112}
     m_Modifications:
+    - target: {fileID: 650933828127655661, guid: a2515a58ebdc01c4195eb3aa7028337e, type: 3}
+      propertyPath: m_TagString
+      value: MonsterSword
+      objectReference: {fileID: 0}
     - target: {fileID: 1878598140057102285, guid: a2515a58ebdc01c4195eb3aa7028337e, type: 3}
       propertyPath: m_Name
       value: BossField2
@@ -94797,6 +94813,7 @@ GameObject:
   - component: {fileID: 7047342962169388357}
   - component: {fileID: 7055263938526656789}
   - component: {fileID: 7055263938526656788}
+  - component: {fileID: 7055263938526656790}
   m_Layer: 29
   m_Name: PhaseOnePortal
   m_TagString: Untagged
@@ -94883,6 +94900,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5564394, y: 1.5564405, z: 2.3258078}
   m_Center: {x: -0.0000007352676, y: -0.00000012233852, z: -0.3920517}
+--- !u!114 &7055263938526656790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7033335565484970887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83e5012051ac1541988b67324f16d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7107842507246834072
 GameObject:
   m_ObjectHideFlags: 0

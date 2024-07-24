@@ -306,10 +306,10 @@ public class Character : MonoBehaviour, IHittable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MonsterProjectile"))
+        if (other.CompareTag("MonsterProjectile") || other.CompareTag("MonsterSword"))
         {
-            MonsterProjectile projectile = other.GetComponent<MonsterProjectile>();
-            Hit(projectile.damage);
+            float damage = other.GetComponent<MonsterProjectile>().damage;
+            Hit(damage);
         }
     }
 
