@@ -253,7 +253,7 @@ public class Character : MonoBehaviour, IHittable
         if (PlayerDataManager.instance.playerData.CurrentHp <= 0 && !isDead)
         {
             isDead = true;
-            nav.isStopped = true;
+            nav.enabled = false;
             Debug.Log("die");
             anim.SetTrigger("doDie");
         }
