@@ -155,7 +155,8 @@ public class Character : MonoBehaviour, IHittable
         isAttackReady = weapon.attackSpeed < attackDelay;
 
 
-        if (Input.GetMouseButton(0) && isAttackReady && !InventoryUI.instance.activeInventory)
+        if (Input.GetMouseButton(0) && isAttackReady && !InventoryUI.instance.activeInventory
+            && PlayerDataManager.instance.playerData.CurrentHp > 0)
         {
             attackCheck = true;
             weapon.useWeapon();
@@ -178,7 +179,8 @@ public class Character : MonoBehaviour, IHittable
     void Rolling()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && isRollingReady && nav.velocity.magnitude > 3f)
+        if (Input.GetKeyDown(KeyCode.Space) && isRollingReady && nav.velocity.magnitude > 3f
+            &&PlayerDataManager.instance.playerData.CurrentHp > 0)
         {
 
 
@@ -254,7 +256,7 @@ public class Character : MonoBehaviour, IHittable
         {
             isDead = true;
             nav.enabled = false;
-            Debug.Log("die");
+            
             anim.SetTrigger("doDie");
         }
         return;
