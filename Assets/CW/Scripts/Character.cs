@@ -67,15 +67,6 @@ public class Character : MonoBehaviour, IHittable
 
 
     }
-    /*private void Start()
-    {
-<<<<<<< Updated upstream
-        PlayerDataManager.instance.playerDataList[0].attackDamage = damage;
-    }
-=======
-        originDamage = damage;
-    }*/
->>>>>>> Stashed changes
 
 
 
@@ -314,46 +305,6 @@ public class Character : MonoBehaviour, IHittable
     }
 
 
-
-<<<<<<< Updated upstream
-
-    /*private void OnTriggerStay(Collider other)
-    {
-
-
-
-        if (other.tag == "Monster" || other.tag == "Boss")
-        {
-
-            StartCoroutine(navStop());
-
-        }
-
-
-    }
-
-    *//*private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Monster" || other.tag == "Boss")
-        {
-            nav.isStopped = false;
-
-        }
-
-
-    }*//*
-
-    IEnumerator navStop()
-    {
-        
-        nav.isStopped = true;
-        yield return new WaitForSeconds(2f);
-        nav.isStopped = false;
-
-    }*/
-=======
-    
->>>>>>> Stashed changes
 
 
 
