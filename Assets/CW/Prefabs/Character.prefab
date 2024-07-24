@@ -2880,7 +2880,7 @@ GameObject:
   - component: {fileID: 388391298}
   m_Layer: 0
   m_Name: KickArea
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2912,7 +2912,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.08, y: 0.42, z: 0.25}
-  m_Center: {x: -0.06, y: 0, z: 0}
+  m_Center: {x: -0.09, y: 0, z: 0}
 --- !u!114 &388391298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4848,6 +4848,7 @@ MonoBehaviour:
   StopMode: 0
   isDead: 0
   damage: 0
+  def: 0
 --- !u!195 &4662681415678365563
 NavMeshAgent:
   m_ObjectHideFlags: 0

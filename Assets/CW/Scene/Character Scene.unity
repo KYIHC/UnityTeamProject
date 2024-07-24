@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDataList: []
+  isDungeon: 0
   playerData:
     name: 
     attackDamage: 25
@@ -907,6 +908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b09ca36105e9b4582ba7e3ce6055cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DungeonPanel: {fileID: 0}
+  EnterButton: {fileID: 0}
+  CancelButton: {fileID: 0}
 --- !u!1 &2004456837
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,12 +31,13 @@ public class PlayerDataManager : MonoBehaviour
         playerDataList = playerJson.readFromJson ?? new List<PlayerData>();
         character = FindObjectOfType<Character>();
         playerData.name = "에드워드 엘릭";
-        playerDataList[0].attackDamage = character.damage;
+        
     }
 
     private void Start()
     {
-          
+        playerDataList[0].attackDamage = character.damage;
+        playerDataList[0].armorDef = character.def;
     }
 
 

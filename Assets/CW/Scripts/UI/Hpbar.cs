@@ -15,11 +15,12 @@ public class Hpbar : MonoBehaviour
 
     private void Start()
     {
-        hpbar.value= PlayerDataManager.instance.playerData.CurrentHp / PlayerDataManager.instance.playerData.maxHp;
+        hpbar.value= Mathf.Max(PlayerDataManager.instance.playerData.CurrentHp,0) / PlayerDataManager.instance.playerData.maxHp;
     }
 
     private void Update()
     {
+        
         HandleHp();
         HpStateText();
         GetName();
@@ -28,12 +29,14 @@ public class Hpbar : MonoBehaviour
 
     void HandleHp()
     {
-        hpbar.value=PlayerDataManager.instance.playerData.CurrentHp/ PlayerDataManager.instance.playerData.maxHp;
+        float currentHp = Mathf.Max(PlayerDataManager.instance.playerData.CurrentHp, 0);
+        hpbar.value= currentHp / PlayerDataManager.instance.playerData.maxHp;
     }
 
     void HpStateText()
     {
-        HpState.text = $"{PlayerDataManager.instance.playerData.CurrentHp + " / " + PlayerDataManager.instance.playerData.maxHp}";
+        float currentHp = Mathf.Max(PlayerDataManager.instance.playerData.CurrentHp, 0);
+        HpState.text = $"{currentHp + " / " + PlayerDataManager.instance.playerData.maxHp}";
     }
     void GetName()
     {

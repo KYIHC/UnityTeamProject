@@ -41,6 +41,7 @@ public class Character : MonoBehaviour, IHittable
     float attackDelay;
 
     public float damage;
+    public float def;
     
 
    
@@ -62,7 +63,7 @@ public class Character : MonoBehaviour, IHittable
         nav.updateRotation = false;
 
         damage = PlayerDataManager.instance.playerData.attackDamage;
-
+        def = PlayerDataManager.instance.playerData.armorDef;
 
 
 
@@ -73,16 +74,19 @@ public class Character : MonoBehaviour, IHittable
 
     private void Update()
     {
-        if (Input.GetMouseButton(1) && attackCheck == false)
+        if(PlayerDataManager.instance.playerData.CurrentHp > 0)
         {
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
+            if (Input.GetMouseButton(1) && attackCheck == false)
             {
-                setCharacterMove(hit.point);
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
+                {
+                    setCharacterMove(hit.point);
 
 
+                }
             }
 
         }
@@ -179,7 +183,7 @@ public class Character : MonoBehaviour, IHittable
     void Rolling()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && isRollingReady && nav.velocity.magnitude > 3f
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isRollingReady && nav.velocity.magnitude > 3f
             &&PlayerDataManager.instance.playerData.CurrentHp > 0)
         {
 
@@ -293,12 +297,13 @@ public class Character : MonoBehaviour, IHittable
     IEnumerator SkillStrike()
     {
         PlayerDataManager.instance.playerData.attackDamage *= 2;
-        weapon.weaponArea.SetActive(true);
+        
         nav.isStopped = true;
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         attackCheck = false;
-
+        weapon.weaponArea.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
         weapon.weaponArea.SetActive(false);
         
         PlayerDataManager.instance.playerData.attackDamage = PlayerDataManager.instance.playerDataList[0].attackDamage;
@@ -318,6 +323,7 @@ public class Character : MonoBehaviour, IHittable
     public void damagepull()
     {
         damage = PlayerDataManager.instance.playerData.attackDamage;
+        def=PlayerDataManager.instance.playerData.armorDef;
     }
 
 
