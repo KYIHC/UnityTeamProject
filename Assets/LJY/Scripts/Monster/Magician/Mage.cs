@@ -13,10 +13,6 @@ public class Mage : Monster
     #region public 변수
     public Transform ShootPoint;
     #endregion
-    #region 몬스터 정보 변수
-
-    #endregion
-
     #region 상태관련 private변수 및 열거형
     private enum State
     {

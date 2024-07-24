@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SwordMan : Monster
 {
+
     #region private º¯¼ö
     private bool isDie = false;
     #endregion

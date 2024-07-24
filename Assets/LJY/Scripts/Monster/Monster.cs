@@ -7,6 +7,7 @@ public class Monster : MonoBehaviour,IHittable
     #region public 변수 
     [HideInInspector]
     public GameObject playerPosition;
+    public AudioClip[] monsterAudio;
     #endregion
 
     #region 몬스터 정보 변수

@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DungeonPhase = 1;
+        DungeonPhase = 0;
     }
 
 }
