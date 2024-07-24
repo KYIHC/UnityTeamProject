@@ -40,10 +40,7 @@ public class Weapon : MonoBehaviour
 
                 break;
 
-            case WeaponType.SHIELD:
-                StopCoroutine("UseShield");
-                StartCoroutine("UseShield");
-                break;
+            
 
 
         }
@@ -63,11 +60,5 @@ public class Weapon : MonoBehaviour
         }
         
     }
-    /*IEnumerator UseShield()
-    {
-        yield return null;
-        weaponArea.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        weaponArea.SetActive(false);
-    }*/
+    
 }

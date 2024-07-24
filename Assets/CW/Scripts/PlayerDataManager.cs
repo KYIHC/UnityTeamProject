@@ -8,7 +8,7 @@ public class PlayerDataManager : MonoBehaviour
     PlayerJson playerJson;
     public List<PlayerData> playerDataList = new List<PlayerData>();
     
-    public float playerDamage;
+    
 
     public PlayerData playerData;
 

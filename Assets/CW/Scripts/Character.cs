@@ -67,10 +67,15 @@ public class Character : MonoBehaviour, IHittable
 
 
     }
-    private void Start()
+    /*private void Start()
     {
+<<<<<<< Updated upstream
         PlayerDataManager.instance.playerDataList[0].attackDamage = damage;
     }
+=======
+        originDamage = damage;
+    }*/
+>>>>>>> Stashed changes
 
 
 
@@ -99,20 +104,7 @@ public class Character : MonoBehaviour, IHittable
 
 
 
-        /*NavMeshAgent[] allAgents = FindObjectsOfType<NavMeshAgent>();
-        foreach(NavMeshAgent otherAgent in allAgents)
-        {
-            if(otherAgent!=nav)
-            {
-                float distance = Vector3.Distance(nav.transform.position, otherAgent.transform.position);
-                if(distance<stopDistance)
-                {
-                    nav.isStopped = true;
-                    return;
-                }
-            }
-        }
-        nav.isStopped = false;*/
+        
 
 
 
@@ -172,7 +164,7 @@ public class Character : MonoBehaviour, IHittable
         isAttackReady = weapon.attackSpeed < attackDelay;
 
 
-        if (Input.GetMouseButton(0) && isAttackReady /*&& !InventoryUI.instance.activeInventory*/)
+        if (Input.GetMouseButton(0) && isAttackReady && !InventoryUI.instance.activeInventory)
         {
             attackCheck = true;
             weapon.useWeapon();
@@ -323,6 +315,7 @@ public class Character : MonoBehaviour, IHittable
 
 
 
+<<<<<<< Updated upstream
 
     /*private void OnTriggerStay(Collider other)
     {
@@ -358,6 +351,9 @@ public class Character : MonoBehaviour, IHittable
         nav.isStopped = false;
 
     }*/
+=======
+    
+>>>>>>> Stashed changes
 
 
 
