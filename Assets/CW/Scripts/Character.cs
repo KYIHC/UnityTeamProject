@@ -169,7 +169,7 @@ public class Character : MonoBehaviour, IHittable
             attackDelay = 0;
 
 
-            /*StartCoroutine(resumeMove());*/
+            StartCoroutine(resumeToMove());
 
         }
 
@@ -259,6 +259,20 @@ public class Character : MonoBehaviour, IHittable
         }
         return;
     }
+
+    IEnumerator resumeToMove()
+    {
+        
+        
+        nav.isStopped = true;
+        yield return new WaitForSeconds(0.5f);
+        attackCheck = false;
+        
+        
+
+        yield return null;
+    }
+
 
 
     IEnumerator resumeMove()
