@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("게임 매니저가 두개입니다.");
             Destroy(gameObject);
         }
-
     }
 
 }

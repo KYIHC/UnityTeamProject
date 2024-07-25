@@ -6,6 +6,7 @@ public class MSoundManager : MonoBehaviour
 {
     public static MSoundManager instance;
 
+    public AudioClip[] bossAudio;
     public AudioClip[] monsterAudio;
 
     public AudioClip[] dungeonBGM;
@@ -19,5 +20,6 @@ public class MSoundManager : MonoBehaviour
             instance = this;
         }
    
+        audioSource = GetComponent<AudioSource>();
     }
 }
