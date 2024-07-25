@@ -44,8 +44,9 @@ public class Boss : Monster
         attackSequence.AddChild(attackActtion);
         chaseSequence.AddChild(chaseActtion);
 
-        monsterName = MonsterDataManager.instance.bossPhaseOne.name; 
-        maxHP = MonsterDataManager.instance.bossPhaseOne.maxHP;
+        monsterName = MonsterDataManager.instance.bossPhaseOne.name;
+        //maxHP = MonsterDataManager.instance.bossPhaseOne.maxHP;
+        maxHP = 0;
         currentHP = maxHP;
         root.Evaluate();
         
@@ -138,7 +139,7 @@ public class Boss : Monster
             MUIManager.instance.bossHpBar.fillAmount = currentHP / maxHP;
             MUIManager.instance.bossHpText.text = $"{currentHP + " / " + maxHP}";
             MUIManager.instance.bossName.text = $"{"해골성의 주인 " + monsterName}";
-            
+            Debug.Log(other.GetComponent<PlayerWeapon>().damage);
         }
     }
 

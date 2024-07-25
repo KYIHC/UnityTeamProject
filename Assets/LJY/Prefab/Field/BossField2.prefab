@@ -32176,10 +32176,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.35274062
-  m_Height: 2.9746563
+  m_Radius: 0.19842173
+  m_Height: 2.0655642
   m_Direction: 2
-  m_Center: {x: 0.103728, y: -0.027570266, z: 1.4892544}
+  m_Center: {x: 0.12379069, y: 0.030826416, z: 1.5110734}
 --- !u!54 &3162638604846108785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -77734,6 +77734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 0}
+  monsterAudio: []
   monsterName: 
   maxHP: 0
   currentHP: 0

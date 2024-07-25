@@ -79,7 +79,7 @@ public class DungeonManager : MonoBehaviour
 
     public void GotoPhaseOne()
     {
-        MUIManager.instance.SceneImage.CrossFadeAlpha(255f, 0.75f, false);
+        MUIManager.instance.SceneImage.CrossFadeAlpha(255f, 1f, false);
         stage[0].SetActive(false);
         stage[1].SetActive(true);
         stage[2].SetActive(false);
@@ -94,11 +94,11 @@ public class DungeonManager : MonoBehaviour
 
     public void WaitingRoomSpawn()
     {
-        MUIManager.instance.SceneImage.CrossFadeAlpha(0f, 0.75f, false);
+        MUIManager.instance.SceneImage.CrossFadeAlpha(255f, 1f, false);
         nav.enabled = false;
         stage[0].SetActive(false);
         stage[1].SetActive(true);
-        stage[2].SetActive(true);
+        stage[2].SetActive(false);
         stage[3].SetActive(false);
         stage[4].SetActive(true);
         player.transform.position = spawnPoint[2].position;
@@ -109,7 +109,7 @@ public class DungeonManager : MonoBehaviour
 
     public void GotoPhaseTwo()
     {
-        MUIManager.instance.SceneImage.CrossFadeAlpha(0f, 0.75f, false);
+        MUIManager.instance.SceneImage.CrossFadeAlpha(255f, 1f, false);
         stage[0].SetActive(false);
         stage[1].SetActive(false);
         stage[2].SetActive(true);
