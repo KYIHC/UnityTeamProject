@@ -9,11 +9,14 @@ public class SceneChange : MonoBehaviour
     public GameObject DungeonPanel;
     public Button EnterButton;
     public Button CancelButton;
+    
+    public GameObject Player;
+    public GameObject respawn;
     bool panelDelay;
     
     private void Start()
     {
-
+        
         // 현재씬이 
         if (SceneManager.GetActiveScene().name == "Character Scene")
         {
@@ -21,6 +24,15 @@ public class SceneChange : MonoBehaviour
 
         }
         panelDelay= true;
+        if(SceneManager.GetActiveScene().name == "Village")
+        {
+            if(PlayerDataManager.instance.isDungeon)// 던전에서 왔다면,
+            {
+                Player.transform.position = respawn.transform.position;
+                PlayerDataManager.instance.isDungeon = false;
+            }
+            
+        }
         
        
         
@@ -50,6 +62,8 @@ public class SceneChange : MonoBehaviour
     {
         
         PlayerDataManager.instance.isDungeon = true;
+        panelDelay = false;
+        DungeonPanel.SetActive(false);        
         SceneManager.LoadScene("Dungeon");
     }
     public void CancelDungeon()
