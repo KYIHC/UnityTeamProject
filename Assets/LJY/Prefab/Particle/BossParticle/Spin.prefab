@@ -14668,9 +14668,9 @@ GameObject:
   - component: {fileID: 4470876739280809132}
   - component: {fileID: 4978140692493864377}
   - component: {fileID: 6148921736154601486}
-  - component: {fileID: 3625264742443848392}
   - component: {fileID: 7561096248006392527}
   - component: {fileID: 4276632777255650778}
+  - component: {fileID: 1604834588626633056}
   m_Layer: 0
   m_Name: Spin
   m_TagString: MonsterSword
@@ -14714,7 +14714,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 0.5}
   emitterVelocityMode: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -19557,19 +19557,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!135 &3625264742443848392
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983169101265118745}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.23
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7561096248006392527
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19600,6 +19587,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 0
+--- !u!65 &1604834588626633056
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983169101265118745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.26387, y: 0.14376728, z: 3.3902316}
+  m_Center: {x: 0.082409546, y: 0.014634093, z: 0.1933403}
 --- !u!1 &2663656178651906310
 GameObject:
   m_ObjectHideFlags: 0
