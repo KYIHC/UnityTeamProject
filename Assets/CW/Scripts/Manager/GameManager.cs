@@ -6,7 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Character character;
+
     public short DungeonPhase = 0;
+
+    public List<Item> items = new List<Item>();
+    public int SlotCount=4;
 
     private void Awake()
     {
@@ -21,5 +25,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
 
 }

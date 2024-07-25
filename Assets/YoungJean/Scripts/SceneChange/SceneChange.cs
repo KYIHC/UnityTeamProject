@@ -56,6 +56,9 @@ public class SceneChange : MonoBehaviour
 
         panelDelay = false;
         DungeonPanel.SetActive(false);
+        GameManager.instance.items = Inventory.instance.items;
+        GameManager.instance.SlotCount = Inventory.instance.SlotCount;
+
         SceneManager.LoadScene("Dungeon");
     }
     public void CancelDungeon()

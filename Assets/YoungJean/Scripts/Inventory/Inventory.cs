@@ -17,6 +17,7 @@ public class Inventory : MonoBehaviour
             return;
         }
         instance = this;
+        
 
     }
 
@@ -24,7 +25,7 @@ public class Inventory : MonoBehaviour
     public OnSlotCountChange onSlotCountChange;
     public delegate void OnChangeItem();
     public OnChangeItem onChangeItem;
-    private int slotCount;
+    public int slotCount;
     public List<Item> items = new List<Item>();
     public int SlotCount
     {
@@ -37,7 +38,11 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
-        SlotCount = 4;
+        
+         SlotCount = GameManager.instance.SlotCount;
+
+        
+
     }
     public bool Additem(Item _item)
     {

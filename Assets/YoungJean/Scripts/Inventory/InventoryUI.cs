@@ -39,7 +39,7 @@ public class InventoryUI : MonoBehaviour
             return;
         }
         instance = this;
-       DontDestroyOnLoad(gameObject);
+      
         
 
     }
@@ -48,11 +48,16 @@ public class InventoryUI : MonoBehaviour
     {
         inven = Inventory.instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();
+
+        inven.items = GameManager.instance.items;
+        inven.SlotCount=GameManager.instance.SlotCount;
+
         inven.onSlotCountChange += SlotChange;
         inven.onChangeItem += RedrawSlotUI;
         RedrawSlotUI();
         inventoryPanel.SetActive(activeInventory);
         upgradePanel.SetActive(false);
+        
 
 
     }
