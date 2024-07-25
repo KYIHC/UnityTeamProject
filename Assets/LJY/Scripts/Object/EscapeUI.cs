@@ -9,7 +9,7 @@ public class EscapeUI : MonoBehaviour
 {
     public Button escapeButton;
     public GameObject escapeUI;
-    
+
     public void OnClickEscapeButton()
     {
         SceneManager.LoadScene("Village");

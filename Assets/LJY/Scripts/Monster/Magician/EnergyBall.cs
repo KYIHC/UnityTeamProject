@@ -30,7 +30,7 @@ public class EnergyBall : MonsterProjectile
         if (other.CompareTag("Player"))
         {
             energyBall[0].Stop();
-            Invoke("ReturnEnergyBall", 1.5f);
+            Invoke("ReturnEnergyBall", 3f);
         }
         else
         if (other.CompareTag("Monster"))

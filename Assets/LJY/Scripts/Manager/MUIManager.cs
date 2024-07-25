@@ -22,6 +22,7 @@ public class MUIManager : MonoBehaviour
     public TextMeshProUGUI bossName;
     #endregion
     public GameObject escapeUI;
+    public GameObject clear;
     private void Awake()
     {
         if (instance == null)

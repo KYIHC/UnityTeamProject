@@ -116,6 +116,7 @@ public class DungeonManager : MonoBehaviour
 
     public void GotoPhaseTwo()
     {
+        MUIManager.instance.escapeUI.SetActive(false);
         stage[0].SetActive(false);
         stage[1].SetActive(false);
         stage[2].SetActive(true);

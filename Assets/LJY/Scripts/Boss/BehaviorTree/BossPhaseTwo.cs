@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class BossPhaseTwo : Monster
 {
@@ -90,6 +91,8 @@ public class BossPhaseTwo : Monster
             nav.isStopped = true;
             anim.SetTrigger("isDeath");
             MUIManager.instance.BossUI.SetActive(false);
+            MUIManager.instance.clear.SetActive(true);
+            Invoke("GotoMain", 11.0f);
             Destroy(gameObject, 4.0f);
             ItemDatabase.instance.Money += 150;
             isDie = true;
@@ -187,5 +190,11 @@ public class BossPhaseTwo : Monster
         }
         else { return false; }
 
+    }
+
+    private void GotoMain()
+    {
+        MUIManager.instance.clear.SetActive(false);
+        SceneManager.LoadScene("Village");
     }
 }
