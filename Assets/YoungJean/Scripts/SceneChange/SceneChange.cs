@@ -57,7 +57,7 @@ public class SceneChange : MonoBehaviour
         panelDelay = false;
         DungeonPanel.SetActive(false);
         StartCoroutine(PanelDelay());
-     
+        
     }
 
     public IEnumerator PanelDelay()

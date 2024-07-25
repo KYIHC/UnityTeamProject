@@ -33,6 +33,7 @@ public class FireBall : MonsterProjectile
         {
             fireBall[0].Stop();
             fireBall[1].Play();
+            // other.gameObject.GetComponent<Character>().Hit(damage)
         }
         else if (other.gameObject.tag == "Boss")
         {

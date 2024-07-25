@@ -16,7 +16,6 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public GameObject checkSell;
     public Outline outline;
 
-    
 
 
     public void UpdateSlotUI()
