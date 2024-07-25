@@ -9,33 +9,25 @@ public class SceneChange : MonoBehaviour
     public GameObject DungeonPanel;
     public Button EnterButton;
     public Button CancelButton;
-    
-    public GameObject Player;
-    public GameObject respawn;
+
+    public GameObject player;
+
     bool panelDelay;
-    
+
     private void Start()
     {
-        
+
         // 현재씬이 
         if (SceneManager.GetActiveScene().name == "Character Scene")
         {
             SceneManager.LoadScene("Village");
 
         }
-        panelDelay= true;
-        if(SceneManager.GetActiveScene().name == "Village")
-        {
-            if(PlayerDataManager.instance.isDungeon)// 던전에서 왔다면,
-            {
-                Player.transform.position = respawn.transform.position;
-                PlayerDataManager.instance.isDungeon = false;
-            }
-            
-        }
-        
+        panelDelay = true;
        
-        
+
+
+
 
     }
 
@@ -46,11 +38,11 @@ public class SceneChange : MonoBehaviour
             Collider[] colliders = Physics.OverlapSphere(transform.position, 3);
             foreach (var collider in colliders)
             {
-                if (collider.CompareTag("Player")&&panelDelay)
+                if (collider.CompareTag("Player") && panelDelay)
                 {
-                    
+
                     DungeonPanel.SetActive(true);
-                    
+
                 }
             }
 
@@ -60,10 +52,10 @@ public class SceneChange : MonoBehaviour
 
     public void EnterDungeon()
     {
-        
-        PlayerDataManager.instance.isDungeon = true;
+
+
         panelDelay = false;
-        DungeonPanel.SetActive(false);        
+        DungeonPanel.SetActive(false);
         SceneManager.LoadScene("Dungeon");
     }
     public void CancelDungeon()
@@ -71,7 +63,7 @@ public class SceneChange : MonoBehaviour
         panelDelay = false;
         DungeonPanel.SetActive(false);
         StartCoroutine(PanelDelay());
-        
+
     }
 
     public IEnumerator PanelDelay()

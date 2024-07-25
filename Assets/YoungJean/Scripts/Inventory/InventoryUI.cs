@@ -40,6 +40,7 @@ public class InventoryUI : MonoBehaviour
         }
         instance = this;
        DontDestroyOnLoad(gameObject);
+        
 
     }
 

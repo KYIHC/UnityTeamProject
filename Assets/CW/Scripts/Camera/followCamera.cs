@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class followCamera : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class followCamera : MonoBehaviour
 
     private void Start()
     {
+       
         GameObject player = GameObject.FindWithTag("Player");
         if(player!=null)
         {

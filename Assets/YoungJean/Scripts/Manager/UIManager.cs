@@ -15,6 +15,6 @@ public class UIManager : MonoBehaviour
         {
             Destroy(this);
         }
-        DontDestroyOnLoad(this);
+      
     }
 }

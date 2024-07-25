@@ -277,11 +277,11 @@ public class Character : MonoBehaviour, IHittable
     }
 
     public void returnVillage()
-    {
-        SceneManager.LoadScene("Village");
-        isDead = false;
-        nav.enabled = true;
+    {isDead = false;
+        nav.enabled = false;
         PlayerDataManager.instance.playerData.CurrentHp = 200;
+        SceneManager.LoadScene("Village");
+        
     }
 
     IEnumerator resumeToMove()

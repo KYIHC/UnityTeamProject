@@ -8,7 +8,7 @@ public class PlayerDataManager : MonoBehaviour
 
     PlayerJson playerJson;
     public List<PlayerData> playerDataList = new List<PlayerData>();
-    public bool isDungeon;
+    public bool isFirst= true;
 
 
     public PlayerData playerData;
