@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Character character;
-    public short DungeonPhase;
+    public short DungeonPhase = 0;
 
     private void Awake()
     {
@@ -21,7 +21,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+<<<<<<< Updated upstream
         DungeonPhase = 1;
+=======
+        
+>>>>>>> Stashed changes
     }
 
 }

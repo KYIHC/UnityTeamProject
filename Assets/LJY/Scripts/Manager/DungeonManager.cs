@@ -46,6 +46,10 @@ public class DungeonManager : MonoBehaviour
         {
             WaitingRoomSpawn();
         }
+        SoundManager.instance.musicSource.clip = MSoundManager.instance.dungeonBGM[0];
+        SoundManager.instance.musicSource.Play();
+        
+
     }
 
     private void Update()
@@ -101,6 +105,7 @@ public class DungeonManager : MonoBehaviour
         stage[2].SetActive(true);
         stage[3].SetActive(false);
         stage[4].SetActive(true);
+        PlayerDataManager.instance.playerData.CurrentHp = PlayerDataManager.instance.playerData.maxHp;
         player.transform.position = spawnPoint[2].position;
         player.transform.forward = spawnPoint[2].forward;
         MUIManager.instance.SceneImage.CrossFadeAlpha(0f, 0.75f, false);

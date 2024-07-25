@@ -14199,6 +14199,8 @@ MonoBehaviour:
   monsterAudio:
   - {fileID: 8300000, guid: 2bc324f2f4436304baeb64aa940aede5, type: 3}
   - {fileID: 8300000, guid: 50ab0a438d8c1a345873147b66f5caad, type: 3}
+  dungeonBGM:
+  - {fileID: 8300000, guid: f7de010c9a3e23947a99bfd4a7bb331f, type: 3}
   audioSource: {fileID: 0}
 --- !u!82 &2108869904
 AudioSource:
