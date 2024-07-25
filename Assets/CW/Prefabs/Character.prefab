@@ -247,7 +247,7 @@ MonoBehaviour:
   character: {fileID: 4662681415678365560}
   skillIcon: {fileID: 408683612}
   cooltimeImg: {fileID: 333771502}
-  activationKey: 120
+  activationKey: 99
   SkillCheck: 0
 --- !u!114 &408683610
 MonoBehaviour:
@@ -1850,7 +1850,7 @@ MonoBehaviour:
   character: {fileID: 4662681415678365560}
   skillIcon: {fileID: 1446517214}
   cooltimeImg: {fileID: 2077802087}
-  activationKey: 122
+  activationKey: 120
   SkillCheck: 0
 --- !u!114 &1446517212
 MonoBehaviour:

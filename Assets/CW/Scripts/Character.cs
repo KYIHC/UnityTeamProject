@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 using Newtonsoft.Json.Bson;
 
+
 public class Character : MonoBehaviour, IHittable
 {
     private Camera mainCamera;
@@ -270,8 +271,17 @@ public class Character : MonoBehaviour, IHittable
             nav.enabled = false;
             
             anim.SetTrigger("doDie");
+            Invoke("returnVillage", 3.0f);
         }
         return;
+    }
+
+    public void returnVillage()
+    {
+        SceneManager.LoadScene("Village");
+        isDead = false;
+        nav.enabled = true;
+        PlayerDataManager.instance.playerData.CurrentHp = 200;
     }
 
     IEnumerator resumeToMove()
@@ -291,33 +301,37 @@ public class Character : MonoBehaviour, IHittable
 
     IEnumerator resumeMove()
     {
-        PlayerDataManager.instance.playerData.attackDamage -= 10;
-        SoundManager.instance.PlayKickSound();
-        KickArea.SetActive(true);
-        nav.isStopped = true;
-        yield return new WaitForSeconds(0.5f);
-        attackCheck = false;
-        PlayerDataManager.instance.playerData.attackDamage = PlayerDataManager.instance.playerDataList[0].attackDamage;;
-        KickArea.SetActive(false);
+        
+            PlayerDataManager.instance.playerData.attackDamage -= 10;
+            SoundManager.instance.PlayKickSound();
+            KickArea.SetActive(true);
+            nav.isStopped = true;
+            yield return new WaitForSeconds(0.5f);
+            attackCheck = false;
+            PlayerDataManager.instance.playerData.attackDamage = PlayerDataManager.instance.playerDataList[0].attackDamage; ;
+            KickArea.SetActive(false);
 
-        yield return null;
+            yield return null;
+        
     }
 
     IEnumerator SkillStrike()
     {
-        PlayerDataManager.instance.playerData.attackDamage *= 2;
-        SoundManager.instance.PlaySkillSound();
         
-        nav.isStopped = true;
+            PlayerDataManager.instance.playerData.attackDamage *= 2;
+            SoundManager.instance.PlaySkillSound();
 
-        yield return new WaitForSeconds(0.5f);
-        attackCheck = false;
-        weapon.weaponArea.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        weapon.weaponArea.SetActive(false);
+            nav.isStopped = true;
+
+            yield return new WaitForSeconds(0.5f);
+            attackCheck = false;
+            weapon.weaponArea.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            weapon.weaponArea.SetActive(false);
+
+            PlayerDataManager.instance.playerData.attackDamage = PlayerDataManager.instance.playerDataList[0].attackDamage;
+            yield return null;
         
-        PlayerDataManager.instance.playerData.attackDamage = PlayerDataManager.instance.playerDataList[0].attackDamage;
-        yield return null;
     }
 
 

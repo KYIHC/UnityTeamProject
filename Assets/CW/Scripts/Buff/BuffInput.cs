@@ -25,7 +25,7 @@ public class BuffInput : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.C)&&!character.isMove)
+        if (Input.GetKeyDown(KeyCode.Z)&&!character.isMove)
         {
             SoundManager.instance.PlayBuffSound();
             buffmanager.CreateBuff(type, per, duration, icon);
