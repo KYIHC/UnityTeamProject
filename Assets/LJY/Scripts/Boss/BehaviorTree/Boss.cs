@@ -44,11 +44,7 @@ public class Boss : Monster
         attackSequence.AddChild(attackActtion);
         chaseSequence.AddChild(chaseActtion);
 
-<<<<<<< Updated upstream
         monsterName = MonsterDataManager.instance.bossPhaseOne.name; 
-=======
-        monsterName = MonsterDataManager.instance.bossPhaseOne.name;
->>>>>>> Stashed changes
         maxHP = MonsterDataManager.instance.bossPhaseOne.maxHP;
         currentHP = maxHP;
         root.Evaluate();

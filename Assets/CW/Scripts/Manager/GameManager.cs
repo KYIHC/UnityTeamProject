@@ -21,11 +21,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-<<<<<<< Updated upstream
-        DungeonPhase = 1;
-=======
-        
->>>>>>> Stashed changes
     }
 
 }
