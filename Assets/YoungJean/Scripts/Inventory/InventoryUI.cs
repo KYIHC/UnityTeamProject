@@ -91,6 +91,7 @@ public class InventoryUI : MonoBehaviour
 
         if (!activeInventory)
         {
+            if(upgradePanel!=null)
             upgradePanel.SetActive(false);
             activeUpgradePanel = false;
         }
